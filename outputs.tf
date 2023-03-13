@@ -62,4 +62,5 @@ output "organization_members_account_tags_by_account_name" {
 # Search result which can be adjusted by setting properties of the module
 output "search_result" {
   value = local.search_result
+  description = "The search result which can be refined by setting the input parameter of the module. The input parameter of this module only have an effect on this output."
 }
