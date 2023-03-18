@@ -1,4 +1,4 @@
-# Output for lists of account ids
+# Management account
 output "management_account_id" {
   value = local.management_account_id
   description = "The AWS account id of the organization's management account."
@@ -9,6 +9,8 @@ output "management_account_name" {
   description = "The name of the organization's management account."
 }
 
+
+# Lists of account ids
 output "organization_members_account_ids" {
   value = local.member_account_ids
   description = "A list of AWS account ids of all member accounts. It doesn't include the organization's management account."
@@ -20,7 +22,7 @@ output "all_account_ids" {
 }
 
 
-# Output for mapping between account id and name
+# Mapping between account id and name
 output "organization_members_mapping_name_to_account_id" {
   value = local.organization_members_mapping_name_to_account_id
   description = "A map which contains the name of the accounts as key and the corresponding account id as value for all member accounts of an organization. It doesn't include the organization's management account."
