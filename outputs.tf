@@ -4,6 +4,11 @@ output "management_account_id" {
   description = "The AWS account id of the organization's management account."
 }
 
+output "management_account_name" {
+  value = local.management_account_name
+  description = "The name of the organization's management account."
+}
+
 output "organization_members_account_ids" {
   value = local.member_account_ids
   description = "A list of AWS account ids of all member accounts. It doesn't include the organization's management account."
