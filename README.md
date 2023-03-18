@@ -55,21 +55,47 @@ Call the module using this provider:
 
 ```hcl
 module "test" {
-  source  = "be-bold/terraform-aws-account-lookup"
-  version = "#.#.#"
+  source    = "be-bold/terraform-aws-account-lookup"
+  version   = "#.#.#"
   providers = {
     aws.org_management_account = aws.org_management_account
   }
 }
 ```
 
-Use one of the outputs:
+Use one of the static outputs:
 
 ````hcl
 output "show" {
   value = module.test.all_accounts_tags_by_account_name
 }
 ````
+
+Or set input parameters to search for a specific set of accounts using `search_result`:
+
+```hcl
+module "test" {
+  source    = "be-bold/terraform-aws-account-lookup"
+  version   = "#.#.#"
+  providers = {
+    aws.org_management_account = aws.org_management_account
+  }
+  
+  include_management_account = false
+  include = {
+    type = "development"
+    team = "my-team"
+  }
+  exclude = {
+    project = "project-a"
+  }
+  group_by = "project"
+}
+
+output "show" {
+  value = module.test.search_result
+}
+```
 
 Except for `search_result` all outputs are static. All input parameters of this module only affect `search_result`.
 Set multiple input parameters to further narrow down your results.
