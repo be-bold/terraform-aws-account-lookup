@@ -52,14 +52,14 @@ locals {
     }, local.all_accounts_tags_by_account_id[account_id])
   ]
 
-  search_step1_check_management_account = [
+  search_step1_include_or_exclude_management_account = [
     for entry in local.search_base : entry if entry["account_id"] != local.management_account_id || var.include_management_account
   ]
 
   search_result_group_id_missing_key = "group_id_missing"
 
   search_step2_grouping = {
-    for entry in local.search_step1_check_management_account :
+    for entry in local.search_step1_include_or_exclude_management_account :
       lookup(entry, var.group_by, local.search_result_group_id_missing_key) => entry...
   }
 
