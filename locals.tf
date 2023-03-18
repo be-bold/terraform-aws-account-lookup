@@ -4,11 +4,9 @@ locals {
     for account in data.aws_organizations_organization.this.accounts : "result" => account["name"] if account["id"] == local.management_account_id
   }["result"])
 
-
   member_account_ids = data.aws_organizations_organization.this.non_master_accounts.*.id
 
-
-  all_account_ids = setunion(local.member_account_ids, [local.management_account_id])
+  all_account_ids = data.aws_organizations_organization.this.accounts.*.id
 
 
   organization_members_mapping_name_to_account_id = {
