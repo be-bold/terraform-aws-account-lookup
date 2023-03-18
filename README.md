@@ -5,7 +5,11 @@ This module allows you to list AWS accounts of an organization in various forms.
 * Get mapping of **account id => account name** and vice versa (with or without root account)
 * Get mapping **account id => account tags** (with or without root account)
 * Get mapping **account name => account tags** (with or without root account)
-* Group accounts by tags (with or without root account)
+* Query accounts and retrieve all data (account id, account name and tags)
+  * Include or exclude management account
+  * Group accounts by tags (with or without root account)
+  * Set include filter
+  * Set exclude filter
 
 ## Prerequisites
 
@@ -59,10 +63,13 @@ module "test" {
 }
 ```
 
-Use one of the many outputs:
+Use one of the outputs:
 
 ````hcl
 output "show" {
   value = module.test.all_accounts_tags_by_account_name
 }
 ````
+
+Except for `search_result` all outputs are static. All input parameter of this module only have an effect on
+`search_result`. Set multiple input parameters to further narrow down your results.

@@ -1,4 +1,5 @@
 # Setup
+
 ```hcl
 module "account_lookup" {
   providers = {
@@ -12,23 +13,24 @@ output "output" {
 ```
 
 # Output
+
 ```json
 Changes to Outputs:
     + output = {
         + member-account-1-name = {
             + tag1 = "value1"
             + tag2 = "value2"
-            + tag3 = "value3"
+            + type = "development"
         }
         + member-account-2-name = {
             + tag1 = "value1"
             + tag2 = "value2"
-            + tag3 = "value3"
+            + type = "production"
         }
         + member-account-3-name = {
             + tag1 = "value1"
             + tag2 = "value2"
-            + tag3 = "value3"
+            + type = "development"
         }
     }
 ```

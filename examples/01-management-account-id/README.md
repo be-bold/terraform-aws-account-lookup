@@ -1,4 +1,5 @@
 # Setup
+
 ```hcl
 module "account_lookup" {
   providers = {
@@ -12,6 +13,7 @@ output "output" {
 ```
 
 # Output
+
 ```json
 Changes to Outputs:
   + output = "000000000000"
