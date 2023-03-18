@@ -7,7 +7,7 @@ This module allows you to list AWS accounts of an organization in various forms.
 * Get mapping **account name => account tags** (with or without root account)
 * Query accounts and retrieve all data (account id, account name and tags)
   * Include or exclude management account
-  * Group accounts by tags (with or without root account)
+  * Group accounts by tags
   * Set include filter
   * Set exclude filter
 
@@ -71,5 +71,5 @@ output "show" {
 }
 ````
 
-Except for `search_result` all outputs are static. All input parameter of this module only have an effect on
-`search_result`. Set multiple input parameters to further narrow down your results.
+Except for `search_result` all outputs are static. All input parameters of this module only affect `search_result`.
+Set multiple input parameters to further narrow down your results.
