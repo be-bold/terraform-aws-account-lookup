@@ -3,7 +3,7 @@
 ```hcl
 module "account_lookup" {
   providers = {
-    aws.org_root_account = aws.org_root_account
+    aws.org_management_account = aws.org_management_account
   }
   group_by = "type"
 }

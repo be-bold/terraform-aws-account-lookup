@@ -3,7 +3,7 @@
 ```hcl
 module "account_lookup" {
   providers = {
-    aws.org_root_account = aws.org_root_account
+    aws.org_management_account = aws.org_management_account
   }
 }
 
@@ -16,5 +16,5 @@ output "output" {
 
 ```json
 Changes to Outputs:
-  + output = "my-management-account-name"
+  + output = "management-account"
 ```

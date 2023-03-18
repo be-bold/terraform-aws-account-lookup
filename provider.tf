@@ -3,7 +3,7 @@ terraform {
     aws = {
       source                = "hashicorp/aws"
       configuration_aliases = [
-        aws.org_root_account,
+        aws.org_management_account,
       ]
     }
   }

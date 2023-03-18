@@ -43,7 +43,7 @@ Create a provider which references this role:
 ```hcl
 provider "aws" {
   region = "YOUR-REGION-HERE"
-  alias  = "org_root_account"
+  alias  = "org_management_account"
 
   assume_role {
     role_arn = "arn:aws:iam::############:role/organization-read-role"
@@ -58,7 +58,7 @@ module "test" {
   source  = "be-bold/terraform-aws-account-lookup"
   version = "#.#.#"
   providers = {
-    aws.org_root_account = aws.org_root_account
+    aws.org_management_account = aws.org_management_account
   }
 }
 ```
