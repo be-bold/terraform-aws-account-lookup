@@ -1,10 +1,10 @@
 # terraform-aws-account-lookup
 
 This module allows you to list AWS accounts of an organization in various forms.
-* List accounts ids (with or without root account)
-* Get mapping of **account id => account name** and vice versa (with or without root account)
-* Get mapping **account id => account tags** (with or without root account)
-* Get mapping **account name => account tags** (with or without root account)
+* List accounts ids (with or without management account)
+* Get mapping of **account id => account name** and vice versa (with or without management account)
+* Get mapping **account id => account tags** (with or without management account)
+* Get mapping **account name => account tags** (with or without management account)
 * Query accounts and retrieve all data (account id, account name and tags)
   * Include or exclude management account
   * Group accounts by tags
@@ -13,7 +13,7 @@ This module allows you to list AWS accounts of an organization in various forms.
 
 ## Prerequisites
 
-You need a role in your organization root account which allows the following:
+You need a role in your organization management account which allows the following:
 
 ```json
 {
