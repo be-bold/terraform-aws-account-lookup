@@ -1,7 +1,7 @@
 variable "include_management_account" {
   type = bool
   default = true
-  description = "Whether or not the search result should include the organization's management account."
+  description = "Whether the search result should include the organization's management account or not."
 }
 
 variable "include" {
@@ -16,10 +16,12 @@ variable "include" {
     status = optional(set(string))
     tags = optional(map(set(string)))
   })
+
   default = {
     status = ["ACTIVE"]
   }
-  description = "A filter taking a map to determine which accounts to include in the result set. Key and value must represent one of the given properties. This can be either 'account_id', 'account_name' or one of the tags provided by the account. Multiple entries are connected by AND."
+
+  description = "Options to filter the search result for values that must be included. If you set multiple properties then these will be linked by AND. If you set multiple values in a set of a single property then these will be linked by OR."
 
   validation {
     condition = var.include.id == null || can(alltrue([ for entry in var.include.id : can(regex("^\\d{12}$", entry)) ]))
@@ -69,8 +71,10 @@ variable "exclude" {
     status = optional(set(string))
     tags = optional(map(set(string)))
   })
+
   default = {}
-  description = "A filter taking a map to determine which accounts to exclude from the result set. Key and value must represent one of the given properties. This can be either 'account_id', 'account_name' or one of the tags provided by the account. Multiple entries are connected by AND."
+
+  description = "Options to filter the search result for values that must be excluded. If you set multiple properties then these will be linked by AND. If you set multiple values in a set of a single property then these will be linked by OR."
 
   validation {
     condition = var.exclude.id == null || can(alltrue([ for entry in var.exclude.id : can(regex("^\\d{12}$", entry)) ]))
