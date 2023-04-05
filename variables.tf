@@ -74,7 +74,7 @@ variable "exclude" {
 
   default = {}
 
-  description = "Options to filter the search result for values that must be excluded. If you set multiple properties then these will be linked by AND. If you set multiple values in a set of a single property then these will be linked by OR."
+  description = "Options to filter the search result for values that must be excluded. If you set multiple properties then these will be linked by AND. If you set multiple values in a set of a single property then these will be linked by AND as well."
 
   validation {
     condition = var.exclude.id == null || can(alltrue([ for entry in var.exclude.id : can(regex("^\\d{12}$", entry)) ]))
@@ -115,5 +115,5 @@ variable "exclude" {
 variable "group_by_tag" {
   type = string
   default = ""
-  description = "Group by one of the tags provided by the accounts. If you choose a tag which is not provided by all account, then those accounts which don't provide the tag will be listed in a separate group. The name of this group can be accessed by using 'output.group_id_missing_key'"
+  description = "Group by one of the tags provided by the accounts. If you choose a tag which is not provided by all accounts, then those accounts which don't provide the tag will be listed in a separate group. The name of this group can be accessed by using 'output.group_id_missing_key'"
 }
