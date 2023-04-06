@@ -2,6 +2,9 @@
 
 ```hcl
 module "account_lookup" {
+  source    = "be-bold/account-lookup/aws"
+  version   = "#.#.#"
+  
   providers = {
     aws.org_management_account = aws.org_management_account
   }

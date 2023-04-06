@@ -55,7 +55,7 @@ Call the module using this provider:
 
 ```hcl
 module "test" {
-  source    = "be-bold/terraform-aws-account-lookup"
+  source    = "be-bold/account-lookup/aws"
   version   = "#.#.#"
   providers = {
     aws.org_management_account = aws.org_management_account
@@ -75,7 +75,7 @@ Or set input parameters to search for a specific set of accounts using `search_r
 
 ```hcl
 module "test" {
-  source    = "be-bold/terraform-aws-account-lookup"
+  source    = "be-bold/account-lookup/aws"
   version   = "#.#.#"
   providers = {
     aws.org_management_account = aws.org_management_account
