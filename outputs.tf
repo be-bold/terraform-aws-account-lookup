@@ -1,3 +1,10 @@
+# Organization id
+output "organization_id" {
+  value = data.aws_organizations_organization.this.id
+  description = "The id of the AWS organization."
+}
+
+
 # Management account
 output "management_account_id" {
   value = local.management_account_id
