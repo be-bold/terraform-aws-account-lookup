@@ -83,11 +83,16 @@ module "test" {
   
   include_management_account = false
   include = {
-    type = "development"
-    team = "my-team"
+    tags  = {
+      type = "development"
+      team = "my-team"
+    }
   }
   exclude = {
-    project = "project-a"
+    name  = {
+      matcher = "startswith"
+      values  = ["test-"]
+    }
   }
   group_by = "project"
 }
