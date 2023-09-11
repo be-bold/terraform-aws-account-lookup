@@ -72,6 +72,7 @@ output "show" {
 ````
 
 Or set input parameters to search for a specific set of accounts using `search_result`:
+You can use multiple values which are connected using `or`.
 
 ```hcl
 module "test" {
@@ -84,8 +85,8 @@ module "test" {
   include_management_account = false
   include = {
     tags  = {
-      type = "development"
-      team = "my-team"
+      type = ["development"]
+      team = ["my-team"]
     }
   }
   exclude = {
