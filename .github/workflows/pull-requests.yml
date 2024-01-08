@@ -1,0 +1,23 @@
+name: "pull requests"
+
+on:
+  pull_request:
+    branches:
+      - "**"
+    paths-ignore:
+      - "README.md"
+      - ".gitignore"
+      - ".github/workflows/**"
+      - "!.github/workflows/pull-requests.yml"
+
+jobs:
+  build:
+    runs-on: "ubuntu-latest"
+    steps:
+      - uses: "hashicorp/setup-terraform@v3"
+        with:
+          terraform_wrapper: false
+      - id: "init"
+        run: terraform init
+      - id: "validate"
+        run: terraform validate
