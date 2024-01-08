@@ -12,6 +12,8 @@ jobs:
       - uses: "hashicorp/setup-terraform@v3"
         with:
           terraform_wrapper: false
+      - id: "terraform version"
+        run: terraform --version
       - id: "init"
         run: terraform init
       - id: "validate"
