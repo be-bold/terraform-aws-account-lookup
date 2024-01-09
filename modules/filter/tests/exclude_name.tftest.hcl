@@ -249,47 +249,47 @@ run "filter_using_exclude.name_-_startswith_-_successfully_filter_for_single_ent
   command = plan
 
   assert {
-    condition = length(keys(local.search_result)) == 1
+    condition = length(keys(local.result)) == 1
     error_message = "Expected 1 entry in search result."
   }
 
   assert {
-    condition = length(local.search_result["234567890123"]) == 1
+    condition = length(local.result["234567890123"]) == 1
     error_message = "Expected entry not found or contains more entries than expected."
   }
 
   assert {
-    condition = local.search_result["234567890123"][0]["id"] == "234567890123"
+    condition = local.result["234567890123"][0]["id"] == "234567890123"
     error_message = "Unexpected value."
   }
 
   assert {
-    condition = local.search_result["234567890123"][0]["arn"] == "arn:aws:organizations::000000000001:account/o-0abcd123ef/234567890123"
+    condition = local.result["234567890123"][0]["arn"] == "arn:aws:organizations::000000000001:account/o-0abcd123ef/234567890123"
     error_message = "Unexpected value."
   }
 
   assert {
-    condition = local.search_result["234567890123"][0]["name"] == "prefix2-account02"
+    condition = local.result["234567890123"][0]["name"] == "prefix2-account02"
     error_message = "Unexpected value."
   }
 
   assert {
-    condition = local.search_result["234567890123"][0]["email"] == "account02@example.org"
+    condition = local.result["234567890123"][0]["email"] == "account02@example.org"
     error_message = "Unexpected value."
   }
 
   assert {
-    condition = local.search_result["234567890123"][0]["status"] == "ACTIVE"
+    condition = local.result["234567890123"][0]["status"] == "ACTIVE"
     error_message = "Unexpected value."
   }
 
   assert {
-    condition = length(local.search_result["234567890123"][0]["tags"]) == 1
+    condition = length(local.result["234567890123"][0]["tags"]) == 1
     error_message = "Only one tag is expected."
   }
 
   assert {
-    condition = local.search_result["234567890123"][0]["tags"]["type"] == "nonprod"
+    condition = local.result["234567890123"][0]["tags"]["type"] == "nonprod"
     error_message = "Unexpected value."
   }
 }
@@ -340,17 +340,17 @@ run "filter_using_exclude.name_-_startswith_-_successfully_filter_for_multiple_e
   command = plan
 
   assert {
-    condition = length(keys(local.search_result)) == 2
+    condition = length(keys(local.result)) == 2
     error_message = "Expected 2 entries in search result."
   }
 
   assert {
-    condition = length(local.search_result["123456789012"]) == 1
+    condition = length(local.result["123456789012"]) == 1
     error_message = "Expected entry not found or contains more entries than expected."
   }
 
   assert {
-    condition = length(local.search_result["345678901234"]) == 1
+    condition = length(local.result["345678901234"]) == 1
     error_message = "Expected entry not found or contains more entries than expected."
   }
 }
@@ -405,12 +405,12 @@ run "filter_using_exclude.name_-_startswith_-_only_return_known_entry_if_you_fil
   command = plan
 
   assert {
-    condition = length(keys(local.search_result)) == 1
+    condition = length(keys(local.result)) == 1
     error_message = "Expected 1 entry in search result."
   }
 
   assert {
-    condition = length(local.search_result["123456789012"]) == 1
+    condition = length(local.result["123456789012"]) == 1
     error_message = "Expected entry not found or contains more entries than expected."
   }
 }
@@ -461,22 +461,22 @@ run "filter_using_exclude.name_-_startswith_-_unknown_entry_doesn't_exclude_anyt
   command = plan
 
   assert {
-    condition = length(local.search_result) == 3
+    condition = length(local.result) == 3
     error_message = "Expected to return the original list if nothing matches."
   }
 
   assert {
-    condition = length(local.search_result["123456789012"]) == 1
+    condition = length(local.result["123456789012"]) == 1
     error_message = "Expected entry not found or contains more entries than expected."
   }
 
   assert {
-    condition = length(local.search_result["234567890123"]) == 1
+    condition = length(local.result["234567890123"]) == 1
     error_message = "Expected entry not found or contains more entries than expected."
   }
 
   assert {
-    condition = length(local.search_result["345678901234"]) == 1
+    condition = length(local.result["345678901234"]) == 1
     error_message = "Expected entry not found or contains more entries than expected."
   }
 }
@@ -527,22 +527,22 @@ run "filter_using_exclude.name_-_startswith_-_empty_values_list_doesn't_exclude_
   command = plan
 
   assert {
-    condition = length(local.search_result) == 3
+    condition = length(local.result) == 3
     error_message = "Expected to return the original list if nothing matches."
   }
 
   assert {
-    condition = length(local.search_result["123456789012"]) == 1
+    condition = length(local.result["123456789012"]) == 1
     error_message = "Expected entry not found or contains more entries than expected."
   }
 
   assert {
-    condition = length(local.search_result["234567890123"]) == 1
+    condition = length(local.result["234567890123"]) == 1
     error_message = "Expected entry not found or contains more entries than expected."
   }
 
   assert {
-    condition = length(local.search_result["345678901234"]) == 1
+    condition = length(local.result["345678901234"]) == 1
     error_message = "Expected entry not found or contains more entries than expected."
   }
 }
@@ -597,47 +597,47 @@ run "filter_using_exclude.name_-_endswith_-_successfully_filter_for_single_entry
   command = plan
 
   assert {
-    condition = length(keys(local.search_result)) == 1
+    condition = length(keys(local.result)) == 1
     error_message = "Expected 1 entry in search result."
   }
 
   assert {
-    condition = length(local.search_result["234567890123"]) == 1
+    condition = length(local.result["234567890123"]) == 1
     error_message = "Expected entry not found or contains more entries than expected."
   }
 
   assert {
-    condition = local.search_result["234567890123"][0]["id"] == "234567890123"
+    condition = local.result["234567890123"][0]["id"] == "234567890123"
     error_message = "Unexpected value."
   }
 
   assert {
-    condition = local.search_result["234567890123"][0]["arn"] == "arn:aws:organizations::000000000001:account/o-0abcd123ef/234567890123"
+    condition = local.result["234567890123"][0]["arn"] == "arn:aws:organizations::000000000001:account/o-0abcd123ef/234567890123"
     error_message = "Unexpected value."
   }
 
   assert {
-    condition = local.search_result["234567890123"][0]["name"] == "account02-suffix2"
+    condition = local.result["234567890123"][0]["name"] == "account02-suffix2"
     error_message = "Unexpected value."
   }
 
   assert {
-    condition = local.search_result["234567890123"][0]["email"] == "account02@example.org"
+    condition = local.result["234567890123"][0]["email"] == "account02@example.org"
     error_message = "Unexpected value."
   }
 
   assert {
-    condition = local.search_result["234567890123"][0]["status"] == "ACTIVE"
+    condition = local.result["234567890123"][0]["status"] == "ACTIVE"
     error_message = "Unexpected value."
   }
 
   assert {
-    condition = length(local.search_result["234567890123"][0]["tags"]) == 1
+    condition = length(local.result["234567890123"][0]["tags"]) == 1
     error_message = "Only one tag is expected."
   }
 
   assert {
-    condition = local.search_result["234567890123"][0]["tags"]["type"] == "nonprod"
+    condition = local.result["234567890123"][0]["tags"]["type"] == "nonprod"
     error_message = "Unexpected value."
   }
 }
@@ -690,17 +690,17 @@ run "filter_using_exclude.name_-_endswith_-_successfully_filter_for_multiple_ent
   command = plan
 
   assert {
-    condition = length(keys(local.search_result)) == 2
+    condition = length(keys(local.result)) == 2
     error_message = "Expected 2 entries in search result."
   }
 
   assert {
-    condition = length(local.search_result["123456789012"]) == 1
+    condition = length(local.result["123456789012"]) == 1
     error_message = "Expected entry not found or contains more entries than expected."
   }
 
   assert {
-    condition = length(local.search_result["345678901234"]) == 1
+    condition = length(local.result["345678901234"]) == 1
     error_message = "Expected entry not found or contains more entries than expected."
   }
 }
@@ -755,12 +755,12 @@ run "filter_using_exclude.name_-_endswith_-_only_return_known_entry_if_you_filte
   command = plan
 
   assert {
-    condition = length(keys(local.search_result)) == 1
+    condition = length(keys(local.result)) == 1
     error_message = "Expected 1 entry in search result."
   }
 
   assert {
-    condition = length(local.search_result["123456789012"]) == 1
+    condition = length(local.result["123456789012"]) == 1
     error_message = "Expected entry not found or contains more entries than expected."
   }
 }
@@ -811,22 +811,22 @@ run "filter_using_exclude.name_-_endswith_-_unknown_entry_doesn't_exclude_anythi
   command = plan
 
   assert {
-    condition = length(local.search_result) == 3
+    condition = length(local.result) == 3
     error_message = "Expected to return the original list if nothing matches."
   }
 
   assert {
-    condition = length(local.search_result["123456789012"]) == 1
+    condition = length(local.result["123456789012"]) == 1
     error_message = "Expected entry not found or contains more entries than expected."
   }
 
   assert {
-    condition = length(local.search_result["234567890123"]) == 1
+    condition = length(local.result["234567890123"]) == 1
     error_message = "Expected entry not found or contains more entries than expected."
   }
 
   assert {
-    condition = length(local.search_result["345678901234"]) == 1
+    condition = length(local.result["345678901234"]) == 1
     error_message = "Expected entry not found or contains more entries than expected."
   }
 }
@@ -877,22 +877,22 @@ run "filter_using_exclude.name_-_endswith_-_empty_values_list_doesn't_exclude_an
   command = plan
 
   assert {
-    condition = length(local.search_result) == 3
+    condition = length(local.result) == 3
     error_message = "Expected to return the original list if nothing matches."
   }
 
   assert {
-    condition = length(local.search_result["123456789012"]) == 1
+    condition = length(local.result["123456789012"]) == 1
     error_message = "Expected entry not found or contains more entries than expected."
   }
 
   assert {
-    condition = length(local.search_result["234567890123"]) == 1
+    condition = length(local.result["234567890123"]) == 1
     error_message = "Expected entry not found or contains more entries than expected."
   }
 
   assert {
-    condition = length(local.search_result["345678901234"]) == 1
+    condition = length(local.result["345678901234"]) == 1
     error_message = "Expected entry not found or contains more entries than expected."
   }
 }
@@ -947,47 +947,47 @@ run "filter_using_exclude.name_-_equals_-_successfully_filter_for_single_entry_w
   command = plan
 
   assert {
-    condition = length(keys(local.search_result)) == 1
+    condition = length(keys(local.result)) == 1
     error_message = "Expected 1 entry in search result."
   }
 
   assert {
-    condition = length(local.search_result["234567890123"]) == 1
+    condition = length(local.result["234567890123"]) == 1
     error_message = "Expected entry not found or contains more entries than expected."
   }
 
   assert {
-    condition = local.search_result["234567890123"][0]["id"] == "234567890123"
+    condition = local.result["234567890123"][0]["id"] == "234567890123"
     error_message = "Unexpected value."
   }
 
   assert {
-    condition = local.search_result["234567890123"][0]["arn"] == "arn:aws:organizations::000000000001:account/o-0abcd123ef/234567890123"
+    condition = local.result["234567890123"][0]["arn"] == "arn:aws:organizations::000000000001:account/o-0abcd123ef/234567890123"
     error_message = "Unexpected value."
   }
 
   assert {
-    condition = local.search_result["234567890123"][0]["name"] == "account02"
+    condition = local.result["234567890123"][0]["name"] == "account02"
     error_message = "Unexpected value."
   }
 
   assert {
-    condition = local.search_result["234567890123"][0]["email"] == "account02@example.org"
+    condition = local.result["234567890123"][0]["email"] == "account02@example.org"
     error_message = "Unexpected value."
   }
 
   assert {
-    condition = local.search_result["234567890123"][0]["status"] == "ACTIVE"
+    condition = local.result["234567890123"][0]["status"] == "ACTIVE"
     error_message = "Unexpected value."
   }
 
   assert {
-    condition = length(local.search_result["234567890123"][0]["tags"]) == 1
+    condition = length(local.result["234567890123"][0]["tags"]) == 1
     error_message = "Only one tag is expected."
   }
 
   assert {
-    condition = local.search_result["234567890123"][0]["tags"]["type"] == "nonprod"
+    condition = local.result["234567890123"][0]["tags"]["type"] == "nonprod"
     error_message = "Unexpected value."
   }
 }
@@ -1040,17 +1040,17 @@ run "filter_using_exclude.name_-_equals_-_successfully_filter_for_multiple_entri
   command = plan
 
   assert {
-    condition = length(keys(local.search_result)) == 2
+    condition = length(keys(local.result)) == 2
     error_message = "Expected 2 entries in search result."
   }
 
   assert {
-    condition = length(local.search_result["123456789012"]) == 1
+    condition = length(local.result["123456789012"]) == 1
     error_message = "Expected entry not found or contains more entries than expected."
   }
 
   assert {
-    condition = length(local.search_result["345678901234"]) == 1
+    condition = length(local.result["345678901234"]) == 1
     error_message = "Expected entry not found or contains more entries than expected."
   }
 }
@@ -1105,12 +1105,12 @@ run "filter_using_exclude.name_-_equals_-_only_return_known_entry_if_you_filter_
   command = plan
 
   assert {
-    condition = length(keys(local.search_result)) == 1
+    condition = length(keys(local.result)) == 1
     error_message = "Expected 1 entry in search result."
   }
 
   assert {
-    condition = length(local.search_result["123456789012"]) == 1
+    condition = length(local.result["123456789012"]) == 1
     error_message = "Expected entry not found or contains more entries than expected."
   }
 }
@@ -1161,22 +1161,22 @@ run "filter_using_exclude.name_-_equals_-_unknown_entry_doesn't_exclude_anything
   command = plan
 
   assert {
-    condition = length(local.search_result) == 3
+    condition = length(local.result) == 3
     error_message = "Expected to return the original list if nothing matches."
   }
 
   assert {
-    condition = length(local.search_result["123456789012"]) == 1
+    condition = length(local.result["123456789012"]) == 1
     error_message = "Expected entry not found or contains more entries than expected."
   }
 
   assert {
-    condition = length(local.search_result["234567890123"]) == 1
+    condition = length(local.result["234567890123"]) == 1
     error_message = "Expected entry not found or contains more entries than expected."
   }
 
   assert {
-    condition = length(local.search_result["345678901234"]) == 1
+    condition = length(local.result["345678901234"]) == 1
     error_message = "Expected entry not found or contains more entries than expected."
   }
 }
@@ -1227,22 +1227,22 @@ run "filter_using_exclude.name_-_equals_-_empty_values_list_doesn't_exclude_anyt
   command = plan
 
   assert {
-    condition = length(local.search_result) == 3
+    condition = length(local.result) == 3
     error_message = "Expected to return the original list if nothing matches."
   }
 
   assert {
-    condition = length(local.search_result["123456789012"]) == 1
+    condition = length(local.result["123456789012"]) == 1
     error_message = "Expected entry not found or contains more entries than expected."
   }
 
   assert {
-    condition = length(local.search_result["234567890123"]) == 1
+    condition = length(local.result["234567890123"]) == 1
     error_message = "Expected entry not found or contains more entries than expected."
   }
 
   assert {
-    condition = length(local.search_result["345678901234"]) == 1
+    condition = length(local.result["345678901234"]) == 1
     error_message = "Expected entry not found or contains more entries than expected."
   }
 }
