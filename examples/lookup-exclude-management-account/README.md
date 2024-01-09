@@ -1,4 +1,4 @@
-# Examples: lookup-exclude-management-account
+# Example: 'lookup-exclude-management-account'
 
 This example will retrieve all possible outputs from the lookup module.
 The organizations management account will be removed from the outputs, because `include_management_account` has been set to `false`.

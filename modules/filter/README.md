@@ -28,7 +28,7 @@ module "filter" {
 There are two different filters that you can set: `include` and `exclude`.
 The `include` filter will pick entries from the `input` that match and passes this subset to the `exclude` filter.
 The `exclude` filter removes matching entries to further narrow down the result.
-If you configured `group_by_tag` then these remaining entries will be grouped and finally be available on the `search_result`. 
+If you configured `group_by_tag` then these remaining entries will be grouped and finally be available on the `result`. 
 
 Both `include`and `exclude` filter as well as `group_by_tag` are **optional**. So you are free to use only one filter or
 only group entries or configure any combination of these three options. 
@@ -232,7 +232,7 @@ module "filter" {
 }
 
 output "result" {
-  value = module.filter.search_result
+  value = module.filter.result
 }
 ```
 
@@ -358,7 +358,7 @@ If you want to group by a tag that is not provided by every account, then the re
 entry. The key is `group_id_missing`. This entry contains all accounts which didn't provide the tag.
 
 The module provides an output for retrieving the name of that entry dynamically. So in case it changes you don't have to
-adjust your code. You can retrieve that name using `search_result_group_id_missing_key`.
+adjust your code. You can retrieve that name using `result_group_id_missing_key`.
 
 ```hcl
 module "filter" {
@@ -412,7 +412,7 @@ module "filter" {
 }
 
 output "result" {
-  value = module.filter.search_result
+  value = module.filter.result
 }
 ```
 

@@ -1,5 +1,5 @@
 locals {
-  search_result_group_id_missing_key = "group_id_missing"
+  result_group_id_missing_key = "group_id_missing"
 
 
   # STEP 1 - include id
@@ -82,7 +82,7 @@ locals {
   is_group_by_tag_set = var.group_by_tag != null && try(length(var.group_by_tag) > 0, false)
   search_step13_grouping = local.is_group_by_tag_set ? {
     for account in local.search_step12_exclude_tags :
-      lookup(account.tags, var.group_by_tag, local.search_result_group_id_missing_key) => account...
+      lookup(account.tags, var.group_by_tag, local.result_group_id_missing_key) => account...
   } : {
     for account in local.search_step12_exclude_tags :
       account.id => account...
@@ -90,5 +90,5 @@ locals {
 
 
   # Result
-  search_result = local.search_step13_grouping
+  result = local.search_step13_grouping
 }

@@ -18,7 +18,7 @@ run "input_-_returns_empty_list_for_empty_list" {
   command = plan
 
   assert {
-    condition = length(local.search_result) == 0
+    condition = length(local.result) == 0
     error_message = "Expected to return an empty list if nothing matches."
   }
 }

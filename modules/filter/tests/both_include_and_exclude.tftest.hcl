@@ -76,17 +76,17 @@ run "filter_using_both_include_and_exclude_-_first_input_is_run_through_include_
   command = plan
 
   assert {
-    condition = length(keys(local.search_result)) == 2
+    condition = length(keys(local.result)) == 2
     error_message = "Expected 2 entries in search result."
   }
 
   assert {
-    condition = length(local.search_result["234567890123"]) == 1
+    condition = length(local.result["234567890123"]) == 1
     error_message = "Expected entry not found or contains more entries than expected."
   }
 
   assert {
-    condition = length(local.search_result["456789012345"]) == 1
+    condition = length(local.result["456789012345"]) == 1
     error_message = "Expected entry not found or contains more entries than expected."
   }
 }
