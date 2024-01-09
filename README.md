@@ -1,19 +1,22 @@
 # terraform-aws-account-lookup
 
-This module allows you to list AWS accounts of an organization in various forms.
-* List accounts ids (with or without management account)
-* Get mapping of **account id => account name** and vice versa (with or without management account)
-* Get mapping **account id => account tags** (with or without management account)
-* Get mapping **account name => account tags** (with or without management account)
-* Query accounts and retrieve all data including account tags
-  * Include or exclude management account
-  * Group accounts by tags
-  * Set include filter
-  * Set exclude filter
+ℹ️ Use this module in combination with [be-bold/terraform-aws-account-lookup-filter](https://github.com/be-bold/terraform-aws-account-lookup-filter) to further narrow down the list of accounts and be able to group them using tags.
 
-## Prerequisites
+## What it does
 
-You need a role in your organization management account which allows the following:
+This module allows you to list AWS accounts of an organization in various forms. Once initialized you can retrieve the following data:
+* Organization id
+* Account id of your organizations management account
+* Name of your organizations management account
+* Mapping `id` _to_ `name`
+* Mapping `name` _to_ `id`
+* Mapping `id` _to_ `tags`
+* Mapping `name` _to_ `tags`
+* A list of all accounts with all of their properties present (`id`, `arn`, `name`, `email`, `status`, `tags`)
+
+## How to use
+
+You need a role which allows the following actions:
 
 ```json
 {
@@ -22,17 +25,13 @@ You need a role in your organization management account which allows the followi
         {
             "Effect": "Allow",
             "Action": [
-                "organizations:DescribeOrganization",
-                "organizations:ListAccounts",
-                "organizations:ListRoots",
-                "organizations:ListAccountsForParent",
-                "organizations:ListParents",
-                "organizations:ListTagsForResource",
-                "organizations:ListOrganizationalUnitsForParent"
+              "organizations:ListRoots",
+              "organizations:ListTagsForResource",
+              "organizations:ListAccounts",
+              "organizations:DescribeOrganization",
+              "organizations:ListAWSServiceAccessForOrganization"
             ],
-            "Resource": [
-                "*"
-            ]
+            "Resource": "*"
         }
     ]
 }
@@ -43,7 +42,7 @@ Create a provider which references this role:
 ```hcl
 provider "aws" {
   region = "YOUR-REGION-HERE"
-  alias  = "org_management_account"
+  alias  = "organization_read_role"
 
   assume_role {
     role_arn = "arn:aws:iam::############:role/organization-read-role"
@@ -51,57 +50,23 @@ provider "aws" {
 }
 ```
 
-Call the module using this provider:
+Call the module using this provider and decide whether to include the management account in the output lists or not:
 
 ```hcl
-module "test" {
+module "lookup" {
   source    = "be-bold/account-lookup/aws"
   version   = "#.#.#"
   providers = {
-    aws.org_management_account = aws.org_management_account
+    aws = aws.organization_read_role
   }
+  include_management_account = false
 }
 ```
 
-Use one of the static outputs:
+Call one of the multiple output options:
 
 ````hcl
 output "show" {
-  value = module.test.all_accounts_tags_by_account_name
+  value = module.lookup.mapping_id_to_name
 }
 ````
-
-Or set input parameters to search for a specific set of accounts using `search_result`:
-You can use multiple values which are connected using `or`.
-
-```hcl
-module "test" {
-  source    = "be-bold/account-lookup/aws"
-  version   = "#.#.#"
-  providers = {
-    aws.org_management_account = aws.org_management_account
-  }
-  
-  include_management_account = false
-  include = {
-    tags  = {
-      type = ["development"]
-      team = ["my-team"]
-    }
-  }
-  exclude = {
-    name  = {
-      matcher = "startswith"
-      values  = ["test-"]
-    }
-  }
-  group_by = "project"
-}
-
-output "show" {
-  value = module.test.search_result
-}
-```
-
-Except for `search_result` all outputs are static. All input parameters of this module only affect `search_result`.
-Set multiple input parameters to further narrow down your results.
