@@ -42,32 +42,32 @@ run "group_by_tag_-_every_entry_provides_given_tag" {
   command = plan
 
   assert {
-    condition     = length(keys(local.search_result)) == 2
+    condition     = length(keys(local.result)) == 2
     error_message = "Expected 2 entries in search result."
   }
 
   assert {
-    condition     = length(local.search_result["team1"]) == 2
+    condition     = length(local.result["team1"]) == 2
     error_message = "Expected entry not found or contains more entries than expected."
   }
 
   assert {
-    condition     = local.search_result["team1"][0]["id"] == "123456789012"
+    condition     = local.result["team1"][0]["id"] == "123456789012"
     error_message = "Expected entry not found."
   }
 
   assert {
-    condition     = local.search_result["team1"][1]["id"] == "345678901234"
+    condition     = local.result["team1"][1]["id"] == "345678901234"
     error_message = "Expected entry not found."
   }
 
   assert {
-    condition     = length(local.search_result["team2"]) == 1
+    condition     = length(local.result["team2"]) == 1
     error_message = "Expected entry not found or contains more entries than expected."
   }
 
   assert {
-    condition     = local.search_result["team2"][0]["id"] == "234567890123"
+    condition     = local.result["team2"][0]["id"] == "234567890123"
     error_message = "Expected entry not found."
   }
 }
@@ -141,47 +141,47 @@ run "group_by_tag_-_entries_not_providing_tag_are_listed_with_a_special_index" {
   command = plan
 
   assert {
-    condition     = length(keys(local.search_result)) == 3
+    condition     = length(keys(local.result)) == 3
     error_message = "Expected 3 entries in search result."
   }
 
   assert {
-    condition     = length(local.search_result["this"]) == 1
+    condition     = length(local.result["this"]) == 1
     error_message = "Expected entry not found or contains more entries than expected."
   }
 
   assert {
-    condition     = local.search_result["this"][0]["id"] == "234567890123"
+    condition     = local.result["this"][0]["id"] == "234567890123"
     error_message = "Expected entry not found."
   }
 
   assert {
-    condition     = length(local.search_result["other"]) == 2
+    condition     = length(local.result["other"]) == 2
     error_message = "Expected entry not found or contains more entries than expected."
   }
 
   assert {
-    condition     = local.search_result["other"][0]["id"] == "345678901234"
+    condition     = local.result["other"][0]["id"] == "345678901234"
     error_message = "Expected entry not found."
   }
 
   assert {
-    condition     = local.search_result["other"][1]["id"] == "567890123456"
+    condition     = local.result["other"][1]["id"] == "567890123456"
     error_message = "Expected entry not found."
   }
 
   assert {
-    condition     = length(local.search_result["group_id_missing"]) == 2
+    condition     = length(local.result["group_id_missing"]) == 2
     error_message = "Expected entry not found or contains more entries than expected."
   }
 
   assert {
-    condition     = local.search_result["group_id_missing"][0]["id"] == "123456789012"
+    condition     = local.result["group_id_missing"][0]["id"] == "123456789012"
     error_message = "Expected entry not found."
   }
 
   assert {
-    condition     = local.search_result["group_id_missing"][1]["id"] == "456789012345"
+    condition     = local.result["group_id_missing"][1]["id"] == "456789012345"
     error_message = "Expected entry not found."
   }
 }
