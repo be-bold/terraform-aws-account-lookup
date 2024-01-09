@@ -1,0 +1,35 @@
+name: "run checks"
+
+on:
+  push:
+    branches:
+      - "**"
+
+jobs:
+  build:
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: "Checkout"
+        uses: "actions/checkout@v4"
+      - name: "Setup terraform"
+        uses: "hashicorp/setup-terraform@v3"
+        with:
+          terraform_wrapper: false
+      - name: "terraform version"
+        working-directory: "."
+        run: terraform --version
+      - name: "Root: init"
+        working-directory: "."
+        run: terraform init
+      - name: "Root: validate"
+        working-directory: "."
+        run: terraform validate
+      - name: "Submodule filter: init"
+        working-directory: "./modules/filter"
+        run: terraform init
+      - name: "Submodule filter: validate"
+        working-directory: "./modules/filter"
+        run: terraform validate
+      - name: "Submodule test: test"
+        working-directory: "./modules/filter"
+        run: terraform test
