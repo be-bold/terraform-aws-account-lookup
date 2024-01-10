@@ -10,9 +10,7 @@ locals {
   member_accounts = data.aws_organizations_organization.this.non_master_accounts
   all_accounts = data.aws_organizations_organization.this.accounts
   selected_accounts = var.include_management_account ? local.all_accounts : local.member_accounts
-
-  # Base
-  account_list_model = [
+  account_list = [
     for account in local.selected_accounts : {
       id = account.id
       arn = account.arn
@@ -41,9 +39,5 @@ locals {
   # Mapping: name => tags
   mapping_name_to_tags = {
     for account in local.selected_accounts : account.name => data.aws_organizations_resource_tags.this[account.id].tags
-  }
-
-  account_list = {
-    for account in local.account_list_model : account.id => account...
   }
 }
