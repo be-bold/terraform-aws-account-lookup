@@ -85,7 +85,7 @@ module "filter" {
 
 Filter by the accounts name. This is not the alias that you set up in IAM, but the actual account name that you can also
 see in the AWS SSO Login screen.
-For `name` you have to pick one of the following matchers `startswith`, `endswith` or `equals`. You can choose only one
+For `name` you have to pick one of the following matchers `startswith`, `endswith`, `equals` or `contains`. You can choose only one
 matcher which applies to all values. If you set multiple values then these will be chained together using **OR**.
 
 ```hcl
