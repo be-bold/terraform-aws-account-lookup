@@ -71,8 +71,8 @@ variable "include" {
   }
 
   validation {
-    condition = var.include.name == null || (var.include.name != null && try(contains(["startswith", "endswith", "equals", "contains"], var.include.name.matcher), false))
-    error_message = "{include.name.matcher} must be one of [startswith, endswith, equals, contains]"
+    condition = var.include.name == null || (var.include.name != null && try(contains(["startswith", "endswith", "equals", "contains", "regex"], var.include.name.matcher), false))
+    error_message = "{include.name.matcher} must be one of [startswith, endswith, equals, contains, regex]"
   }
 
   validation {
@@ -124,8 +124,8 @@ variable "exclude" {
   }
 
   validation {
-    condition = var.exclude.name == null || (var.exclude.name != null && try(contains(["startswith", "endswith", "equals", "contains"], var.exclude.name.matcher), false))
-    error_message = "{exclude.name.matcher} must be one of [startswith, endswith, equals, contains]"
+    condition = var.exclude.name == null || (var.exclude.name != null && try(contains(["startswith", "endswith", "equals", "contains", "regex"], var.exclude.name.matcher), false))
+    error_message = "{exclude.name.matcher} must be one of [startswith, endswith, equals, contains, regex]"
   }
 
   validation {
