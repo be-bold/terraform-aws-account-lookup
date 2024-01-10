@@ -33,13 +33,13 @@ If you configured `group_by_tag` then these remaining entries will be grouped an
 Both `include`and `exclude` filter as well as `group_by_tag` are **optional**. So you are free to use only one filter or
 only group entries or configure any combination of these three options. 
 
-![Processing order for filtering and grouping](https://raw.githubusercontent.com/be-bold/terraform-aws-account-lookup/main/docs/filtering.png)
+![Processing order for filtering and grouping](https://raw.githubusercontent.com/be-bold/terraform-aws-account-lookup/main/modules/filter/docs/filtering.png)
 
 For each filter you set one or many properties. Each property is being explained in detail down below. If you set
 multiple properties then these will be chained together using **AND**. Each property can take a set of values. The set
 of values is chained together using **OR**.
 
-![Chaining of properties and their values](https://raw.githubusercontent.com/be-bold/terraform-aws-account-lookup/main/docs/schema.png)
+![Chaining of properties and their values](https://raw.githubusercontent.com/be-bold/terraform-aws-account-lookup/main/modules/filter/docs/schema.png)
 
 The structure for `include` and `exclude` is the same. The following examples show `include`, but the structure applies to both.
 

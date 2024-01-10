@@ -1,6 +1,6 @@
 # terraform-aws-account-lookup
 
-ℹ️ Use this module in combination with the [filter submodule](https://github.com/be-bold/terraform-aws-account-lookup-filter/tree/main/modules/filter) to further narrow down the list of accounts and be able to group them using tags.
+ℹ️ Use this module in combination with the [filter submodule](https://github.com/be-bold/terraform-aws-account-lookup/tree/main/modules/filter) to further narrow down the list of accounts and be able to group them using tags.
 
 ## What it does
 
@@ -71,5 +71,5 @@ output "show" {
 }
 ````
 
-Use the [filter submodule](https://github.com/be-bold/terraform-aws-account-lookup-filter/tree/main/modules/filter) for even more control on your lists.
+Use the [filter submodule](https://github.com/be-bold/terraform-aws-account-lookup/tree/main/modules/filter) for even more control on your lists.
 Have a look at the **examples** as well.
