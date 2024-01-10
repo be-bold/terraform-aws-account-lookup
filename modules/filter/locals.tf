@@ -26,11 +26,12 @@ locals {
   is_include_name_set = var.include != null && var.include.name != null
   search_step5_include_name = !local.is_include_name_set ? local.search_step4_include_status : local.include_name_matcher
 
-  include_name_matcher = !local.is_include_name_set ? [] : var.include.name.matcher == "startswith" ? local.include_name_startswith : var.include.name.matcher == "endswith" ? local.include_name_endswith : var.include.name.matcher == "equals" ? local.include_name_equals : var.include.name.matcher == "contains" ? local.include_name_contains : []
-  include_name_startswith = !local.is_include_name_set ? [] : [ for account in local.search_step4_include_status : account if anytrue([ for prefix in var.include.name.values : startswith(account.name, prefix)]) ]
-  include_name_endswith = !local.is_include_name_set ? [] : [ for account in local.search_step4_include_status : account if anytrue([ for suffix in var.include.name.values : endswith(account.name, suffix)]) ]
-  include_name_equals = !local.is_include_name_set ? [] : [ for account in local.search_step4_include_status : account if anytrue([ for value in var.include.name.values : account.name == value]) ]
+  include_name_matcher = !local.is_include_name_set ? [] : var.include.name.matcher == "startswith" ? local.include_name_startswith : var.include.name.matcher == "endswith" ? local.include_name_endswith : var.include.name.matcher == "equals" ? local.include_name_equals : var.include.name.matcher == "contains" ? local.include_name_contains : var.include.name.matcher == "regex" ? local.include_name_regex : []
+  include_name_startswith = !local.is_include_name_set ? [] : [ for account in local.search_step4_include_status : account if anytrue([ for prefix in var.include.name.values : startswith(account.name, prefix) ]) ]
+  include_name_endswith = !local.is_include_name_set ? [] : [ for account in local.search_step4_include_status : account if anytrue([ for suffix in var.include.name.values : endswith(account.name, suffix) ]) ]
+  include_name_equals = !local.is_include_name_set ? [] : [ for account in local.search_step4_include_status : account if anytrue([ for value in var.include.name.values : account.name == value ]) ]
   include_name_contains = !local.is_include_name_set ? [] : [ for account in local.search_step4_include_status : account if anytrue([ for value in var.include.name.values : strcontains(account.name, value)]) ]
+  include_name_regex = !local.is_include_name_set ? [] : [ for account in local.search_step4_include_status : account if anytrue([ for value in var.include.name.values : length(regexall(value, account.name)) > 0 ]) ]
 
 
   ## STEP 6 - include tags
@@ -65,11 +66,12 @@ locals {
   is_exclude_name_set = var.exclude != null && var.exclude.name != null
   search_step11_exclude_name = !local.is_exclude_name_set ? local.search_step10_exclude_status : local.exclude_name_matcher
 
-  exclude_name_matcher = !local.is_exclude_name_set ? [] : var.exclude.name.matcher == "startswith" ? local.exclude_name_startswith : var.exclude.name.matcher == "endswith" ? local.exclude_name_endswith : var.exclude.name.matcher == "equals" ? local.exclude_name_equals : var.exclude.name.matcher == "contains" ? local.exclude_name_contains : []
-  exclude_name_startswith = !local.is_exclude_name_set ? [] : [ for account in local.search_step10_exclude_status : account if alltrue([ for prefix in var.exclude.name.values : !startswith(account.name, prefix)]) ]
-  exclude_name_endswith = !local.is_exclude_name_set ? [] : [ for account in local.search_step10_exclude_status : account if alltrue([ for suffix in var.exclude.name.values : !endswith(account.name, suffix)]) ]
-  exclude_name_equals = !local.is_exclude_name_set ? [] : [ for account in local.search_step10_exclude_status : account if alltrue([ for value in var.exclude.name.values : account.name != value]) ]
-  exclude_name_contains = !local.is_exclude_name_set ? [] : [ for account in local.search_step10_exclude_status : account if alltrue([ for value in var.exclude.name.values : !strcontains(account.name, value)]) ]
+  exclude_name_matcher = !local.is_exclude_name_set ? [] : var.exclude.name.matcher == "startswith" ? local.exclude_name_startswith : var.exclude.name.matcher == "endswith" ? local.exclude_name_endswith : var.exclude.name.matcher == "equals" ? local.exclude_name_equals : var.exclude.name.matcher == "contains" ? local.exclude_name_contains : var.exclude.name.matcher == "regex" ? local.exclude_name_regex : []
+  exclude_name_startswith = !local.is_exclude_name_set ? [] : [ for account in local.search_step10_exclude_status : account if alltrue([ for prefix in var.exclude.name.values : !startswith(account.name, prefix) ]) ]
+  exclude_name_endswith = !local.is_exclude_name_set ? [] : [ for account in local.search_step10_exclude_status : account if alltrue([ for suffix in var.exclude.name.values : !endswith(account.name, suffix) ]) ]
+  exclude_name_equals = !local.is_exclude_name_set ? [] : [ for account in local.search_step10_exclude_status : account if alltrue([ for value in var.exclude.name.values : account.name != value ]) ]
+  exclude_name_contains = !local.is_exclude_name_set ? [] : [ for account in local.search_step10_exclude_status : account if alltrue([ for value in var.exclude.name.values : !strcontains(account.name, value) ]) ]
+  exclude_name_regex = !local.is_exclude_name_set ? [] : [ for account in local.search_step10_exclude_status : account if alltrue([ for value in var.exclude.name.values : length(regexall(value, account.name)) == 0 ]) ]
 
 
   ## STEP 12 - exclude tags
