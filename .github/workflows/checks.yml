@@ -30,6 +30,6 @@ jobs:
       - name: "Submodule filter: validate"
         working-directory: "./modules/filter"
         run: terraform validate
-      - name: "Submodule test: test"
+      - name: "Submodule filter: test"
         working-directory: "./modules/filter"
         run: terraform test
