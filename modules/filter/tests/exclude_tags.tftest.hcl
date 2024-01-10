@@ -341,7 +341,7 @@ run "filter_using_exclude.tags_-_only_exclude_known_entries_with_known_values_fo
   }
 }
 
-run "filter_using_exclude.tags_-_unknown_key_doesn't_exclude_anything" {
+run "filter_using_exclude.tags_-_unknown_key_doesnt_exclude_anything" {
   variables {
     input = [
       {
@@ -408,7 +408,7 @@ run "filter_using_exclude.tags_-_unknown_key_doesn't_exclude_anything" {
   }
 }
 
-run "filter_using_exclude.tags_-_unknown_value_doesn't_exclude_anything" {
+run "filter_using_exclude.tags_-_unknown_value_doesnt_exclude_anything" {
   variables {
     input = [
       {
