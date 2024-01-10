@@ -16,6 +16,41 @@ This module allows you to list AWS accounts of an organization in various forms.
 
 ## How to use
 
+The role with which you are running terraform on this module requires the following permissions:
+
+```text
+"organizations:ListRoots",
+"organizations:ListTagsForResource",
+"organizations:ListAccounts",
+"organizations:DescribeOrganization",
+"organizations:ListAWSServiceAccessForOrganization"
+```
+
+Either the role on your default provider allows these actions already or you want to add them to that role.
+Alternatively you can create a distinct role for this case. We'll have a look at both cases down below.
+
+### Using default provider
+
+Call the module using this provider and decide whether to include the management account in the output lists or not (default is `true`):
+
+```hcl
+module "lookup" {
+  source    = "be-bold/account-lookup/aws"
+  version   = "#.#.#"
+  include_management_account = false
+}
+```
+
+**Done**. Now call one of the multiple output options:
+
+````hcl
+output "show" {
+  value = module.lookup.mapping_id_to_name
+}
+````
+
+### Custom role
+
 You need a role which allows the following actions:
 
 ```json
@@ -50,7 +85,7 @@ provider "aws" {
 }
 ```
 
-Call the module using this provider and decide whether to include the management account in the output lists or not:
+**Done**. Now call the module using this provider and decide whether to include the management account in the output lists or not (default is `true`):
 
 ```hcl
 module "lookup" {
@@ -70,6 +105,8 @@ output "show" {
   value = module.lookup.mapping_id_to_name
 }
 ````
+
+## Further filtering
 
 Use the [filter submodule](https://github.com/be-bold/terraform-aws-account-lookup/tree/main/modules/filter) for even more control on your lists.
 Have a look at the **examples** as well.
