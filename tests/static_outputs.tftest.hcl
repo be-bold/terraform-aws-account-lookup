@@ -328,6 +328,7 @@ run "correctly_returns__account_list__-_including_management_account" {
         id     = "010101010101"
         name   = "company-name-management-account"
         status = "ACTIVE"
+        state  = "ACTIVE"
         tags = {
           team = "team1"
           type = "prod"
@@ -339,6 +340,7 @@ run "correctly_returns__account_list__-_including_management_account" {
         id     = "123456789012"
         name   = "security"
         status = "ACTIVE"
+        state  = "ACTIVE"
         tags = {
           team = "team1"
           type = "prod"
@@ -350,6 +352,7 @@ run "correctly_returns__account_list__-_including_management_account" {
         id     = "234567890123"
         name   = "sandbox"
         status = "ACTIVE"
+        state  = "ACTIVE"
         tags = {
           team = "team2"
           type = "sandbox"
@@ -361,6 +364,7 @@ run "correctly_returns__account_list__-_including_management_account" {
         id     = "345678901234"
         name   = "workload"
         status = "ACTIVE"
+        state  = "ACTIVE"
         tags = {
           team = "team2"
           type = "nonprod"
@@ -391,6 +395,7 @@ run "correctly_returns__account_list__-_excluding_management_account" {
         id     = "123456789012"
         name   = "security"
         status = "ACTIVE"
+        state  = "ACTIVE"
         tags = {
           team = "team1"
           type = "prod"
@@ -402,6 +407,7 @@ run "correctly_returns__account_list__-_excluding_management_account" {
         id     = "234567890123"
         name   = "sandbox"
         status = "ACTIVE"
+        state  = "ACTIVE"
         tags = {
           team = "team2"
           type = "sandbox"
@@ -413,6 +419,7 @@ run "correctly_returns__account_list__-_excluding_management_account" {
         id     = "345678901234"
         name   = "workload"
         status = "ACTIVE"
+        state  = "ACTIVE"
         tags = {
           team = "team2"
           type = "nonprod"

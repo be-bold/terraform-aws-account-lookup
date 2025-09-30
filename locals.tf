@@ -16,7 +16,8 @@ locals {
       arn = account.arn
       name = account.name
       email = account.email
-      status = account.status
+      status = account.status # Deprecated. Will be removed by AWS on 2026-09-09
+      state = account.state
       tags = local.mapping_id_to_tags[account.id]
     }
   ]

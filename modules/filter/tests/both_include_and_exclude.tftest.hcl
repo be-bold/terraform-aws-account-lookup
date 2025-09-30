@@ -7,6 +7,7 @@ run "filter_using_both_include_and_exclude_-_first_input_is_run_through_include_
         name   = "account01"
         email  = "account01@example.org"
         status = "ACTIVE"
+        state  = "ACTIVE"
         tags   = {
           type = "sandbox"
         }
@@ -17,6 +18,7 @@ run "filter_using_both_include_and_exclude_-_first_input_is_run_through_include_
         name   = "account02"
         email  = "account02@example.org"
         status = "ACTIVE"
+        state  = "ACTIVE"
         tags   = {
           type = "nonprod"
         }
@@ -27,6 +29,7 @@ run "filter_using_both_include_and_exclude_-_first_input_is_run_through_include_
         name   = "account03"
         email  = "account03@example.org"
         status = "ACTIVE"
+        state  = "ACTIVE"
         tags   = {
           type = "prod"
         }
@@ -37,6 +40,7 @@ run "filter_using_both_include_and_exclude_-_first_input_is_run_through_include_
         name   = "account04"
         email  = "account04@example.org"
         status = "ACTIVE"
+        state  = "ACTIVE"
         tags   = {
           type = "nonprod"
         }
@@ -47,6 +51,7 @@ run "filter_using_both_include_and_exclude_-_first_input_is_run_through_include_
         name   = "account05"
         email  = "account05@example.org"
         status = "ACTIVE"
+        state  = "ACTIVE"
         tags   = {
           type = "prod"
         }

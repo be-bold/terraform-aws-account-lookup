@@ -7,6 +7,7 @@ run "filter_using__exclude_status__-_successfully_filter_for_single_entry_with_a
         name   = "account01"
         email  = "account01@example.org"
         status = "ACTIVE"
+        state  = "ACTIVE"
         tags   = {
           type = "sandbox"
         }
@@ -17,6 +18,7 @@ run "filter_using__exclude_status__-_successfully_filter_for_single_entry_with_a
         name   = "account02"
         email  = "account02@example.org"
         status = "SUSPENDED"
+        state  = "SUSPENDED"
         tags   = {
           type = "nonprod"
         }
@@ -27,6 +29,7 @@ run "filter_using__exclude_status__-_successfully_filter_for_single_entry_with_a
         name   = "account03"
         email  = "account03@example.org"
         status = "PENDING_CLOSURE"
+        state  = "PENDING_CLOSURE"
         tags   = {
           type = "prod"
         }
@@ -88,6 +91,11 @@ run "filter_using__exclude_status__-_successfully_filter_for_single_entry_with_a
   }
 
   assert {
+    condition = local.result["234567890123"][0]["state"] == "SUSPENDED"
+    error_message = "Unexpected value."
+  }
+
+  assert {
     condition = length(local.result["234567890123"][0]["tags"]) == 1
     error_message = "Only one tag is expected."
   }
@@ -107,6 +115,7 @@ run "filter_using__exclude_status__-_successfully_filter_for_multiple_entries" {
         name   = "account01"
         email  = "account01@example.org"
         status = "ACTIVE"
+        state  = "ACTIVE"
         tags   = {
           type = "sandbox"
         }
@@ -117,6 +126,7 @@ run "filter_using__exclude_status__-_successfully_filter_for_multiple_entries" {
         name   = "account02"
         email  = "account02@example.org"
         status = "SUSPENDED"
+        state  = "SUSPENDED"
         tags   = {
           type = "nonprod"
         }
@@ -127,6 +137,7 @@ run "filter_using__exclude_status__-_successfully_filter_for_multiple_entries" {
         name   = "account03"
         email  = "account03@example.org"
         status = "PENDING_CLOSURE"
+        state  = "PENDING_CLOSURE"
         tags   = {
           type = "prod"
         }
@@ -176,6 +187,7 @@ run "filter_using__exclude_status__-_only_return_known_entry_if_you_filter_for_k
         name   = "account01"
         email  = "account01@example.org"
         status = "ACTIVE"
+        state  = "ACTIVE"
         tags   = {
           type = "sandbox"
         }
@@ -186,6 +198,7 @@ run "filter_using__exclude_status__-_only_return_known_entry_if_you_filter_for_k
         name   = "account02"
         email  = "account02@example.org"
         status = "SUSPENDED"
+        state  = "SUSPENDED"
         tags   = {
           type = "nonprod"
         }
@@ -196,6 +209,7 @@ run "filter_using__exclude_status__-_only_return_known_entry_if_you_filter_for_k
         name   = "account03"
         email  = "account03@example.org"
         status = "SUSPENDED"
+        state  = "SUSPENDED"
         tags   = {
           type = "prod"
         }
@@ -246,6 +260,7 @@ run "filter_using__exclude_status__-_unknown_entry_doesnt_exclude_anything" {
         name   = "account01"
         email  = "account01@example.org"
         status = "ACTIVE"
+        state  = "ACTIVE"
         tags   = {
           type = "sandbox"
         }
@@ -256,6 +271,7 @@ run "filter_using__exclude_status__-_unknown_entry_doesnt_exclude_anything" {
         name   = "account02"
         email  = "account02@example.org"
         status = "SUSPENDED"
+        state  = "SUSPENDED"
         tags   = {
           type = "nonprod"
         }
@@ -266,6 +282,7 @@ run "filter_using__exclude_status__-_unknown_entry_doesnt_exclude_anything" {
         name   = "account03"
         email  = "account03@example.org"
         status = "SUSPENDED"
+        state  = "SUSPENDED"
         tags   = {
           type = "prod"
         }

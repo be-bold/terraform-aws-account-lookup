@@ -7,6 +7,7 @@ run "filter_using__exclude_tags__-_successfully_filter_for_single_entry_with_ass
         name   = "account01"
         email  = "account01@example.org"
         status = "ACTIVE"
+        state  = "ACTIVE"
         tags   = {
           type = "sandbox"
         }
@@ -17,6 +18,7 @@ run "filter_using__exclude_tags__-_successfully_filter_for_single_entry_with_ass
         name   = "account02"
         email  = "account02@example.org"
         status = "ACTIVE"
+        state  = "ACTIVE"
         tags   = {
           type = "nonprod"
         }
@@ -27,6 +29,7 @@ run "filter_using__exclude_tags__-_successfully_filter_for_single_entry_with_ass
         name   = "account03"
         email  = "account03@example.org"
         status = "ACTIVE"
+        state  = "ACTIVE"
         tags   = {
           type = "prod"
         }
@@ -81,6 +84,11 @@ run "filter_using__exclude_tags__-_successfully_filter_for_single_entry_with_ass
   }
 
   assert {
+    condition     = local.result["234567890123"][0]["state"] == "ACTIVE"
+    error_message = "Unexpected value."
+  }
+
+  assert {
     condition     = length(local.result["234567890123"][0]["tags"]) == 1
     error_message = "Only one tag is expected."
   }
@@ -100,6 +108,7 @@ run "filter_using__exclude_tags__-_successfully_filter_for_multiple_entries" {
         name   = "account01"
         email  = "account01@example.org"
         status = "ACTIVE"
+        state  = "ACTIVE"
         tags   = {
           type = "sandbox"
         }
@@ -110,6 +119,7 @@ run "filter_using__exclude_tags__-_successfully_filter_for_multiple_entries" {
         name   = "account02"
         email  = "account02@example.org"
         status = "ACTIVE"
+        state  = "ACTIVE"
         tags   = {
           type = "nonprod"
         }
@@ -120,6 +130,7 @@ run "filter_using__exclude_tags__-_successfully_filter_for_multiple_entries" {
         name   = "account03"
         email  = "account03@example.org"
         status = "ACTIVE"
+        state  = "ACTIVE"
         tags   = {
           type = "prod"
         }
@@ -162,6 +173,7 @@ run "filter_using__exclude_tags__-_successfully_filter_for_single_entry_using_mu
         name   = "account01"
         email  = "account01@example.org"
         status = "ACTIVE"
+        state  = "ACTIVE"
         tags   = {
           type = "nonprod"
           team = "team3"
@@ -173,6 +185,7 @@ run "filter_using__exclude_tags__-_successfully_filter_for_single_entry_using_mu
         name   = "account02"
         email  = "account02@example.org"
         status = "ACTIVE"
+        state  = "ACTIVE"
         tags   = {
           type = "sandbox"
           team = "team2"
@@ -184,6 +197,7 @@ run "filter_using__exclude_tags__-_successfully_filter_for_single_entry_using_mu
         name   = "account03"
         email  = "account03@example.org"
         status = "ACTIVE"
+        state  = "ACTIVE"
         tags   = {
           type = "nonprod"
           team = "team3"
@@ -225,6 +239,7 @@ run "filter_using__exclude_tags__-_only_exclude_known_entries_with_known_values_
         name   = "account01"
         email  = "account01@example.org"
         status = "ACTIVE"
+        state  = "ACTIVE"
         tags   = {
           type = "sandbox"
         }
@@ -235,6 +250,7 @@ run "filter_using__exclude_tags__-_only_exclude_known_entries_with_known_values_
         name   = "account02"
         email  = "account02@example.org"
         status = "ACTIVE"
+        state  = "ACTIVE"
         tags   = {
           type = "nonprod"
         }
@@ -245,6 +261,7 @@ run "filter_using__exclude_tags__-_only_exclude_known_entries_with_known_values_
         name   = "account03"
         email  = "account03@example.org"
         status = "ACTIVE"
+        state  = "ACTIVE"
         tags   = {
           type = "prod"
         }
@@ -284,6 +301,7 @@ run "filter_using__exclude_tags__-_only_exclude_known_entries_with_known_values_
         name   = "account01"
         email  = "account01@example.org"
         status = "ACTIVE"
+        state  = "ACTIVE"
         tags   = {
           type = "sandbox"
           team = "team3"
@@ -295,6 +313,7 @@ run "filter_using__exclude_tags__-_only_exclude_known_entries_with_known_values_
         name   = "account02"
         email  = "account02@example.org"
         status = "ACTIVE"
+        state  = "ACTIVE"
         tags   = {
           type = "nonprod"
         }
@@ -305,6 +324,7 @@ run "filter_using__exclude_tags__-_only_exclude_known_entries_with_known_values_
         name   = "account03"
         email  = "account03@example.org"
         status = "ACTIVE"
+        state  = "ACTIVE"
         tags   = {
           type = "sandbox"
         }
@@ -350,6 +370,7 @@ run "filter_using__exclude_tags__-_unknown_key_doesnt_exclude_anything" {
         name   = "account01"
         email  = "account01@example.org"
         status = "ACTIVE"
+        state  = "ACTIVE"
         tags   = {
           type = "sandbox"
         }
@@ -360,6 +381,7 @@ run "filter_using__exclude_tags__-_unknown_key_doesnt_exclude_anything" {
         name   = "account02"
         email  = "account02@example.org"
         status = "ACTIVE"
+        state  = "ACTIVE"
         tags   = {
           type = "nonprod"
         }
@@ -370,6 +392,7 @@ run "filter_using__exclude_tags__-_unknown_key_doesnt_exclude_anything" {
         name   = "account03"
         email  = "account03@example.org"
         status = "ACTIVE"
+        state  = "ACTIVE"
         tags   = {
           type = "prod"
         }
@@ -417,6 +440,7 @@ run "filter_using__exclude_tags__-_unknown_value_doesnt_exclude_anything" {
         name   = "account01"
         email  = "account01@example.org"
         status = "ACTIVE"
+        state  = "ACTIVE"
         tags   = {
           type = "sandbox"
         }
@@ -427,6 +451,7 @@ run "filter_using__exclude_tags__-_unknown_value_doesnt_exclude_anything" {
         name   = "account02"
         email  = "account02@example.org"
         status = "ACTIVE"
+        state  = "ACTIVE"
         tags   = {
           type = "nonprod"
         }
@@ -437,6 +462,7 @@ run "filter_using__exclude_tags__-_unknown_value_doesnt_exclude_anything" {
         name   = "account03"
         email  = "account03@example.org"
         status = "ACTIVE"
+        state  = "ACTIVE"
         tags   = {
           type = "prod"
         }
@@ -484,6 +510,7 @@ run "filter_using__exclude_tags__-_throws_exception_for_empty_map" {
         name   = "account01"
         email  = "account01@example.org"
         status = "ACTIVE"
+        state  = "ACTIVE"
         tags   = {
           type = "sandbox"
         }
@@ -494,6 +521,7 @@ run "filter_using__exclude_tags__-_throws_exception_for_empty_map" {
         name   = "account02"
         email  = "account02@example.org"
         status = "ACTIVE"
+        state  = "ACTIVE"
         tags   = {
           type = "nonprod"
         }
@@ -504,6 +532,7 @@ run "filter_using__exclude_tags__-_throws_exception_for_empty_map" {
         name   = "account03"
         email  = "account03@example.org"
         status = "ACTIVE"
+        state  = "ACTIVE"
         tags   = {
           type = "prod"
         }

@@ -19,6 +19,7 @@ Changes to Outputs:
               + id     = "123456789012"
               + name   = "security"
               + status = "ACTIVE"
+              + state  = "ACTIVE"
               + tags   = {
                   + team = "team1"
                   + type = "prod"
@@ -32,6 +33,7 @@ Changes to Outputs:
               + id     = "345678901234"
               + name   = "workload"
               + status = "ACTIVE"
+              + state  = "ACTIVE"
               + tags   = {
                   + team = "team2"
                   + type = "nonprod"

@@ -5,6 +5,7 @@ variable "input" {
     name = string
     email = string
     status = string
+    state = string
     tags = map(string)
   }))
 
@@ -30,9 +31,15 @@ variable "input" {
     error_message = "{input.email} contains invalid value(s). See AWS documentation: https://docs.aws.amazon.com/organizations/latest/APIReference/API_Account.html"
   }
 
+  # Deprecated. (will be removed by AWS on 2025-09-09)
   validation {
     condition = var.input != null && alltrue([ for entry in var.input != null ? var.input : [] : try(contains(["ACTIVE", "SUSPENDED", "PENDING_CLOSURE"], entry.status), false) ])
     error_message = "{input.status} contains invalid value(s). See AWS documentation: https://docs.aws.amazon.com/organizations/latest/APIReference/API_Account.html"
+  }
+
+  validation {
+    condition = var.input != null && alltrue([ for entry in var.input != null ? var.input : [] : try(contains(["PENDING_ACTIVATION", "ACTIVE", "SUSPENDED", "PENDING_CLOSURE", "CLOSED"], entry.state), false) ])
+    error_message = "{input.state} contains invalid value(s). See AWS documentation: https://docs.aws.amazon.com/organizations/latest/APIReference/API_Account.html"
   }
 
   validation {
@@ -51,11 +58,13 @@ variable "include" {
     }))
     email = optional(set(string))
     status = optional(set(string))
+    state = optional(set(string))
     tags = optional(map(set(string)))
   })
 
   default = {
     status = ["ACTIVE"]
+    state = ["ACTIVE"]
   }
 
   description = "Options to filter the input for values that must be included. The include filter is being evaluated first. If you set multiple properties then these will be linked by AND. If you set multiple values in a set of a single property then these will be linked by OR."
@@ -91,6 +100,11 @@ variable "include" {
   }
 
   validation {
+    condition = alltrue([ for entry in var.include.state != null ? var.include.state : [] : contains(["PENDING_ACTIVATION", "ACTIVE", "SUSPENDED", "PENDING_CLOSURE", "CLOSED"], entry) ])
+    error_message = "{include.state} contains invalid value(s). See AWS documentation: https://docs.aws.amazon.com/organizations/latest/APIReference/API_Account.html"
+  }
+
+  validation {
     condition = var.include.tags == null || (var.include.tags != null && try(length(var.include.tags) > 0, false))
     error_message = "{include.tags} if tags are set then the map must not be empty."
   }
@@ -106,6 +120,7 @@ variable "exclude" {
     }))
     email = optional(set(string))
     status = optional(set(string))
+    state = optional(set(string))
     tags = optional(map(set(string)))
   })
 
@@ -141,6 +156,11 @@ variable "exclude" {
   validation {
     condition = alltrue([ for entry in var.exclude.status != null ? var.exclude.status : [] : contains(["ACTIVE", "SUSPENDED", "PENDING_CLOSURE"], entry) ])
     error_message = "{exclude.status} contains invalid value(s). See AWS documentation: https://docs.aws.amazon.com/organizations/latest/APIReference/API_Account.html"
+  }
+
+  validation {
+    condition = alltrue([ for entry in var.exclude.state != null ? var.exclude.state : [] : contains(["PENDING_ACTIVATION", "ACTIVE", "SUSPENDED", "PENDING_CLOSURE", "CLOSED"], entry) ])
+    error_message = "{exclude.state} contains invalid value(s). See AWS documentation: https://docs.aws.amazon.com/organizations/latest/APIReference/API_Account.html"
   }
 
   validation {
