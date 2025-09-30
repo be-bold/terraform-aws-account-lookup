@@ -125,14 +125,24 @@ module "filter" {
 }
 ```
 
-#### Status
+#### Status / State
 
-Filter by the AWS accounts status. If you set multiple values then these will be chained together using **OR**.
+> [!IMPORTANT]  
+> The 'status' property has been deprecated by AWS and will be removed on 2026-09-09
+> See: https://aws.amazon.com/about-aws/whats-new/2025/09/aws-organizations-provides-account-state-information-member-accounts/
+> Use the 'state' property instead. Be aware that the possible values for both properties are different.
+> status = ["ACTIVE", "SUSPENDED", "PENDING_CLOSURE"]
+> state = ["PENDING_ACTIVATION", "ACTIVE", "SUSPENDED", "PENDING_CLOSURE", "CLOSED"]
+> See also: https://docs.aws.amazon.com/organizations/latest/APIReference/API_Account.html
+
+Filter by the AWS accounts status/state. If you set multiple values then these will be chained together using **OR**.
 
 ℹ️ Here is a difference between `include` and `exclude`. While `exclude` doesn't provide a default value, the default 
 value for `include` contains a set containing `ACTIVE` as value. That means that even if the `include` filter hasn't been
-set, only accounts in status `ACTIVE` will be part of the resulting subset. If you need accounts of any status then
-just set `include` with `status` for all possible values. These are: `ACTIVE`, `SUSPENDED` and `PENDING_CLOSURE`. 
+set, only accounts in status/state `ACTIVE` will be part of the resulting subset. If you need accounts of any status/state then
+just set `include` with `status`/`state` for all possible values. These are:
+`status = ["ACTIVE", "SUSPENDED", "PENDING_CLOSURE"]`
+`state = ["PENDING_ACTIVATION", "ACTIVE", "SUSPENDED", "PENDING_CLOSURE", "CLOSED"]`
 
 ```hcl
 module "filter" {
@@ -141,9 +151,9 @@ module "filter" {
   input   = module.lookup.account_list
 
   include = {
-    status = [
+    state = [
       "ACTIVE",
-      "SUSPENDED",
+      "PENDING_CLOSURE",
     ]
   }
 }
@@ -189,6 +199,7 @@ module "filter" {
       name   = "account01"
       email  = "account01@example.org"
       status = "ACTIVE"
+      state  = "ACTIVE"
       tags   = {
         type = "sandbox"
         team = "team1"
@@ -200,6 +211,7 @@ module "filter" {
       name   = "account02"
       email  = "account02@example.org"
       status = "ACTIVE"
+      state  = "ACTIVE"
       tags   = {
         type = "nonprod"
         team = "team1"
@@ -211,6 +223,7 @@ module "filter" {
       name   = "account03"
       email  = "account03@example.org"
       status = "ACTIVE"
+      state  = "ACTIVE"
       tags   = {
         type = "prod"
         team = "team2"
@@ -222,6 +235,7 @@ module "filter" {
       name   = "account04"
       email  = "account04@example.org"
       status = "ACTIVE"
+      state  = "ACTIVE"
       tags   = {
         type = "prod"
         team = "team3"
@@ -248,6 +262,7 @@ Changes to Outputs:
               + id     = "234567890123"
               + name   = "account02"
               + status = "ACTIVE"
+              + state  = "ACTIVE"
               + tags   = {
                   + team = "team1"
                   + type = "nonprod"
@@ -261,6 +276,7 @@ Changes to Outputs:
               + id     = "345678901234"
               + name   = "account03"
               + status = "ACTIVE"
+              + state  = "ACTIVE"
               + tags   = {
                   + team = "team2"
                   + type = "prod"
@@ -272,6 +288,7 @@ Changes to Outputs:
               + id     = "456789012345"
               + name   = "account04"
               + status = "ACTIVE"
+              + state  = "ACTIVE"
               + tags   = {
                   + team = "team3"
                   + type = "prod"
@@ -285,6 +302,7 @@ Changes to Outputs:
               + id     = "123456789012"
               + name   = "account01"
               + status = "ACTIVE"
+              + state  = "ACTIVE"
               + tags   = {
                   + team = "team1"
                   + type = "sandbox"
@@ -308,6 +326,7 @@ Changes to Outputs:
               + id     = "123456789012"
               + name   = "account01"
               + status = "ACTIVE"
+              + state  = "ACTIVE"
               + tags   = {
                   + type = "sandbox"
                 }
@@ -320,6 +339,7 @@ Changes to Outputs:
               + id     = "234567890123"
               + name   = "account02"
               + status = "ACTIVE"
+              + state  = "ACTIVE"
               + tags   = {
                   + type = "nonprod"
                 }
@@ -332,6 +352,7 @@ Changes to Outputs:
               + id     = "345678901234"
               + name   = "account03"
               + status = "ACTIVE"
+              + state  = "ACTIVE"
               + tags   = {
                   + type = "prod"
                 }
@@ -344,6 +365,7 @@ Changes to Outputs:
               + id     = "456789012345"
               + name   = "account04"
               + status = "ACTIVE"
+              + state  = "ACTIVE"
               + tags   = {
                   + type = "prod"
                 }
@@ -371,6 +393,7 @@ module "filter" {
       name   = "account01"
       email  = "account01@example.org"
       status = "ACTIVE"
+      state  = "ACTIVE"
       tags   = {
         team = "team1"
       }
@@ -381,6 +404,7 @@ module "filter" {
       name   = "account02"
       email  = "account02@example.org"
       status = "ACTIVE"
+      state  = "ACTIVE"
       tags   = {
         type = "nonprod"
         team = "team1"
@@ -392,6 +416,7 @@ module "filter" {
       name   = "account03"
       email  = "account03@example.org"
       status = "ACTIVE"
+      state  = "ACTIVE"
       tags   = {
         type = "prod"
         team = "team2"
@@ -403,6 +428,7 @@ module "filter" {
       name   = "account04"
       email  = "account04@example.org"
       status = "ACTIVE"
+      state  = "ACTIVE"
       tags   = {
         team = "team3"
       }
@@ -428,6 +454,7 @@ Changes to Outputs:
               + id     = "123456789012"
               + name   = "account01"
               + status = "ACTIVE"
+              + state  = "ACTIVE"
               + tags   = {
                   + team = "team1"
                 }
@@ -438,6 +465,7 @@ Changes to Outputs:
               + id     = "456789012345"
               + name   = "account04"
               + status = "ACTIVE"
+              + state  = "ACTIVE"
               + tags   = {
                   + team = "team3"
                 }
@@ -450,6 +478,7 @@ Changes to Outputs:
               + id     = "234567890123"
               + name   = "account02"
               + status = "ACTIVE"
+              + state = "ACTIVE"
               + tags   = {
                   + team = "team1"
                   + type = "nonprod"
@@ -463,6 +492,7 @@ Changes to Outputs:
               + id     = "345678901234"
               + name   = "account03"
               + status = "ACTIVE"
+              + state  = "ACTIVE"
               + tags   = {
                   + team = "team2"
                   + type = "prod"

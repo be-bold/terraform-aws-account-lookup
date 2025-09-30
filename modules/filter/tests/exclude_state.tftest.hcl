@@ -1,4 +1,4 @@
-run "filter_using__include_email__-_successfully_filter_for_single_entry_with_assertions_on_all_properties" {
+run "filter_using__exclude_state__-_successfully_filter_for_single_entry_with_assertions_on_all_properties" {
   variables {
     input = [
       {
@@ -17,8 +17,8 @@ run "filter_using__include_email__-_successfully_filter_for_single_entry_with_as
         arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/234567890123"
         name   = "account02"
         email  = "account02@example.org"
-        status = "ACTIVE"
-        state  = "ACTIVE"
+        status = "SUSPENDED"
+        state  = "SUSPENDED"
         tags   = {
           type = "nonprod"
         }
@@ -28,17 +28,34 @@ run "filter_using__include_email__-_successfully_filter_for_single_entry_with_as
         arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/345678901234"
         name   = "account03"
         email  = "account03@example.org"
-        status = "ACTIVE"
-        state  = "ACTIVE"
+        status = "SUSPENDED"
+        state  = "CLOSED"
         tags   = {
           type = "prod"
         }
       },
     ]
 
+    # override the default
     include = {
-      email = [
-        "account02@example.org",
+      status = [
+        "ACTIVE",
+        "SUSPENDED",
+        "PENDING_CLOSURE",
+      ]
+      state = [
+        "PENDING_ACTIVATION",
+        "ACTIVE",
+        "SUSPENDED",
+        "PENDING_CLOSURE",
+        "CLOSED",
+      ]
+    }
+
+    exclude = {
+      state = [
+        "ACTIVE",
+        "CLOSED",
       ]
     }
   }
@@ -76,12 +93,7 @@ run "filter_using__include_email__-_successfully_filter_for_single_entry_with_as
   }
 
   assert {
-    condition = local.result["234567890123"][0]["status"] == "ACTIVE"
-    error_message = "Unexpected value."
-  }
-
-  assert {
-    condition = local.result["234567890123"][0]["state"] == "ACTIVE"
+    condition = local.result["234567890123"][0]["state"] == "SUSPENDED"
     error_message = "Unexpected value."
   }
 
@@ -96,7 +108,7 @@ run "filter_using__include_email__-_successfully_filter_for_single_entry_with_as
   }
 }
 
-run "filter_using__include_email__-_successfully_filter_for_multiple_entries" {
+run "filter_using__exclude_state__-_successfully_filter_for_multiple_entries" {
   variables {
     input = [
       {
@@ -115,8 +127,8 @@ run "filter_using__include_email__-_successfully_filter_for_multiple_entries" {
         arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/234567890123"
         name   = "account02"
         email  = "account02@example.org"
-        status = "ACTIVE"
-        state  = "ACTIVE"
+        status = "SUSPENDED"
+        state  = "SUSPENDED"
         tags   = {
           type = "nonprod"
         }
@@ -126,18 +138,33 @@ run "filter_using__include_email__-_successfully_filter_for_multiple_entries" {
         arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/345678901234"
         name   = "account03"
         email  = "account03@example.org"
-        status = "ACTIVE"
-        state  = "ACTIVE"
+        status = "PENDING_CLOSURE"
+        state  = "PENDING_CLOSURE"
         tags   = {
           type = "prod"
         }
       },
     ]
 
+    # override the default
     include = {
-      email = [
-        "account01@example.org",
-        "account03@example.org",
+      status = [
+        "ACTIVE",
+        "SUSPENDED",
+        "PENDING_CLOSURE",
+      ]
+      state = [
+        "PENDING_ACTIVATION",
+        "ACTIVE",
+        "SUSPENDED",
+        "PENDING_CLOSURE",
+        "CLOSED",
+      ]
+    }
+
+    exclude = {
+      status = [
+        "SUSPENDED",
       ]
     }
   }
@@ -160,7 +187,7 @@ run "filter_using__include_email__-_successfully_filter_for_multiple_entries" {
   }
 }
 
-run "filter_using__include_email__-_only_return_known_entry_if_you_filter_for_known_and_unknown_entry" {
+run "filter_using__exclude_state__-_only_return_known_entry_if_you_filter_for_known_and_unknown_entry" {
   variables {
     input = [
       {
@@ -179,8 +206,8 @@ run "filter_using__include_email__-_only_return_known_entry_if_you_filter_for_kn
         arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/234567890123"
         name   = "account02"
         email  = "account02@example.org"
-        status = "ACTIVE"
-        state  = "ACTIVE"
+        status = "SUSPENDED"
+        state  = "SUSPENDED"
         tags   = {
           type = "nonprod"
         }
@@ -190,18 +217,34 @@ run "filter_using__include_email__-_only_return_known_entry_if_you_filter_for_kn
         arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/345678901234"
         name   = "account03"
         email  = "account03@example.org"
-        status = "ACTIVE"
-        state  = "ACTIVE"
+        status = "SUSPENDED"
+        state  = "SUSPENDED"
         tags   = {
           type = "prod"
         }
       },
     ]
 
+    # override the default
     include = {
-      email = [
-        "account01@example.org",
-        "ERROR@example.org",
+      status = [
+        "ACTIVE",
+        "SUSPENDED",
+        "PENDING_CLOSURE",
+      ]
+      state = [
+        "PENDING_ACTIVATION",
+        "ACTIVE",
+        "SUSPENDED",
+        "PENDING_CLOSURE",
+        "CLOSED",
+      ]
+    }
+
+    exclude = {
+      status = [
+        "ACTIVE",
+        "PENDING_CLOSURE",
       ]
     }
   }
@@ -209,65 +252,101 @@ run "filter_using__include_email__-_only_return_known_entry_if_you_filter_for_kn
   command = plan
 
   assert {
-    condition = length(keys(local.result)) == 1
-    error_message = "Expected 1 entry in search result."
+    condition = length(keys(local.result)) == 2
+    error_message = "Expected 2 entries in search result."
+  }
+
+  assert {
+    condition = length(local.result["234567890123"]) == 1
+    error_message = "Expected entry not found or contains more entries than expected."
+  }
+
+  assert {
+    condition = length(local.result["345678901234"]) == 1
+    error_message = "Expected entry not found or contains more entries than expected."
+  }
+}
+
+run "filter_using__exclude_state__-_unknown_entry_doesnt_exclude_anything" {
+  variables {
+    input = [
+      {
+        id     = "123456789012"
+        arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/123456789012"
+        name   = "account01"
+        email  = "account01@example.org"
+        status = "ACTIVE"
+        state  = "ACTIVE"
+        tags   = {
+          type = "sandbox"
+        }
+      },
+      {
+        id     = "234567890123"
+        arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/234567890123"
+        name   = "account02"
+        email  = "account02@example.org"
+        status = "SUSPENDED"
+        state  = "SUSPENDED"
+        tags   = {
+          type = "nonprod"
+        }
+      },
+      {
+        id     = "345678901234"
+        arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/345678901234"
+        name   = "account03"
+        email  = "account03@example.org"
+        status = "SUSPENDED"
+        state  = "SUSPENDED"
+        tags   = {
+          type = "prod"
+        }
+      },
+    ]
+
+    # override the default
+    include = {
+      status = [
+        "ACTIVE",
+        "SUSPENDED",
+        "PENDING_CLOSURE",
+      ]
+      state = [
+        "PENDING_ACTIVATION",
+        "ACTIVE",
+        "SUSPENDED",
+        "PENDING_CLOSURE",
+        "CLOSED",
+      ]
+    }
+
+    exclude = {
+      status = [
+        "PENDING_CLOSURE",
+      ]
+    }
+  }
+
+  command = plan
+
+  assert {
+    condition = length(keys(local.result)) == 3
+    error_message = "Expected 2 entries in search result."
   }
 
   assert {
     condition = length(local.result["123456789012"]) == 1
     error_message = "Expected entry not found or contains more entries than expected."
   }
-}
-
-run "filter_using__include_email__-_unknown_entry_returns_empty_list" {
-  variables {
-    input = [
-      {
-        id     = "123456789012"
-        arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/123456789012"
-        name   = "account01"
-        email  = "account01@example.org"
-        status = "ACTIVE"
-        state  = "ACTIVE"
-        tags   = {
-          type = "sandbox"
-        }
-      },
-      {
-        id     = "234567890123"
-        arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/234567890123"
-        name   = "account02"
-        email  = "account02@example.org"
-        status = "ACTIVE"
-        state  = "ACTIVE"
-        tags   = {
-          type = "nonprod"
-        }
-      },
-      {
-        id     = "345678901234"
-        arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/345678901234"
-        name   = "account03"
-        email  = "account03@example.org"
-        status = "ACTIVE"
-        state  = "ACTIVE"
-        tags   = {
-          type = "prod"
-        }
-      },
-    ]
-
-    include = {
-      email = [
-        "ERROR@example.org",
-      ]
-    }
-  }
-
-  command = plan
 
   assert {
-    condition = length(local.result) == 0
-    error_message = "Expected to return an empty list if nothing matches."
+    condition = length(local.result["234567890123"]) == 1
+    error_message = "Expected entry not found or contains more entries than expected."
+  }
+
+  assert {
+    condition = length(local.result["345678901234"]) == 1
+    error_message = "Expected entry not found or contains more entries than expected."
   }
 }

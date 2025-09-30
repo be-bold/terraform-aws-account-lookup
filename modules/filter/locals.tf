@@ -17,9 +17,14 @@ locals {
   search_step3_include_email = !local.is_include_email_set ? local.search_step2_include_arn : [ for account in local.search_step2_include_arn : account if anytrue([ for value in var.include.email : account.email == value])  ]
 
 
-  # STEP 4 - include status
+  # STEP 4 - include state
+  is_include_state_set = var.include != null && var.include.state != null && try(length(var.include.state) > 0, false)
+  search_step4_include_state = !local.is_include_state_set ? local.search_step3_include_email : [ for account in local.search_step3_include_email : account if anytrue([ for value in var.include.state : account.state == value])  ]
+
+
+  # DEPRECATED - include status (will be removed by AWS on 2025-09-09)
   is_include_status_set = var.include != null && var.include.status != null && try(length(var.include.status) > 0, false)
-  search_step4_include_status = !local.is_include_status_set ? local.search_step3_include_email : [ for account in local.search_step3_include_email : account if anytrue([ for value in var.include.status : account.status == value])  ]
+  search_step4_include_status = !local.is_include_status_set ? local.search_step4_include_state : [ for account in local.search_step4_include_state : account if anytrue([ for value in var.include.status : account.status == value])  ]
 
 
   ## STEP 5 - include name
@@ -57,9 +62,14 @@ locals {
   search_step9_exclude_email = !local.is_exclude_email_set ? local.search_step8_exclude_arn : [ for account in local.search_step8_exclude_arn : account if alltrue([ for value in var.exclude.email : account.email != value])  ]
 
 
-  # STEP 10 - exclude status
+  # STEP 10 - exclude state
+  is_exclude_state_set = var.exclude != null && var.exclude.state != null && try(length(var.exclude.state) > 0, false)
+  search_step10_exclude_state = !local.is_exclude_state_set ? local.search_step9_exclude_email : [ for account in local.search_step9_exclude_email : account if alltrue([ for value in var.exclude.state : account.state != value])  ]
+
+
+  # DEPRECATED - exclude status (will be removed by AWS on 2025-09-09)
   is_exclude_status_set = var.exclude != null && var.exclude.status != null && try(length(var.exclude.status) > 0, false)
-  search_step10_exclude_status = !local.is_exclude_status_set ? local.search_step9_exclude_email : [ for account in local.search_step9_exclude_email : account if alltrue([ for value in var.exclude.status : account.status != value])  ]
+  search_step10_exclude_status = !local.is_exclude_status_set ? local.search_step10_exclude_state : [ for account in local.search_step10_exclude_state : account if alltrue([ for value in var.exclude.status : account.status != value])  ]
 
 
   ## STEP 11 - exclude name
