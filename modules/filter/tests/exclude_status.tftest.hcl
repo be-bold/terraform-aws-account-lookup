@@ -1,4 +1,4 @@
-run "filter_using_exclude.status_-_successfully_filter_for_single_entry_with_assertions_on_all_properties" {
+run "filter_using__exclude_status__-_successfully_filter_for_single_entry_with_assertions_on_all_properties" {
   variables {
     input = [
       {
@@ -98,7 +98,7 @@ run "filter_using_exclude.status_-_successfully_filter_for_single_entry_with_ass
   }
 }
 
-run "filter_using_exclude.status_-_successfully_filter_for_multiple_entries" {
+run "filter_using__exclude_status__-_successfully_filter_for_multiple_entries" {
   variables {
     input = [
       {
@@ -167,7 +167,7 @@ run "filter_using_exclude.status_-_successfully_filter_for_multiple_entries" {
   }
 }
 
-run "filter_using_exclude.status_-_only_return_known_entry_if_you_filter_for_known_and_unknown_entry" {
+run "filter_using__exclude_status__-_only_return_known_entry_if_you_filter_for_known_and_unknown_entry" {
   variables {
     input = [
       {
@@ -237,7 +237,7 @@ run "filter_using_exclude.status_-_only_return_known_entry_if_you_filter_for_kno
   }
 }
 
-run "filter_using_exclude.status_-_unknown_entry_doesnt_exclude_anything" {
+run "filter_using__exclude_status__-_unknown_entry_doesnt_exclude_anything" {
   variables {
     input = [
       {

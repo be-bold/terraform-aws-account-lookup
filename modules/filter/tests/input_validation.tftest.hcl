@@ -24,7 +24,7 @@ run "input_-_returns_empty_list_for_empty_list" {
 }
 
 
-run "input.id_-_throws_exception_for_null" {
+run "input_id__-_throws_exception_for_null" {
   variables {
     input = [
       {
@@ -57,7 +57,7 @@ run "input.id_-_throws_exception_for_null" {
   ]
 }
 
-run "input.id_-_throws_exception_for_invalid_value" {
+run "input_id__-_throws_exception_for_invalid_value" {
   variables {
     input = [
       {
@@ -90,7 +90,7 @@ run "input.id_-_throws_exception_for_invalid_value" {
   ]
 }
 
-run "input.id_-_throws_exception_for_less_than_12_digits" {
+run "input_id__-_throws_exception_for_less_than_12_digits" {
   variables {
     input = [
       {
@@ -123,7 +123,7 @@ run "input.id_-_throws_exception_for_less_than_12_digits" {
   ]
 }
 
-run "input.id_-_throws_exception_for_more_than_12_digits" {
+run "input_id__-_throws_exception_for_more_than_12_digits" {
   variables {
     input = [
       {
@@ -157,7 +157,7 @@ run "input.id_-_throws_exception_for_more_than_12_digits" {
 }
 
 
-run "input.arn_-_throws_exception_for_null" {
+run "input_arn__-_throws_exception_for_null" {
   variables {
     input = [
       {
@@ -190,7 +190,7 @@ run "input.arn_-_throws_exception_for_null" {
   ]
 }
 
-run "input.arn_-_throws_exception_for_invalid_value" {
+run "input_arn__-_throws_exception_for_invalid_value" {
   variables {
     input = [
       {
@@ -224,7 +224,7 @@ run "input.arn_-_throws_exception_for_invalid_value" {
 }
 
 
-run "input.name_-_throws_exception_for_null" {
+run "input_name__-_throws_exception_for_null" {
   variables {
     input = [
       {
@@ -258,7 +258,7 @@ run "input.name_-_throws_exception_for_null" {
 }
 
 
-run "input.email_-_throws_exception_for_null" {
+run "input_email__-_throws_exception_for_null" {
   variables {
     input = [
       {
@@ -291,7 +291,7 @@ run "input.email_-_throws_exception_for_null" {
   ]
 }
 
-run "input.email_-_throws_exception_for_missing_at-symbol" {
+run "input_email__-_throws_exception_for_missing_at-symbol" {
   variables {
     input = [
       {
@@ -324,7 +324,7 @@ run "input.email_-_throws_exception_for_missing_at-symbol" {
   ]
 }
 
-run "input.email_-_throws_exception_for_missing_domain" {
+run "input_email__-_throws_exception_for_missing_domain" {
   variables {
     input = [
       {
@@ -357,7 +357,7 @@ run "input.email_-_throws_exception_for_missing_domain" {
   ]
 }
 
-run "input.email_-_throws_exception_for_missing_domain_including_dot" {
+run "input_email__-_throws_exception_for_missing_domain_including_dot" {
   variables {
     input = [
       {
@@ -391,7 +391,7 @@ run "input.email_-_throws_exception_for_missing_domain_including_dot" {
 }
 
 
-run "input.status_-_throws_exception_for_null" {
+run "input_status__-_throws_exception_for_null" {
   variables {
     input = [
       {
@@ -424,7 +424,7 @@ run "input.status_-_throws_exception_for_null" {
   ]
 }
 
-run "input.status_-_throws_exception_for_invalid_value" {
+run "input_status__-_throws_exception_for_invalid_value" {
   variables {
     input = [
       {
@@ -457,7 +457,7 @@ run "input.status_-_throws_exception_for_invalid_value" {
   ]
 }
 
-run "input.status_-_throws_exception_for_valid_value,_but_in_lower_case" {
+run "input_status__-_throws_exception_for_valid_value_but_in_lower_case" {
   variables {
     input = [
       {
@@ -491,7 +491,7 @@ run "input.status_-_throws_exception_for_valid_value,_but_in_lower_case" {
 }
 
 
-run "input.tags_-_throws_exception_for_null" {
+run "input_tags__-_throws_exception_for_null" {
   variables {
     input = [
       {

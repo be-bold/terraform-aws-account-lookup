@@ -1,4 +1,4 @@
-run "filter_using_include.arn_-_successfully_filter_for_single_entry_with_assertions_on_all_properties" {
+run "filter_using__include_arn__-_successfully_filter_for_single_entry_with_assertions_on_all_properties" {
   variables {
     input = [
       {
@@ -88,7 +88,7 @@ run "filter_using_include.arn_-_successfully_filter_for_single_entry_with_assert
   }
 }
 
-run "filter_using_include.arn_-_successfully_filter_for_multiple_entries" {
+run "filter_using__include_arn__-_successfully_filter_for_multiple_entries" {
   variables {
     input = [
       {
@@ -149,7 +149,7 @@ run "filter_using_include.arn_-_successfully_filter_for_multiple_entries" {
   }
 }
 
-run "filter_using_include.arn_-_only_return_known_entry_if_you_filter_for_known_and_unknown_entry" {
+run "filter_using__include_arn__-_only_return_known_entry_if_you_filter_for_known_and_unknown_entry" {
   variables {
     input = [
       {
@@ -205,7 +205,7 @@ run "filter_using_include.arn_-_only_return_known_entry_if_you_filter_for_known_
   }
 }
 
-run "filter_using_include.arn_-_unknown_entry_returns_empty_list" {
+run "filter_using__include_arn__-_unknown_entry_returns_empty_list" {
   variables {
     input = [
       {
