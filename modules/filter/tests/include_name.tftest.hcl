@@ -7,6 +7,7 @@ run "filter_using___include_name_matcher___-_throws_exception_for_null" {
         name   = "account01"
         email  = "account01@example.org"
         status = "ACTIVE"
+        state  = "ACTIVE"
         tags   = {
           type = "sandbox"
         }
@@ -17,6 +18,7 @@ run "filter_using___include_name_matcher___-_throws_exception_for_null" {
         name   = "account02"
         email  = "account02@example.org"
         status = "ACTIVE"
+        state  = "ACTIVE"
         tags   = {
           type = "nonprod"
         }
@@ -27,6 +29,7 @@ run "filter_using___include_name_matcher___-_throws_exception_for_null" {
         name   = "account03"
         email  = "account03@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "prod"
         }
@@ -59,6 +62,7 @@ run "filter_using___include_name_matcher___-_throws_exception_for_invalid_value"
         name   = "account01"
         email  = "account01@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "sandbox"
         }
@@ -69,6 +73,7 @@ run "filter_using___include_name_matcher___-_throws_exception_for_invalid_value"
         name   = "account02"
         email  = "account02@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "nonprod"
         }
@@ -79,6 +84,7 @@ run "filter_using___include_name_matcher___-_throws_exception_for_invalid_value"
         name   = "account03"
         email  = "account03@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "prod"
         }
@@ -111,6 +117,7 @@ run "filter_using___include_name_matcher___-_throws_exception_for_valid_value_bu
         name   = "account01"
         email  = "account01@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "sandbox"
         }
@@ -121,6 +128,7 @@ run "filter_using___include_name_matcher___-_throws_exception_for_valid_value_bu
         name   = "account02"
         email  = "account02@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "nonprod"
         }
@@ -131,6 +139,7 @@ run "filter_using___include_name_matcher___-_throws_exception_for_valid_value_bu
         name   = "account03"
         email  = "account03@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "prod"
         }
@@ -164,6 +173,7 @@ run "filter_using__include_name_values__-_throws_exception_for_null" {
         name   = "account01"
         email  = "account01@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "sandbox"
         }
@@ -174,6 +184,7 @@ run "filter_using__include_name_values__-_throws_exception_for_null" {
         name   = "account02"
         email  = "account02@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "nonprod"
         }
@@ -184,6 +195,7 @@ run "filter_using__include_name_values__-_throws_exception_for_null" {
         name   = "account03"
         email  = "account03@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "prod"
         }
@@ -215,6 +227,7 @@ run "filter_using__include_name__-_startswith_-_successfully_filter_for_single_e
         name   = "prefix1-account01"
         email  = "account01@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "sandbox"
         }
@@ -225,6 +238,7 @@ run "filter_using__include_name__-_startswith_-_successfully_filter_for_single_e
         name   = "prefix2-account02"
         email  = "account02@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "nonprod"
         }
@@ -235,6 +249,7 @@ run "filter_using__include_name__-_startswith_-_successfully_filter_for_single_e
         name   = "prefix3-account03"
         email  = "account03@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "prod"
         }
@@ -289,6 +304,11 @@ run "filter_using__include_name__-_startswith_-_successfully_filter_for_single_e
   }
 
   assert {
+    condition = local.result["234567890123"][0]["state"] == "ACTIVE"
+    error_message = "Unexpected value."
+  }
+
+  assert {
     condition = length(local.result["234567890123"][0]["tags"]) == 1
     error_message = "Only one tag is expected."
   }
@@ -308,6 +328,7 @@ run "filter_using__include_name__-_startswith_-_successfully_filter_for_multiple
         name   = "prefix1-account01"
         email  = "account01@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "sandbox"
         }
@@ -318,6 +339,7 @@ run "filter_using__include_name__-_startswith_-_successfully_filter_for_multiple
         name   = "prefix2-account02"
         email  = "account02@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "nonprod"
         }
@@ -328,6 +350,7 @@ run "filter_using__include_name__-_startswith_-_successfully_filter_for_multiple
         name   = "prefix3-account03"
         email  = "account03@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "prod"
         }
@@ -372,6 +395,7 @@ run "filter_using__include_name__-_startswith_-_only_return_known_entry_if_you_f
         name   = "prefix1-account01"
         email  = "account01@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "sandbox"
         }
@@ -382,6 +406,7 @@ run "filter_using__include_name__-_startswith_-_only_return_known_entry_if_you_f
         name   = "prefix2-account02"
         email  = "account02@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "nonprod"
         }
@@ -392,6 +417,7 @@ run "filter_using__include_name__-_startswith_-_only_return_known_entry_if_you_f
         name   = "prefix3-account03"
         email  = "account03@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "prod"
         }
@@ -431,6 +457,7 @@ run "filter_using__include_name__-_startswith_-_unknown_entry_returns_empty_list
         name   = "account01"
         email  = "account01@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "sandbox"
         }
@@ -441,6 +468,7 @@ run "filter_using__include_name__-_startswith_-_unknown_entry_returns_empty_list
         name   = "account02"
         email  = "account02@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "nonprod"
         }
@@ -451,6 +479,7 @@ run "filter_using__include_name__-_startswith_-_unknown_entry_returns_empty_list
         name   = "account03"
         email  = "account03@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "prod"
         }
@@ -484,6 +513,7 @@ run "filter_using__include_name__-_startswith_-_empty_values_list_returns_empty_
         name   = "account01"
         email  = "account01@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "sandbox"
         }
@@ -494,6 +524,7 @@ run "filter_using__include_name__-_startswith_-_empty_values_list_returns_empty_
         name   = "account02"
         email  = "account02@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "nonprod"
         }
@@ -504,6 +535,7 @@ run "filter_using__include_name__-_startswith_-_empty_values_list_returns_empty_
         name   = "account03"
         email  = "account03@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "prod"
         }
@@ -536,6 +568,7 @@ run "filter_using__include_name__-_endswith_-_successfully_filter_for_single_ent
         name   = "account01-suffix1"
         email  = "account01@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "sandbox"
         }
@@ -546,6 +579,7 @@ run "filter_using__include_name__-_endswith_-_successfully_filter_for_single_ent
         name   = "account02-suffix2"
         email  = "account02@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "nonprod"
         }
@@ -556,6 +590,7 @@ run "filter_using__include_name__-_endswith_-_successfully_filter_for_single_ent
         name   = "account03-suffix3"
         email  = "account03@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "prod"
         }
@@ -610,6 +645,11 @@ run "filter_using__include_name__-_endswith_-_successfully_filter_for_single_ent
   }
 
   assert {
+    condition = local.result["234567890123"][0]["state"] == "ACTIVE"
+    error_message = "Unexpected value."
+  }
+
+  assert {
     condition = length(local.result["234567890123"][0]["tags"]) == 1
     error_message = "Only one tag is expected."
   }
@@ -629,6 +669,7 @@ run "filter_using__include_name__-_endswith_-_successfully_filter_for_multiple_e
         name   = "account01-suffix1"
         email  = "account01@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "sandbox"
         }
@@ -639,6 +680,7 @@ run "filter_using__include_name__-_endswith_-_successfully_filter_for_multiple_e
         name   = "account02-suffix2"
         email  = "account02@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "nonprod"
         }
@@ -649,6 +691,7 @@ run "filter_using__include_name__-_endswith_-_successfully_filter_for_multiple_e
         name   = "account03-suffix3"
         email  = "account03@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "prod"
         }
@@ -693,6 +736,7 @@ run "filter_using__include_name__-_endswith_-_only_return_known_entry_if_you_fil
         name   = "account01-suffix1"
         email  = "account01@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "sandbox"
         }
@@ -703,6 +747,7 @@ run "filter_using__include_name__-_endswith_-_only_return_known_entry_if_you_fil
         name   = "account02-suffix2"
         email  = "account02@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "nonprod"
         }
@@ -713,6 +758,7 @@ run "filter_using__include_name__-_endswith_-_only_return_known_entry_if_you_fil
         name   = "account03-suffix3"
         email  = "account03@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "prod"
         }
@@ -752,6 +798,7 @@ run "filter_using__include_name__-_endswith_-_unknown_entry_returns_empty_list" 
         name   = "account01"
         email  = "account01@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "sandbox"
         }
@@ -762,6 +809,7 @@ run "filter_using__include_name__-_endswith_-_unknown_entry_returns_empty_list" 
         name   = "account02"
         email  = "account02@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "nonprod"
         }
@@ -772,6 +820,7 @@ run "filter_using__include_name__-_endswith_-_unknown_entry_returns_empty_list" 
         name   = "account03"
         email  = "account03@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "prod"
         }
@@ -805,6 +854,7 @@ run "filter_using__include_name__-_endswith_-_empty_values_list_returns_empty_li
         name   = "account01"
         email  = "account01@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "sandbox"
         }
@@ -815,6 +865,7 @@ run "filter_using__include_name__-_endswith_-_empty_values_list_returns_empty_li
         name   = "account02"
         email  = "account02@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "nonprod"
         }
@@ -825,6 +876,7 @@ run "filter_using__include_name__-_endswith_-_empty_values_list_returns_empty_li
         name   = "account03"
         email  = "account03@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "prod"
         }
@@ -857,6 +909,7 @@ run "filter_using__include_name__-_equals_-_successfully_filter_for_single_entry
         name   = "account01"
         email  = "account01@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "sandbox"
         }
@@ -867,6 +920,7 @@ run "filter_using__include_name__-_equals_-_successfully_filter_for_single_entry
         name   = "account02"
         email  = "account02@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "nonprod"
         }
@@ -877,6 +931,7 @@ run "filter_using__include_name__-_equals_-_successfully_filter_for_single_entry
         name   = "account03"
         email  = "account03@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "prod"
         }
@@ -931,6 +986,11 @@ run "filter_using__include_name__-_equals_-_successfully_filter_for_single_entry
   }
 
   assert {
+    condition = local.result["234567890123"][0]["state"] == "ACTIVE"
+    error_message = "Unexpected value."
+  }
+
+  assert {
     condition = length(local.result["234567890123"][0]["tags"]) == 1
     error_message = "Only one tag is expected."
   }
@@ -950,6 +1010,7 @@ run "filter_using__include_name__-_equals_-_successfully_filter_for_multiple_ent
         name   = "account01"
         email  = "account01@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "sandbox"
         }
@@ -960,6 +1021,7 @@ run "filter_using__include_name__-_equals_-_successfully_filter_for_multiple_ent
         name   = "account02"
         email  = "account02@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "nonprod"
         }
@@ -970,6 +1032,7 @@ run "filter_using__include_name__-_equals_-_successfully_filter_for_multiple_ent
         name   = "account03"
         email  = "account03@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "prod"
         }
@@ -1014,6 +1077,7 @@ run "filter_using__include_name__-_equals_-_only_return_known_entry_if_you_filte
         name   = "account01"
         email  = "account01@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "sandbox"
         }
@@ -1024,6 +1088,7 @@ run "filter_using__include_name__-_equals_-_only_return_known_entry_if_you_filte
         name   = "account02"
         email  = "account02@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "nonprod"
         }
@@ -1034,6 +1099,7 @@ run "filter_using__include_name__-_equals_-_only_return_known_entry_if_you_filte
         name   = "account03"
         email  = "account03@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "prod"
         }
@@ -1073,6 +1139,7 @@ run "filter_using__include_name__-_equals_-_unknown_entry_returns_empty_list" {
         name   = "account01"
         email  = "account01@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "sandbox"
         }
@@ -1083,6 +1150,7 @@ run "filter_using__include_name__-_equals_-_unknown_entry_returns_empty_list" {
         name   = "account02"
         email  = "account02@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "nonprod"
         }
@@ -1093,6 +1161,7 @@ run "filter_using__include_name__-_equals_-_unknown_entry_returns_empty_list" {
         name   = "account03"
         email  = "account03@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "prod"
         }
@@ -1126,6 +1195,7 @@ run "filter_using__include_name__-_equals_-_empty_values_list_returns_empty_list
         name   = "prefix1-account01"
         email  = "account01@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "sandbox"
         }
@@ -1136,6 +1206,7 @@ run "filter_using__include_name__-_equals_-_empty_values_list_returns_empty_list
         name   = "prefix2-account02"
         email  = "account02@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "nonprod"
         }
@@ -1146,6 +1217,7 @@ run "filter_using__include_name__-_equals_-_empty_values_list_returns_empty_list
         name   = "prefix3-account03"
         email  = "account03@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "prod"
         }
@@ -1178,6 +1250,7 @@ run "filter_using__include_name__-_contains_-_successfully_filter_for_single_ent
         name   = "prefix1-account01"
         email  = "account01@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "sandbox"
         }
@@ -1188,6 +1261,7 @@ run "filter_using__include_name__-_contains_-_successfully_filter_for_single_ent
         name   = "prefix2-account02"
         email  = "account02@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "nonprod"
         }
@@ -1198,6 +1272,7 @@ run "filter_using__include_name__-_contains_-_successfully_filter_for_single_ent
         name   = "prefix3-account03"
         email  = "account03@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "prod"
         }
@@ -1252,6 +1327,11 @@ run "filter_using__include_name__-_contains_-_successfully_filter_for_single_ent
   }
 
   assert {
+    condition = local.result["234567890123"][0]["state"] == "ACTIVE"
+    error_message = "Unexpected value."
+  }
+
+  assert {
     condition = length(local.result["234567890123"][0]["tags"]) == 1
     error_message = "Only one tag is expected."
   }
@@ -1271,6 +1351,7 @@ run "filter_using__include_name__-_contains_-_successfully_filter_for_multiple_e
         name   = "prefix1-account01"
         email  = "account01@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "sandbox"
         }
@@ -1281,6 +1362,7 @@ run "filter_using__include_name__-_contains_-_successfully_filter_for_multiple_e
         name   = "prefix2-account02"
         email  = "account02@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "nonprod"
         }
@@ -1291,6 +1373,7 @@ run "filter_using__include_name__-_contains_-_successfully_filter_for_multiple_e
         name   = "prefix3-account03"
         email  = "account03@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "prod"
         }
@@ -1335,6 +1418,7 @@ run "filter_using__include_name__-_contains_-_only_return_known_entry_if_you_fil
         name   = "prefix1-account01"
         email  = "account01@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "sandbox"
         }
@@ -1345,6 +1429,7 @@ run "filter_using__include_name__-_contains_-_only_return_known_entry_if_you_fil
         name   = "prefix2-account02"
         email  = "account02@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "nonprod"
         }
@@ -1355,6 +1440,7 @@ run "filter_using__include_name__-_contains_-_only_return_known_entry_if_you_fil
         name   = "prefix3-account03"
         email  = "account03@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "prod"
         }
@@ -1394,6 +1480,7 @@ run "filter_using__include_name__-_contains_-_unknown_entry_returns_empty_list" 
         name   = "account01"
         email  = "account01@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "sandbox"
         }
@@ -1404,6 +1491,7 @@ run "filter_using__include_name__-_contains_-_unknown_entry_returns_empty_list" 
         name   = "account02"
         email  = "account02@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "nonprod"
         }
@@ -1414,6 +1502,7 @@ run "filter_using__include_name__-_contains_-_unknown_entry_returns_empty_list" 
         name   = "account03"
         email  = "account03@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "prod"
         }
@@ -1447,6 +1536,7 @@ run "filter_using__include_name__-_contains_-_empty_values_list_returns_empty_li
         name   = "account01"
         email  = "account01@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "sandbox"
         }
@@ -1457,6 +1547,7 @@ run "filter_using__include_name__-_contains_-_empty_values_list_returns_empty_li
         name   = "account02"
         email  = "account02@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "nonprod"
         }
@@ -1467,6 +1558,7 @@ run "filter_using__include_name__-_contains_-_empty_values_list_returns_empty_li
         name   = "account03"
         email  = "account03@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "prod"
         }
@@ -1499,6 +1591,7 @@ run "filter_using__include_name__-_regex_-_successfully_filter_for_single_entry_
         name   = "prefix1-account01-foo-ABCD-bar-suffix"
         email  = "account01@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "sandbox"
         }
@@ -1509,6 +1602,7 @@ run "filter_using__include_name__-_regex_-_successfully_filter_for_single_entry_
         name   = "prefix2-account02-foo-4567-bar-suffix"
         email  = "account02@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "nonprod"
         }
@@ -1519,6 +1613,7 @@ run "filter_using__include_name__-_regex_-_successfully_filter_for_single_entry_
         name   = "prefix3-account03-foo-F7K1-bar-suffix"
         email  = "account03@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "prod"
         }
@@ -1573,6 +1668,11 @@ run "filter_using__include_name__-_regex_-_successfully_filter_for_single_entry_
   }
 
   assert {
+    condition = local.result["234567890123"][0]["state"] == "ACTIVE"
+    error_message = "Unexpected value."
+  }
+
+  assert {
     condition = length(local.result["234567890123"][0]["tags"]) == 1
     error_message = "Only one tag is expected."
   }
@@ -1592,6 +1692,7 @@ run "filter_using__include_name__-_regex_-_successfully_filter_for_multiple_entr
         name   = "prefix1-account01-foo-ABCD-bar-suffix"
         email  = "account01@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "sandbox"
         }
@@ -1602,6 +1703,7 @@ run "filter_using__include_name__-_regex_-_successfully_filter_for_multiple_entr
         name   = "prefix2-account02-foo-4567-bar-suffix"
         email  = "account02@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "nonprod"
         }
@@ -1612,6 +1714,7 @@ run "filter_using__include_name__-_regex_-_successfully_filter_for_multiple_entr
         name   = "prefix3-account03-foo-F7K1-bar-suffix"
         email  = "account03@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "prod"
         }
@@ -1656,6 +1759,7 @@ run "filter_using__include_name__-_regex_-_only_return_known_entry_if_you_filter
         name   = "prefix1-account01-foo-ABCD-bar-suffix"
         email  = "account01@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "sandbox"
         }
@@ -1666,6 +1770,7 @@ run "filter_using__include_name__-_regex_-_only_return_known_entry_if_you_filter
         name   = "prefix2-account02-foo-4567-bar-suffix"
         email  = "account02@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "nonprod"
         }
@@ -1676,6 +1781,7 @@ run "filter_using__include_name__-_regex_-_only_return_known_entry_if_you_filter
         name   = "prefix3-account03-foo-F7K1-bar-suffix"
         email  = "account03@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "prod"
         }
@@ -1715,6 +1821,7 @@ run "filter_using__include_name__-_regex_-_unknown_entry_returns_empty_list" {
         name   = "prefix1-account01-foo-ABCD-bar-suffix"
         email  = "account01@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "sandbox"
         }
@@ -1725,6 +1832,7 @@ run "filter_using__include_name__-_regex_-_unknown_entry_returns_empty_list" {
         name   = "prefix2-account02-foo-4567-bar-suffix"
         email  = "account02@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "nonprod"
         }
@@ -1735,6 +1843,7 @@ run "filter_using__include_name__-_regex_-_unknown_entry_returns_empty_list" {
         name   = "prefix3-account03-foo-F7K1-bar-suffix"
         email  = "account03@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "prod"
         }
@@ -1768,6 +1877,7 @@ run "filter_using__include_name__-_regex_-_empty_values_list_returns_empty_list"
         name   = "prefix1-account01-foo-ABCD-bar-suffix"
         email  = "account01@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "sandbox"
         }
@@ -1778,6 +1888,7 @@ run "filter_using__include_name__-_regex_-_empty_values_list_returns_empty_list"
         name   = "prefix2-account02-foo-4567-bar-suffix"
         email  = "account02@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "nonprod"
         }
@@ -1788,6 +1899,7 @@ run "filter_using__include_name__-_regex_-_empty_values_list_returns_empty_list"
         name   = "prefix3-account03-foo-F7K1-bar-suffix"
         email  = "account03@example.org"
         status = "ACTIVE"
+        state = "ACTIVE"
         tags   = {
           type = "prod"
         }

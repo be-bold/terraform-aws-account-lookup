@@ -7,6 +7,7 @@ run "group_by_tag_-_every_entry_provides_given_tag" {
         name   = "account01"
         email  = "account01@example.org"
         status = "ACTIVE"
+        state  = "ACTIVE"
         tags   = {
           type = "sandbox"
           team = "team1"
@@ -18,6 +19,7 @@ run "group_by_tag_-_every_entry_provides_given_tag" {
         name   = "account02"
         email  = "account02@example.org"
         status = "ACTIVE"
+        state  = "ACTIVE"
         tags   = {
           type = "nonprod"
           team = "team2"
@@ -29,6 +31,7 @@ run "group_by_tag_-_every_entry_provides_given_tag" {
         name   = "account03"
         email  = "account03@example.org"
         status = "ACTIVE"
+        state  = "ACTIVE"
         tags   = {
           type = "prod"
           team = "team1"
@@ -81,6 +84,7 @@ run "group_by_tag_-_entries_not_providing_tag_are_listed_with_a_special_index" {
         name   = "account01"
         email  = "account01@example.org"
         status = "ACTIVE"
+        state  = "ACTIVE"
         tags   = {
           type = "sandbox"
           team = "team1"
@@ -92,6 +96,7 @@ run "group_by_tag_-_entries_not_providing_tag_are_listed_with_a_special_index" {
         name   = "account02"
         email  = "account02@example.org"
         status = "ACTIVE"
+        state  = "ACTIVE"
         tags   = {
           type = "nonprod"
           team = "team2"
@@ -104,6 +109,7 @@ run "group_by_tag_-_entries_not_providing_tag_are_listed_with_a_special_index" {
         name   = "account03"
         email  = "account03@example.org"
         status = "ACTIVE"
+        state  = "ACTIVE"
         tags   = {
           type = "prod"
           team = "team1"
@@ -116,6 +122,7 @@ run "group_by_tag_-_entries_not_providing_tag_are_listed_with_a_special_index" {
         name   = "account04"
         email  = "account04@example.org"
         status = "ACTIVE"
+        state  = "ACTIVE"
         tags   = {
           type = "prod"
           team = "team3"
@@ -127,6 +134,7 @@ run "group_by_tag_-_entries_not_providing_tag_are_listed_with_a_special_index" {
         name   = "account05"
         email  = "account05@example.org"
         status = "ACTIVE"
+        state  = "ACTIVE"
         tags   = {
           type = "nonprod"
           team = "team3"

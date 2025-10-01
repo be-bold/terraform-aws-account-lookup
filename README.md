@@ -12,7 +12,7 @@ This module allows you to list AWS accounts of an organization in various forms.
 * Mapping `name` _to_ `id`
 * Mapping `id` _to_ `tags`
 * Mapping `name` _to_ `tags`
-* A list of all accounts with all of their properties present (`id`, `arn`, `name`, `email`, `status`, `tags`)
+* A list of all accounts with all of their properties present (`id`, `arn`, `name`, `email`, `status`, `state`, `tags`)
 
 ## How to use
 

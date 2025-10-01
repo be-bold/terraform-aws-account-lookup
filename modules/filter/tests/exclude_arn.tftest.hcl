@@ -7,6 +7,7 @@ run "filter_using__exclude_arn__-_successfully_filter_for_single_entry_with_asse
         name   = "account01"
         email  = "account01@example.org"
         status = "ACTIVE"
+        state  = "ACTIVE"
         tags   = {
           type = "sandbox"
         }
@@ -17,6 +18,7 @@ run "filter_using__exclude_arn__-_successfully_filter_for_single_entry_with_asse
         name   = "account02"
         email  = "account02@example.org"
         status = "ACTIVE"
+        state  = "ACTIVE"
         tags   = {
           type = "nonprod"
         }
@@ -27,6 +29,7 @@ run "filter_using__exclude_arn__-_successfully_filter_for_single_entry_with_asse
         name   = "account03"
         email  = "account03@example.org"
         status = "ACTIVE"
+        state  = "ACTIVE"
         tags   = {
           type = "prod"
         }
@@ -79,6 +82,11 @@ run "filter_using__exclude_arn__-_successfully_filter_for_single_entry_with_asse
   }
 
   assert {
+    condition = local.result["234567890123"][0]["state"] == "ACTIVE"
+    error_message = "Unexpected value."
+  }
+
+  assert {
     condition = length(local.result["234567890123"][0]["tags"]) == 1
     error_message = "Only one tag is expected."
   }
@@ -98,6 +106,7 @@ run "filter_using__exclude_arn__-_successfully_filter_for_multiple_entries" {
         name   = "account01"
         email  = "account01@example.org"
         status = "ACTIVE"
+        state  = "ACTIVE"
         tags   = {
           type = "sandbox"
         }
@@ -108,6 +117,7 @@ run "filter_using__exclude_arn__-_successfully_filter_for_multiple_entries" {
         name   = "account02"
         email  = "account02@example.org"
         status = "ACTIVE"
+        state  = "ACTIVE"
         tags   = {
           type = "nonprod"
         }
@@ -118,6 +128,7 @@ run "filter_using__exclude_arn__-_successfully_filter_for_multiple_entries" {
         name   = "account03"
         email  = "account03@example.org"
         status = "ACTIVE"
+        state  = "ACTIVE"
         tags   = {
           type = "prod"
         }
@@ -158,6 +169,7 @@ run "filter_using__exclude_arn__-_only_return_known_entry_if_you_filter_for_know
         name   = "account01"
         email  = "account01@example.org"
         status = "ACTIVE"
+        state  = "ACTIVE"
         tags   = {
           type = "sandbox"
         }
@@ -168,6 +180,7 @@ run "filter_using__exclude_arn__-_only_return_known_entry_if_you_filter_for_know
         name   = "account02"
         email  = "account02@example.org"
         status = "ACTIVE"
+        state  = "ACTIVE"
         tags   = {
           type = "nonprod"
         }
@@ -178,6 +191,7 @@ run "filter_using__exclude_arn__-_only_return_known_entry_if_you_filter_for_know
         name   = "account03"
         email  = "account03@example.org"
         status = "ACTIVE"
+        state  = "ACTIVE"
         tags   = {
           type = "prod"
         }
@@ -219,6 +233,7 @@ run "filter_using__exclude_arn__-_unknown_entry_doesnt_exclude_anything" {
         name   = "account01"
         email  = "account01@example.org"
         status = "ACTIVE"
+        state  = "ACTIVE"
         tags   = {
           type = "sandbox"
         }
@@ -229,6 +244,7 @@ run "filter_using__exclude_arn__-_unknown_entry_doesnt_exclude_anything" {
         name   = "account02"
         email  = "account02@example.org"
         status = "ACTIVE"
+        state  = "ACTIVE"
         tags   = {
           type = "nonprod"
         }
@@ -239,6 +255,7 @@ run "filter_using__exclude_arn__-_unknown_entry_doesnt_exclude_anything" {
         name   = "account03"
         email  = "account03@example.org"
         status = "ACTIVE"
+        state  = "ACTIVE"
         tags   = {
           type = "prod"
         }
