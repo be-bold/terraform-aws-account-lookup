@@ -24,6 +24,9 @@ jobs:
       - name: "Root: validate"
         working-directory: "."
         run: terraform validate
+      - name: "Root: test"
+        working-directory: "."
+        run: terraform test
       - name: "Submodule filter: init"
         working-directory: "./modules/filter"
         run: terraform init
