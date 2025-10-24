@@ -1,6 +1,7 @@
 # terraform-aws-account-lookup
 
-ℹ️ Use this module in combination with the [filter submodule](https://github.com/be-bold/terraform-aws-account-lookup/tree/main/modules/filter) to further narrow down the list of accounts and be able to group them using tags.
+> [!TIP]
+> Use this module in combination with the [filter submodule](https://github.com/be-bold/terraform-aws-account-lookup/tree/main/modules/filter) to further narrow down the list of accounts. You can use include and exclude functionality on multiple properties and even group the output by a specific tag.
 
 ## What it does
 
