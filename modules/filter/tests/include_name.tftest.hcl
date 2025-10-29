@@ -8,8 +8,12 @@ run "filter_using___include_name_matcher___-_throws_exception_for_null" {
         email  = "account01@example.org"
         status = "ACTIVE"
         state  = "ACTIVE"
-        tags   = {
+        tags = {
           type = "sandbox"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
         }
       },
       {
@@ -19,8 +23,12 @@ run "filter_using___include_name_matcher___-_throws_exception_for_null" {
         email  = "account02@example.org"
         status = "ACTIVE"
         state  = "ACTIVE"
-        tags   = {
+        tags = {
           type = "nonprod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
         }
       },
       {
@@ -29,9 +37,13 @@ run "filter_using___include_name_matcher___-_throws_exception_for_null" {
         name   = "account03"
         email  = "account03@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "prod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-03T14:03:56.054000+01:00"
         }
       },
     ]
@@ -62,9 +74,13 @@ run "filter_using___include_name_matcher___-_throws_exception_for_invalid_value"
         name   = "account01"
         email  = "account01@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "sandbox"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
         }
       },
       {
@@ -73,9 +89,13 @@ run "filter_using___include_name_matcher___-_throws_exception_for_invalid_value"
         name   = "account02"
         email  = "account02@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "nonprod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
         }
       },
       {
@@ -84,9 +104,13 @@ run "filter_using___include_name_matcher___-_throws_exception_for_invalid_value"
         name   = "account03"
         email  = "account03@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "prod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-03T14:03:56.054000+01:00"
         }
       },
     ]
@@ -117,9 +141,13 @@ run "filter_using___include_name_matcher___-_throws_exception_for_valid_value_bu
         name   = "account01"
         email  = "account01@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "sandbox"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
         }
       },
       {
@@ -128,9 +156,13 @@ run "filter_using___include_name_matcher___-_throws_exception_for_valid_value_bu
         name   = "account02"
         email  = "account02@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "nonprod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
         }
       },
       {
@@ -139,9 +171,13 @@ run "filter_using___include_name_matcher___-_throws_exception_for_valid_value_bu
         name   = "account03"
         email  = "account03@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "prod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-03T14:03:56.054000+01:00"
         }
       },
     ]
@@ -173,9 +209,13 @@ run "filter_using__include_name_values__-_throws_exception_for_null" {
         name   = "account01"
         email  = "account01@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "sandbox"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
         }
       },
       {
@@ -184,9 +224,13 @@ run "filter_using__include_name_values__-_throws_exception_for_null" {
         name   = "account02"
         email  = "account02@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "nonprod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
         }
       },
       {
@@ -195,9 +239,13 @@ run "filter_using__include_name_values__-_throws_exception_for_null" {
         name   = "account03"
         email  = "account03@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "prod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-03T14:03:56.054000+01:00"
         }
       },
     ]
@@ -205,7 +253,7 @@ run "filter_using__include_name_values__-_throws_exception_for_null" {
     include = {
       name = {
         matcher = "startswith"
-        values = null
+        values  = null
       }
     }
   }
@@ -227,9 +275,13 @@ run "filter_using__include_name__-_startswith_-_successfully_filter_for_single_e
         name   = "prefix1-account01"
         email  = "account01@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "sandbox"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
         }
       },
       {
@@ -238,9 +290,13 @@ run "filter_using__include_name__-_startswith_-_successfully_filter_for_single_e
         name   = "prefix2-account02"
         email  = "account02@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "nonprod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
         }
       },
       {
@@ -249,9 +305,13 @@ run "filter_using__include_name__-_startswith_-_successfully_filter_for_single_e
         name   = "prefix3-account03"
         email  = "account03@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "prod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-03T14:03:56.054000+01:00"
         }
       },
     ]
@@ -269,53 +329,26 @@ run "filter_using__include_name__-_startswith_-_successfully_filter_for_single_e
   command = plan
 
   assert {
-    condition = length(keys(local.result)) == 1
-    error_message = "Expected 1 entry in search result."
-  }
-
-  assert {
-    condition = length(local.result["234567890123"]) == 1
-    error_message = "Expected entry not found or contains more entries than expected."
-  }
-
-  assert {
-    condition = local.result["234567890123"][0]["id"] == "234567890123"
-    error_message = "Unexpected value."
-  }
-
-  assert {
-    condition = local.result["234567890123"][0]["arn"] == "arn:aws:organizations::000000000001:account/o-0abcd123ef/234567890123"
-    error_message = "Unexpected value."
-  }
-
-  assert {
-    condition = local.result["234567890123"][0]["name"] == "prefix2-account02"
-    error_message = "Unexpected value."
-  }
-
-  assert {
-    condition = local.result["234567890123"][0]["email"] == "account02@example.org"
-    error_message = "Unexpected value."
-  }
-
-  assert {
-    condition = local.result["234567890123"][0]["status"] == "ACTIVE"
-    error_message = "Unexpected value."
-  }
-
-  assert {
-    condition = local.result["234567890123"][0]["state"] == "ACTIVE"
-    error_message = "Unexpected value."
-  }
-
-  assert {
-    condition = length(local.result["234567890123"][0]["tags"]) == 1
-    error_message = "Only one tag is expected."
-  }
-
-  assert {
-    condition = local.result["234567890123"][0]["tags"]["type"] == "nonprod"
-    error_message = "Unexpected value."
+    condition = jsonencode(output.result) == jsonencode({
+      234567890123 = [
+        {
+          id     = "234567890123"
+          arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/234567890123"
+          name   = "prefix2-account02"
+          email  = "account02@example.org"
+          status = "ACTIVE"
+          state  = "ACTIVE"
+          tags = {
+            type = "nonprod"
+          }
+          joined = {
+            method    = "CREATED"
+            timestamp = "2025-01-02T14:03:56.054000+01:00"
+          }
+        },
+      ]
+    })
+    error_message = "Account list doesn't contain the expected entries."
   }
 }
 
@@ -328,9 +361,13 @@ run "filter_using__include_name__-_startswith_-_successfully_filter_for_multiple
         name   = "prefix1-account01"
         email  = "account01@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "sandbox"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
         }
       },
       {
@@ -339,9 +376,13 @@ run "filter_using__include_name__-_startswith_-_successfully_filter_for_multiple
         name   = "prefix2-account02"
         email  = "account02@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "nonprod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
         }
       },
       {
@@ -350,9 +391,13 @@ run "filter_using__include_name__-_startswith_-_successfully_filter_for_multiple
         name   = "prefix3-account03"
         email  = "account03@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "prod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-03T14:03:56.054000+01:00"
         }
       },
     ]
@@ -371,17 +416,17 @@ run "filter_using__include_name__-_startswith_-_successfully_filter_for_multiple
   command = plan
 
   assert {
-    condition = length(keys(local.result)) == 2
+    condition     = length(keys(local.result)) == 2
     error_message = "Expected 2 entries in search result."
   }
 
   assert {
-    condition = length(local.result["123456789012"]) == 1
+    condition     = length(local.result["123456789012"]) == 1
     error_message = "Expected entry not found or contains more entries than expected."
   }
 
   assert {
-    condition = length(local.result["345678901234"]) == 1
+    condition     = length(local.result["345678901234"]) == 1
     error_message = "Expected entry not found or contains more entries than expected."
   }
 }
@@ -395,9 +440,13 @@ run "filter_using__include_name__-_startswith_-_only_return_known_entry_if_you_f
         name   = "prefix1-account01"
         email  = "account01@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "sandbox"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
         }
       },
       {
@@ -406,9 +455,13 @@ run "filter_using__include_name__-_startswith_-_only_return_known_entry_if_you_f
         name   = "prefix2-account02"
         email  = "account02@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "nonprod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
         }
       },
       {
@@ -417,9 +470,13 @@ run "filter_using__include_name__-_startswith_-_only_return_known_entry_if_you_f
         name   = "prefix3-account03"
         email  = "account03@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "prod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-03T14:03:56.054000+01:00"
         }
       },
     ]
@@ -438,12 +495,12 @@ run "filter_using__include_name__-_startswith_-_only_return_known_entry_if_you_f
   command = plan
 
   assert {
-    condition = length(keys(local.result)) == 1
+    condition     = length(keys(local.result)) == 1
     error_message = "Expected 1 entry in search result."
   }
 
   assert {
-    condition = length(local.result["123456789012"]) == 1
+    condition     = length(local.result["123456789012"]) == 1
     error_message = "Expected entry not found or contains more entries than expected."
   }
 }
@@ -457,9 +514,13 @@ run "filter_using__include_name__-_startswith_-_unknown_entry_returns_empty_list
         name   = "account01"
         email  = "account01@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "sandbox"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
         }
       },
       {
@@ -468,9 +529,13 @@ run "filter_using__include_name__-_startswith_-_unknown_entry_returns_empty_list
         name   = "account02"
         email  = "account02@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "nonprod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
         }
       },
       {
@@ -479,9 +544,13 @@ run "filter_using__include_name__-_startswith_-_unknown_entry_returns_empty_list
         name   = "account03"
         email  = "account03@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "prod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-03T14:03:56.054000+01:00"
         }
       },
     ]
@@ -499,7 +568,7 @@ run "filter_using__include_name__-_startswith_-_unknown_entry_returns_empty_list
   command = plan
 
   assert {
-    condition = length(local.result) == 0
+    condition     = length(local.result) == 0
     error_message = "Expected to return an empty list if nothing matches."
   }
 }
@@ -513,9 +582,13 @@ run "filter_using__include_name__-_startswith_-_empty_values_list_returns_empty_
         name   = "account01"
         email  = "account01@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "sandbox"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
         }
       },
       {
@@ -524,9 +597,13 @@ run "filter_using__include_name__-_startswith_-_empty_values_list_returns_empty_
         name   = "account02"
         email  = "account02@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "nonprod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
         }
       },
       {
@@ -535,9 +612,13 @@ run "filter_using__include_name__-_startswith_-_empty_values_list_returns_empty_
         name   = "account03"
         email  = "account03@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "prod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
         }
       },
     ]
@@ -545,7 +626,7 @@ run "filter_using__include_name__-_startswith_-_empty_values_list_returns_empty_
     include = {
       name = {
         matcher = "startswith"
-        values = []
+        values  = []
       }
     }
   }
@@ -553,7 +634,7 @@ run "filter_using__include_name__-_startswith_-_empty_values_list_returns_empty_
   command = plan
 
   assert {
-    condition = length(local.result) == 0
+    condition     = length(local.result) == 0
     error_message = "Expected to return an empty list if nothing matches."
   }
 }
@@ -568,9 +649,13 @@ run "filter_using__include_name__-_endswith_-_successfully_filter_for_single_ent
         name   = "account01-suffix1"
         email  = "account01@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "sandbox"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
         }
       },
       {
@@ -579,9 +664,13 @@ run "filter_using__include_name__-_endswith_-_successfully_filter_for_single_ent
         name   = "account02-suffix2"
         email  = "account02@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "nonprod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
         }
       },
       {
@@ -590,9 +679,13 @@ run "filter_using__include_name__-_endswith_-_successfully_filter_for_single_ent
         name   = "account03-suffix3"
         email  = "account03@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "prod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-03T14:03:56.054000+01:00"
         }
       },
     ]
@@ -610,53 +703,26 @@ run "filter_using__include_name__-_endswith_-_successfully_filter_for_single_ent
   command = plan
 
   assert {
-    condition = length(keys(local.result)) == 1
-    error_message = "Expected 1 entry in search result."
-  }
-
-  assert {
-    condition = length(local.result["234567890123"]) == 1
-    error_message = "Expected entry not found or contains more entries than expected."
-  }
-
-  assert {
-    condition = local.result["234567890123"][0]["id"] == "234567890123"
-    error_message = "Unexpected value."
-  }
-
-  assert {
-    condition = local.result["234567890123"][0]["arn"] == "arn:aws:organizations::000000000001:account/o-0abcd123ef/234567890123"
-    error_message = "Unexpected value."
-  }
-
-  assert {
-    condition = local.result["234567890123"][0]["name"] == "account02-suffix2"
-    error_message = "Unexpected value."
-  }
-
-  assert {
-    condition = local.result["234567890123"][0]["email"] == "account02@example.org"
-    error_message = "Unexpected value."
-  }
-
-  assert {
-    condition = local.result["234567890123"][0]["status"] == "ACTIVE"
-    error_message = "Unexpected value."
-  }
-
-  assert {
-    condition = local.result["234567890123"][0]["state"] == "ACTIVE"
-    error_message = "Unexpected value."
-  }
-
-  assert {
-    condition = length(local.result["234567890123"][0]["tags"]) == 1
-    error_message = "Only one tag is expected."
-  }
-
-  assert {
-    condition = local.result["234567890123"][0]["tags"]["type"] == "nonprod"
-    error_message = "Unexpected value."
+    condition = jsonencode(output.result) == jsonencode({
+      234567890123 = [
+        {
+          id     = "234567890123"
+          arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/234567890123"
+          name   = "account02-suffix2"
+          email  = "account02@example.org"
+          status = "ACTIVE"
+          state  = "ACTIVE"
+          tags = {
+            type = "nonprod"
+          }
+          joined = {
+            method    = "CREATED"
+            timestamp = "2025-01-02T14:03:56.054000+01:00"
+          }
+        },
+      ]
+    })
+    error_message = "Account list doesn't contain the expected entries."
   }
 }
 
@@ -669,9 +735,13 @@ run "filter_using__include_name__-_endswith_-_successfully_filter_for_multiple_e
         name   = "account01-suffix1"
         email  = "account01@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "sandbox"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
         }
       },
       {
@@ -680,9 +750,13 @@ run "filter_using__include_name__-_endswith_-_successfully_filter_for_multiple_e
         name   = "account02-suffix2"
         email  = "account02@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "nonprod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
         }
       },
       {
@@ -691,9 +765,13 @@ run "filter_using__include_name__-_endswith_-_successfully_filter_for_multiple_e
         name   = "account03-suffix3"
         email  = "account03@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "prod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-03T14:03:56.054000+01:00"
         }
       },
     ]
@@ -712,17 +790,17 @@ run "filter_using__include_name__-_endswith_-_successfully_filter_for_multiple_e
   command = plan
 
   assert {
-    condition = length(keys(local.result)) == 2
+    condition     = length(keys(local.result)) == 2
     error_message = "Expected 2 entries in search result."
   }
 
   assert {
-    condition = length(local.result["123456789012"]) == 1
+    condition     = length(local.result["123456789012"]) == 1
     error_message = "Expected entry not found or contains more entries than expected."
   }
 
   assert {
-    condition = length(local.result["345678901234"]) == 1
+    condition     = length(local.result["345678901234"]) == 1
     error_message = "Expected entry not found or contains more entries than expected."
   }
 }
@@ -736,9 +814,13 @@ run "filter_using__include_name__-_endswith_-_only_return_known_entry_if_you_fil
         name   = "account01-suffix1"
         email  = "account01@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "sandbox"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
         }
       },
       {
@@ -747,9 +829,13 @@ run "filter_using__include_name__-_endswith_-_only_return_known_entry_if_you_fil
         name   = "account02-suffix2"
         email  = "account02@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "nonprod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
         }
       },
       {
@@ -758,9 +844,13 @@ run "filter_using__include_name__-_endswith_-_only_return_known_entry_if_you_fil
         name   = "account03-suffix3"
         email  = "account03@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "prod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-03T14:03:56.054000+01:00"
         }
       },
     ]
@@ -779,12 +869,12 @@ run "filter_using__include_name__-_endswith_-_only_return_known_entry_if_you_fil
   command = plan
 
   assert {
-    condition = length(keys(local.result)) == 1
+    condition     = length(keys(local.result)) == 1
     error_message = "Expected 1 entry in search result."
   }
 
   assert {
-    condition = length(local.result["123456789012"]) == 1
+    condition     = length(local.result["123456789012"]) == 1
     error_message = "Expected entry not found or contains more entries than expected."
   }
 }
@@ -798,9 +888,13 @@ run "filter_using__include_name__-_endswith_-_unknown_entry_returns_empty_list" 
         name   = "account01"
         email  = "account01@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "sandbox"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
         }
       },
       {
@@ -809,9 +903,13 @@ run "filter_using__include_name__-_endswith_-_unknown_entry_returns_empty_list" 
         name   = "account02"
         email  = "account02@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "nonprod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
         }
       },
       {
@@ -820,9 +918,13 @@ run "filter_using__include_name__-_endswith_-_unknown_entry_returns_empty_list" 
         name   = "account03"
         email  = "account03@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "prod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-03T14:03:56.054000+01:00"
         }
       },
     ]
@@ -840,7 +942,7 @@ run "filter_using__include_name__-_endswith_-_unknown_entry_returns_empty_list" 
   command = plan
 
   assert {
-    condition = length(local.result) == 0
+    condition     = length(local.result) == 0
     error_message = "Expected to return an empty list if nothing matches."
   }
 }
@@ -854,9 +956,13 @@ run "filter_using__include_name__-_endswith_-_empty_values_list_returns_empty_li
         name   = "account01"
         email  = "account01@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "sandbox"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
         }
       },
       {
@@ -865,9 +971,13 @@ run "filter_using__include_name__-_endswith_-_empty_values_list_returns_empty_li
         name   = "account02"
         email  = "account02@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "nonprod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
         }
       },
       {
@@ -876,9 +986,13 @@ run "filter_using__include_name__-_endswith_-_empty_values_list_returns_empty_li
         name   = "account03"
         email  = "account03@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "prod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-03T14:03:56.054000+01:00"
         }
       },
     ]
@@ -886,7 +1000,7 @@ run "filter_using__include_name__-_endswith_-_empty_values_list_returns_empty_li
     include = {
       name = {
         matcher = "endswith"
-        values = []
+        values  = []
       }
     }
   }
@@ -894,7 +1008,7 @@ run "filter_using__include_name__-_endswith_-_empty_values_list_returns_empty_li
   command = plan
 
   assert {
-    condition = length(local.result) == 0
+    condition     = length(local.result) == 0
     error_message = "Expected to return an empty list if nothing matches."
   }
 }
@@ -909,9 +1023,13 @@ run "filter_using__include_name__-_equals_-_successfully_filter_for_single_entry
         name   = "account01"
         email  = "account01@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "sandbox"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
         }
       },
       {
@@ -920,9 +1038,13 @@ run "filter_using__include_name__-_equals_-_successfully_filter_for_single_entry
         name   = "account02"
         email  = "account02@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "nonprod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
         }
       },
       {
@@ -931,9 +1053,13 @@ run "filter_using__include_name__-_equals_-_successfully_filter_for_single_entry
         name   = "account03"
         email  = "account03@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "prod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-03T14:03:56.054000+01:00"
         }
       },
     ]
@@ -951,53 +1077,26 @@ run "filter_using__include_name__-_equals_-_successfully_filter_for_single_entry
   command = plan
 
   assert {
-    condition = length(keys(local.result)) == 1
-    error_message = "Expected 1 entry in search result."
-  }
-
-  assert {
-    condition = length(local.result["234567890123"]) == 1
-    error_message = "Expected entry not found or contains more entries than expected."
-  }
-
-  assert {
-    condition = local.result["234567890123"][0]["id"] == "234567890123"
-    error_message = "Unexpected value."
-  }
-
-  assert {
-    condition = local.result["234567890123"][0]["arn"] == "arn:aws:organizations::000000000001:account/o-0abcd123ef/234567890123"
-    error_message = "Unexpected value."
-  }
-
-  assert {
-    condition = local.result["234567890123"][0]["name"] == "account02"
-    error_message = "Unexpected value."
-  }
-
-  assert {
-    condition = local.result["234567890123"][0]["email"] == "account02@example.org"
-    error_message = "Unexpected value."
-  }
-
-  assert {
-    condition = local.result["234567890123"][0]["status"] == "ACTIVE"
-    error_message = "Unexpected value."
-  }
-
-  assert {
-    condition = local.result["234567890123"][0]["state"] == "ACTIVE"
-    error_message = "Unexpected value."
-  }
-
-  assert {
-    condition = length(local.result["234567890123"][0]["tags"]) == 1
-    error_message = "Only one tag is expected."
-  }
-
-  assert {
-    condition = local.result["234567890123"][0]["tags"]["type"] == "nonprod"
-    error_message = "Unexpected value."
+    condition = jsonencode(output.result) == jsonencode({
+      234567890123 = [
+        {
+          id     = "234567890123"
+          arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/234567890123"
+          name   = "account02"
+          email  = "account02@example.org"
+          status = "ACTIVE"
+          state  = "ACTIVE"
+          tags = {
+            type = "nonprod"
+          }
+          joined = {
+            method    = "CREATED"
+            timestamp = "2025-01-02T14:03:56.054000+01:00"
+          }
+        },
+      ]
+    })
+    error_message = "Account list doesn't contain the expected entries."
   }
 }
 
@@ -1010,9 +1109,13 @@ run "filter_using__include_name__-_equals_-_successfully_filter_for_multiple_ent
         name   = "account01"
         email  = "account01@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "sandbox"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
         }
       },
       {
@@ -1021,9 +1124,13 @@ run "filter_using__include_name__-_equals_-_successfully_filter_for_multiple_ent
         name   = "account02"
         email  = "account02@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "nonprod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
         }
       },
       {
@@ -1032,9 +1139,13 @@ run "filter_using__include_name__-_equals_-_successfully_filter_for_multiple_ent
         name   = "account03"
         email  = "account03@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "prod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-03T14:03:56.054000+01:00"
         }
       },
     ]
@@ -1053,17 +1164,17 @@ run "filter_using__include_name__-_equals_-_successfully_filter_for_multiple_ent
   command = plan
 
   assert {
-    condition = length(keys(local.result)) == 2
+    condition     = length(keys(local.result)) == 2
     error_message = "Expected 2 entries in search result."
   }
 
   assert {
-    condition = length(local.result["123456789012"]) == 1
+    condition     = length(local.result["123456789012"]) == 1
     error_message = "Expected entry not found or contains more entries than expected."
   }
 
   assert {
-    condition = length(local.result["345678901234"]) == 1
+    condition     = length(local.result["345678901234"]) == 1
     error_message = "Expected entry not found or contains more entries than expected."
   }
 }
@@ -1077,9 +1188,13 @@ run "filter_using__include_name__-_equals_-_only_return_known_entry_if_you_filte
         name   = "account01"
         email  = "account01@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "sandbox"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
         }
       },
       {
@@ -1088,9 +1203,13 @@ run "filter_using__include_name__-_equals_-_only_return_known_entry_if_you_filte
         name   = "account02"
         email  = "account02@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "nonprod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
         }
       },
       {
@@ -1099,9 +1218,13 @@ run "filter_using__include_name__-_equals_-_only_return_known_entry_if_you_filte
         name   = "account03"
         email  = "account03@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "prod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-03T14:03:56.054000+01:00"
         }
       },
     ]
@@ -1120,12 +1243,12 @@ run "filter_using__include_name__-_equals_-_only_return_known_entry_if_you_filte
   command = plan
 
   assert {
-    condition = length(keys(local.result)) == 1
+    condition     = length(keys(local.result)) == 1
     error_message = "Expected 1 entry in search result."
   }
 
   assert {
-    condition = length(local.result["123456789012"]) == 1
+    condition     = length(local.result["123456789012"]) == 1
     error_message = "Expected entry not found or contains more entries than expected."
   }
 }
@@ -1139,9 +1262,13 @@ run "filter_using__include_name__-_equals_-_unknown_entry_returns_empty_list" {
         name   = "account01"
         email  = "account01@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "sandbox"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
         }
       },
       {
@@ -1150,9 +1277,13 @@ run "filter_using__include_name__-_equals_-_unknown_entry_returns_empty_list" {
         name   = "account02"
         email  = "account02@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "nonprod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
         }
       },
       {
@@ -1161,9 +1292,13 @@ run "filter_using__include_name__-_equals_-_unknown_entry_returns_empty_list" {
         name   = "account03"
         email  = "account03@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "prod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-03T14:03:56.054000+01:00"
         }
       },
     ]
@@ -1181,7 +1316,7 @@ run "filter_using__include_name__-_equals_-_unknown_entry_returns_empty_list" {
   command = plan
 
   assert {
-    condition = length(local.result) == 0
+    condition     = length(local.result) == 0
     error_message = "Expected to return an empty list if nothing matches."
   }
 }
@@ -1195,9 +1330,13 @@ run "filter_using__include_name__-_equals_-_empty_values_list_returns_empty_list
         name   = "prefix1-account01"
         email  = "account01@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "sandbox"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
         }
       },
       {
@@ -1206,9 +1345,13 @@ run "filter_using__include_name__-_equals_-_empty_values_list_returns_empty_list
         name   = "prefix2-account02"
         email  = "account02@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "nonprod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
         }
       },
       {
@@ -1217,9 +1360,13 @@ run "filter_using__include_name__-_equals_-_empty_values_list_returns_empty_list
         name   = "prefix3-account03"
         email  = "account03@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "prod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-03T14:03:56.054000+01:00"
         }
       },
     ]
@@ -1227,7 +1374,7 @@ run "filter_using__include_name__-_equals_-_empty_values_list_returns_empty_list
     include = {
       name = {
         matcher = "equals"
-        values = []
+        values  = []
       }
     }
   }
@@ -1235,7 +1382,7 @@ run "filter_using__include_name__-_equals_-_empty_values_list_returns_empty_list
   command = plan
 
   assert {
-    condition = length(local.result) == 0
+    condition     = length(local.result) == 0
     error_message = "Expected to return an empty list if nothing matches."
   }
 }
@@ -1250,9 +1397,13 @@ run "filter_using__include_name__-_contains_-_successfully_filter_for_single_ent
         name   = "prefix1-account01"
         email  = "account01@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "sandbox"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
         }
       },
       {
@@ -1261,9 +1412,13 @@ run "filter_using__include_name__-_contains_-_successfully_filter_for_single_ent
         name   = "prefix2-account02"
         email  = "account02@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "nonprod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
         }
       },
       {
@@ -1272,9 +1427,13 @@ run "filter_using__include_name__-_contains_-_successfully_filter_for_single_ent
         name   = "prefix3-account03"
         email  = "account03@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "prod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-03T14:03:56.054000+01:00"
         }
       },
     ]
@@ -1292,53 +1451,26 @@ run "filter_using__include_name__-_contains_-_successfully_filter_for_single_ent
   command = plan
 
   assert {
-    condition = length(keys(local.result)) == 1
-    error_message = "Expected 1 entry in search result."
-  }
-
-  assert {
-    condition = length(local.result["234567890123"]) == 1
-    error_message = "Expected entry not found or contains more entries than expected."
-  }
-
-  assert {
-    condition = local.result["234567890123"][0]["id"] == "234567890123"
-    error_message = "Unexpected value."
-  }
-
-  assert {
-    condition = local.result["234567890123"][0]["arn"] == "arn:aws:organizations::000000000001:account/o-0abcd123ef/234567890123"
-    error_message = "Unexpected value."
-  }
-
-  assert {
-    condition = local.result["234567890123"][0]["name"] == "prefix2-account02"
-    error_message = "Unexpected value."
-  }
-
-  assert {
-    condition = local.result["234567890123"][0]["email"] == "account02@example.org"
-    error_message = "Unexpected value."
-  }
-
-  assert {
-    condition = local.result["234567890123"][0]["status"] == "ACTIVE"
-    error_message = "Unexpected value."
-  }
-
-  assert {
-    condition = local.result["234567890123"][0]["state"] == "ACTIVE"
-    error_message = "Unexpected value."
-  }
-
-  assert {
-    condition = length(local.result["234567890123"][0]["tags"]) == 1
-    error_message = "Only one tag is expected."
-  }
-
-  assert {
-    condition = local.result["234567890123"][0]["tags"]["type"] == "nonprod"
-    error_message = "Unexpected value."
+    condition = jsonencode(output.result) == jsonencode({
+      234567890123 = [
+        {
+          id     = "234567890123"
+          arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/234567890123"
+          name   = "prefix2-account02"
+          email  = "account02@example.org"
+          status = "ACTIVE"
+          state  = "ACTIVE"
+          tags = {
+            type = "nonprod"
+          }
+          joined = {
+            method    = "CREATED"
+            timestamp = "2025-01-02T14:03:56.054000+01:00"
+          }
+        },
+      ]
+    })
+    error_message = "Account list doesn't contain the expected entries."
   }
 }
 
@@ -1351,9 +1483,13 @@ run "filter_using__include_name__-_contains_-_successfully_filter_for_multiple_e
         name   = "prefix1-account01"
         email  = "account01@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "sandbox"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
         }
       },
       {
@@ -1362,9 +1498,13 @@ run "filter_using__include_name__-_contains_-_successfully_filter_for_multiple_e
         name   = "prefix2-account02"
         email  = "account02@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "nonprod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
         }
       },
       {
@@ -1373,9 +1513,13 @@ run "filter_using__include_name__-_contains_-_successfully_filter_for_multiple_e
         name   = "prefix3-account03"
         email  = "account03@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "prod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-03T14:03:56.054000+01:00"
         }
       },
     ]
@@ -1394,17 +1538,17 @@ run "filter_using__include_name__-_contains_-_successfully_filter_for_multiple_e
   command = plan
 
   assert {
-    condition = length(keys(local.result)) == 2
+    condition     = length(keys(local.result)) == 2
     error_message = "Expected 2 entries in search result."
   }
 
   assert {
-    condition = length(local.result["123456789012"]) == 1
+    condition     = length(local.result["123456789012"]) == 1
     error_message = "Expected entry not found or contains more entries than expected."
   }
 
   assert {
-    condition = length(local.result["345678901234"]) == 1
+    condition     = length(local.result["345678901234"]) == 1
     error_message = "Expected entry not found or contains more entries than expected."
   }
 }
@@ -1418,9 +1562,13 @@ run "filter_using__include_name__-_contains_-_only_return_known_entry_if_you_fil
         name   = "prefix1-account01"
         email  = "account01@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "sandbox"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
         }
       },
       {
@@ -1429,9 +1577,13 @@ run "filter_using__include_name__-_contains_-_only_return_known_entry_if_you_fil
         name   = "prefix2-account02"
         email  = "account02@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "nonprod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
         }
       },
       {
@@ -1440,9 +1592,13 @@ run "filter_using__include_name__-_contains_-_only_return_known_entry_if_you_fil
         name   = "prefix3-account03"
         email  = "account03@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "prod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-03T14:03:56.054000+01:00"
         }
       },
     ]
@@ -1461,12 +1617,12 @@ run "filter_using__include_name__-_contains_-_only_return_known_entry_if_you_fil
   command = plan
 
   assert {
-    condition = length(keys(local.result)) == 1
+    condition     = length(keys(local.result)) == 1
     error_message = "Expected 1 entry in search result."
   }
 
   assert {
-    condition = length(local.result["234567890123"]) == 1
+    condition     = length(local.result["234567890123"]) == 1
     error_message = "Expected entry not found or contains more entries than expected."
   }
 }
@@ -1480,9 +1636,13 @@ run "filter_using__include_name__-_contains_-_unknown_entry_returns_empty_list" 
         name   = "account01"
         email  = "account01@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "sandbox"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
         }
       },
       {
@@ -1491,9 +1651,13 @@ run "filter_using__include_name__-_contains_-_unknown_entry_returns_empty_list" 
         name   = "account02"
         email  = "account02@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "nonprod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
         }
       },
       {
@@ -1502,9 +1666,13 @@ run "filter_using__include_name__-_contains_-_unknown_entry_returns_empty_list" 
         name   = "account03"
         email  = "account03@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "prod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-03T14:03:56.054000+01:00"
         }
       },
     ]
@@ -1522,7 +1690,7 @@ run "filter_using__include_name__-_contains_-_unknown_entry_returns_empty_list" 
   command = plan
 
   assert {
-    condition = length(local.result) == 0
+    condition     = length(local.result) == 0
     error_message = "Expected to return an empty list if nothing matches."
   }
 }
@@ -1536,9 +1704,13 @@ run "filter_using__include_name__-_contains_-_empty_values_list_returns_empty_li
         name   = "account01"
         email  = "account01@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "sandbox"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
         }
       },
       {
@@ -1547,9 +1719,13 @@ run "filter_using__include_name__-_contains_-_empty_values_list_returns_empty_li
         name   = "account02"
         email  = "account02@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "nonprod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
         }
       },
       {
@@ -1558,9 +1734,13 @@ run "filter_using__include_name__-_contains_-_empty_values_list_returns_empty_li
         name   = "account03"
         email  = "account03@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "prod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-03T14:03:56.054000+01:00"
         }
       },
     ]
@@ -1568,7 +1748,7 @@ run "filter_using__include_name__-_contains_-_empty_values_list_returns_empty_li
     include = {
       name = {
         matcher = "contains"
-        values = []
+        values  = []
       }
     }
   }
@@ -1576,7 +1756,7 @@ run "filter_using__include_name__-_contains_-_empty_values_list_returns_empty_li
   command = plan
 
   assert {
-    condition = length(local.result) == 0
+    condition     = length(local.result) == 0
     error_message = "Expected to return an empty list if nothing matches."
   }
 }
@@ -1591,9 +1771,13 @@ run "filter_using__include_name__-_regex_-_successfully_filter_for_single_entry_
         name   = "prefix1-account01-foo-ABCD-bar-suffix"
         email  = "account01@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "sandbox"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
         }
       },
       {
@@ -1602,9 +1786,13 @@ run "filter_using__include_name__-_regex_-_successfully_filter_for_single_entry_
         name   = "prefix2-account02-foo-4567-bar-suffix"
         email  = "account02@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "nonprod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
         }
       },
       {
@@ -1613,9 +1801,13 @@ run "filter_using__include_name__-_regex_-_successfully_filter_for_single_entry_
         name   = "prefix3-account03-foo-F7K1-bar-suffix"
         email  = "account03@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "prod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-03T14:03:56.054000+01:00"
         }
       },
     ]
@@ -1633,53 +1825,26 @@ run "filter_using__include_name__-_regex_-_successfully_filter_for_single_entry_
   command = plan
 
   assert {
-    condition = length(keys(local.result)) == 1
-    error_message = "Expected 1 entry in search result."
-  }
-
-  assert {
-    condition = length(local.result["234567890123"]) == 1
-    error_message = "Expected entry not found or contains more entries than expected."
-  }
-
-  assert {
-    condition = local.result["234567890123"][0]["id"] == "234567890123"
-    error_message = "Unexpected value."
-  }
-
-  assert {
-    condition = local.result["234567890123"][0]["arn"] == "arn:aws:organizations::000000000001:account/o-0abcd123ef/234567890123"
-    error_message = "Unexpected value."
-  }
-
-  assert {
-    condition = local.result["234567890123"][0]["name"] == "prefix2-account02-foo-4567-bar-suffix"
-    error_message = "Unexpected value."
-  }
-
-  assert {
-    condition = local.result["234567890123"][0]["email"] == "account02@example.org"
-    error_message = "Unexpected value."
-  }
-
-  assert {
-    condition = local.result["234567890123"][0]["status"] == "ACTIVE"
-    error_message = "Unexpected value."
-  }
-
-  assert {
-    condition = local.result["234567890123"][0]["state"] == "ACTIVE"
-    error_message = "Unexpected value."
-  }
-
-  assert {
-    condition = length(local.result["234567890123"][0]["tags"]) == 1
-    error_message = "Only one tag is expected."
-  }
-
-  assert {
-    condition = local.result["234567890123"][0]["tags"]["type"] == "nonprod"
-    error_message = "Unexpected value."
+    condition = jsonencode(output.result) == jsonencode({
+      234567890123 = [
+        {
+          id     = "234567890123"
+          arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/234567890123"
+          name   = "prefix2-account02-foo-4567-bar-suffix"
+          email  = "account02@example.org"
+          status = "ACTIVE"
+          state  = "ACTIVE"
+          tags = {
+            type = "nonprod"
+          }
+          joined = {
+            method    = "CREATED"
+            timestamp = "2025-01-02T14:03:56.054000+01:00"
+          }
+        },
+      ]
+    })
+    error_message = "Account list doesn't contain the expected entries."
   }
 }
 
@@ -1692,9 +1857,13 @@ run "filter_using__include_name__-_regex_-_successfully_filter_for_multiple_entr
         name   = "prefix1-account01-foo-ABCD-bar-suffix"
         email  = "account01@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "sandbox"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
         }
       },
       {
@@ -1703,9 +1872,13 @@ run "filter_using__include_name__-_regex_-_successfully_filter_for_multiple_entr
         name   = "prefix2-account02-foo-4567-bar-suffix"
         email  = "account02@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "nonprod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
         }
       },
       {
@@ -1714,9 +1887,13 @@ run "filter_using__include_name__-_regex_-_successfully_filter_for_multiple_entr
         name   = "prefix3-account03-foo-F7K1-bar-suffix"
         email  = "account03@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "prod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-03T14:03:56.054000+01:00"
         }
       },
     ]
@@ -1735,17 +1912,17 @@ run "filter_using__include_name__-_regex_-_successfully_filter_for_multiple_entr
   command = plan
 
   assert {
-    condition = length(keys(local.result)) == 2
+    condition     = length(keys(local.result)) == 2
     error_message = "Expected 2 entries in search result."
   }
 
   assert {
-    condition = length(local.result["123456789012"]) == 1
+    condition     = length(local.result["123456789012"]) == 1
     error_message = "Expected entry not found or contains more entries than expected."
   }
 
   assert {
-    condition = length(local.result["345678901234"]) == 1
+    condition     = length(local.result["345678901234"]) == 1
     error_message = "Expected entry not found or contains more entries than expected."
   }
 }
@@ -1759,9 +1936,13 @@ run "filter_using__include_name__-_regex_-_only_return_known_entry_if_you_filter
         name   = "prefix1-account01-foo-ABCD-bar-suffix"
         email  = "account01@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "sandbox"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
         }
       },
       {
@@ -1770,9 +1951,13 @@ run "filter_using__include_name__-_regex_-_only_return_known_entry_if_you_filter
         name   = "prefix2-account02-foo-4567-bar-suffix"
         email  = "account02@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "nonprod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
         }
       },
       {
@@ -1781,9 +1966,13 @@ run "filter_using__include_name__-_regex_-_only_return_known_entry_if_you_filter
         name   = "prefix3-account03-foo-F7K1-bar-suffix"
         email  = "account03@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "prod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-03T14:03:56.054000+01:00"
         }
       },
     ]
@@ -1802,12 +1991,12 @@ run "filter_using__include_name__-_regex_-_only_return_known_entry_if_you_filter
   command = plan
 
   assert {
-    condition = length(keys(local.result)) == 1
+    condition     = length(keys(local.result)) == 1
     error_message = "Expected 1 entry in search result."
   }
 
   assert {
-    condition = length(local.result["345678901234"]) == 1
+    condition     = length(local.result["345678901234"]) == 1
     error_message = "Expected entry not found or contains more entries than expected."
   }
 }
@@ -1821,9 +2010,13 @@ run "filter_using__include_name__-_regex_-_unknown_entry_returns_empty_list" {
         name   = "prefix1-account01-foo-ABCD-bar-suffix"
         email  = "account01@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "sandbox"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
         }
       },
       {
@@ -1832,9 +2025,13 @@ run "filter_using__include_name__-_regex_-_unknown_entry_returns_empty_list" {
         name   = "prefix2-account02-foo-4567-bar-suffix"
         email  = "account02@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "nonprod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
         }
       },
       {
@@ -1843,9 +2040,13 @@ run "filter_using__include_name__-_regex_-_unknown_entry_returns_empty_list" {
         name   = "prefix3-account03-foo-F7K1-bar-suffix"
         email  = "account03@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "prod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-03T14:03:56.054000+01:00"
         }
       },
     ]
@@ -1863,7 +2064,7 @@ run "filter_using__include_name__-_regex_-_unknown_entry_returns_empty_list" {
   command = plan
 
   assert {
-    condition = length(local.result) == 0
+    condition     = length(local.result) == 0
     error_message = "Expected to return an empty list if nothing matches."
   }
 }
@@ -1877,9 +2078,13 @@ run "filter_using__include_name__-_regex_-_empty_values_list_returns_empty_list"
         name   = "prefix1-account01-foo-ABCD-bar-suffix"
         email  = "account01@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "sandbox"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
         }
       },
       {
@@ -1888,9 +2093,13 @@ run "filter_using__include_name__-_regex_-_empty_values_list_returns_empty_list"
         name   = "prefix2-account02-foo-4567-bar-suffix"
         email  = "account02@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "nonprod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
         }
       },
       {
@@ -1899,9 +2108,13 @@ run "filter_using__include_name__-_regex_-_empty_values_list_returns_empty_list"
         name   = "prefix3-account03-foo-F7K1-bar-suffix"
         email  = "account03@example.org"
         status = "ACTIVE"
-        state = "ACTIVE"
-        tags   = {
+        state  = "ACTIVE"
+        tags = {
           type = "prod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-03T14:03:56.054000+01:00"
         }
       },
     ]
@@ -1909,7 +2122,7 @@ run "filter_using__include_name__-_regex_-_empty_values_list_returns_empty_list"
     include = {
       name = {
         matcher = "regex"
-        values = []
+        values  = []
       }
     }
   }
@@ -1917,7 +2130,7 @@ run "filter_using__include_name__-_regex_-_empty_values_list_returns_empty_list"
   command = plan
 
   assert {
-    condition = length(local.result) == 0
+    condition     = length(local.result) == 0
     error_message = "Expected to return an empty list if nothing matches."
   }
 }

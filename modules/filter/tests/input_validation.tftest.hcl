@@ -10,7 +10,7 @@ run "input_-_throws_exception_for_null" {
   ]
 }
 
-run "input_-_returns_empty_list_for_empty_list" {
+run "input_-_returns_empty_result_map_for_empty_list" {
   variables {
     input = []
   }
@@ -37,6 +37,10 @@ run "input_id_-_throws_exception_for_null" {
         tags   = {
           type = "sandbox"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "234567890123"
@@ -47,6 +51,10 @@ run "input_id_-_throws_exception_for_null" {
         state  = "ACTIVE"
         tags   = {
           type = "nonprod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
         }
       },
     ]
@@ -72,6 +80,10 @@ run "input_id_-_throws_exception_for_invalid_value" {
         tags   = {
           type = "sandbox"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "234567890123"
@@ -82,6 +94,10 @@ run "input_id_-_throws_exception_for_invalid_value" {
         state  = "ACTIVE"
         tags   = {
           type = "nonprod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
         }
       },
     ]
@@ -107,6 +123,10 @@ run "input_id_-_throws_exception_for_less_than_12_digits" {
         tags   = {
           type = "sandbox"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "234567890123"
@@ -117,6 +137,10 @@ run "input_id_-_throws_exception_for_less_than_12_digits" {
         state  = "ACTIVE"
         tags   = {
           type = "nonprod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
         }
       },
     ]
@@ -142,6 +166,10 @@ run "input_id_-_throws_exception_for_more_than_12_digits" {
         tags   = {
           type = "sandbox"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "234567890123"
@@ -152,6 +180,10 @@ run "input_id_-_throws_exception_for_more_than_12_digits" {
         state  = "ACTIVE"
         tags   = {
           type = "nonprod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
         }
       },
     ]
@@ -178,6 +210,10 @@ run "input_arn_-_throws_exception_for_null" {
         tags   = {
           type = "sandbox"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "234567890123"
@@ -188,6 +224,10 @@ run "input_arn_-_throws_exception_for_null" {
         state  = "ACTIVE"
         tags   = {
           type = "nonprod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
         }
       },
     ]
@@ -213,6 +253,10 @@ run "input_arn_-_throws_exception_for_invalid_value" {
         tags   = {
           type = "sandbox"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "234567890123"
@@ -223,6 +267,10 @@ run "input_arn_-_throws_exception_for_invalid_value" {
         state  = "ACTIVE"
         tags   = {
           type = "nonprod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
         }
       },
     ]
@@ -249,6 +297,10 @@ run "input_name_-_throws_exception_for_null" {
         tags   = {
           type = "sandbox"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "234567890123"
@@ -259,6 +311,10 @@ run "input_name_-_throws_exception_for_null" {
         state  = "ACTIVE"
         tags   = {
           type = "nonprod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
         }
       },
     ]
@@ -285,6 +341,10 @@ run "input_email_-_throws_exception_for_null" {
         tags   = {
           type = "sandbox"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "234567890123"
@@ -295,6 +355,10 @@ run "input_email_-_throws_exception_for_null" {
         state  = "ACTIVE"
         tags   = {
           type = "nonprod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
         }
       },
     ]
@@ -320,6 +384,10 @@ run "input_email_-_throws_exception_for_missing_at-symbol" {
         tags   = {
           type = "sandbox"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "234567890123"
@@ -330,6 +398,10 @@ run "input_email_-_throws_exception_for_missing_at-symbol" {
         state  = "ACTIVE"
         tags   = {
           type = "nonprod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
         }
       },
     ]
@@ -355,6 +427,10 @@ run "input_email_-_throws_exception_for_missing_domain" {
         tags   = {
           type = "sandbox"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "234567890123"
@@ -365,6 +441,10 @@ run "input_email_-_throws_exception_for_missing_domain" {
         state  = "ACTIVE"
         tags   = {
           type = "nonprod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
         }
       },
     ]
@@ -390,6 +470,10 @@ run "input_email_-_throws_exception_for_missing_domain_including_dot" {
         tags   = {
           type = "sandbox"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "234567890123"
@@ -400,6 +484,10 @@ run "input_email_-_throws_exception_for_missing_domain_including_dot" {
         state  = "ACTIVE"
         tags   = {
           type = "nonprod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
         }
       },
     ]
@@ -426,6 +514,10 @@ run "input_status_-_throws_exception_for_null" {
         tags   = {
           type = "sandbox"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "234567890123"
@@ -436,6 +528,10 @@ run "input_status_-_throws_exception_for_null" {
         state  = "ACTIVE"
         tags   = {
           type = "nonprod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
         }
       },
     ]
@@ -461,6 +557,10 @@ run "input_state_-_throws_exception_for_null" {
         tags   = {
           type = "sandbox"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "234567890123"
@@ -471,6 +571,10 @@ run "input_state_-_throws_exception_for_null" {
         state  = "ACTIVE"
         tags   = {
           type = "nonprod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
         }
       },
     ]
@@ -496,6 +600,10 @@ run "input_status_-_throws_exception_for_invalid_value" {
         tags   = {
           type = "sandbox"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "234567890123"
@@ -506,6 +614,10 @@ run "input_status_-_throws_exception_for_invalid_value" {
         state  = "ACTIVE"
         tags   = {
           type = "nonprod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
         }
       },
     ]
@@ -531,6 +643,10 @@ run "input_state_-_throws_exception_for_invalid_value" {
         tags   = {
           type = "sandbox"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "234567890123"
@@ -541,6 +657,10 @@ run "input_state_-_throws_exception_for_invalid_value" {
         state  = "ACTIVE"
         tags   = {
           type = "nonprod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
         }
       },
     ]
@@ -566,6 +686,10 @@ run "input_status_-_throws_exception_for_valid_value_but_in_lower_case" {
         tags   = {
           type = "sandbox"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "234567890123"
@@ -576,6 +700,10 @@ run "input_status_-_throws_exception_for_valid_value_but_in_lower_case" {
         state  = "ACTIVE"
         tags   = {
           type = "nonprod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
         }
       },
     ]
@@ -601,6 +729,10 @@ run "input_state_-_throws_exception_for_valid_value_but_in_lower_case" {
         tags   = {
           type = "sandbox"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "234567890123"
@@ -611,6 +743,10 @@ run "input_state_-_throws_exception_for_valid_value_but_in_lower_case" {
         state  = "ACTIVE"
         tags   = {
           type = "nonprod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
         }
       },
     ]
@@ -635,6 +771,10 @@ run "input_tags_-_throws_exception_for_null" {
         status = "ACTIVE"
         state  = "ACTIVE"
         tags   = null
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "234567890123"
@@ -645,6 +785,223 @@ run "input_tags_-_throws_exception_for_null" {
         state  = "ACTIVE"
         tags   = {
           type = "nonprod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
+        }
+      },
+    ]
+  }
+
+  command = plan
+
+  expect_failures = [
+    var.input,
+  ]
+}
+
+
+run "input_joined_-_throws_exception_for_null" {
+  variables {
+    input = [
+      {
+        id     = "123456789012"
+        arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/123456789012"
+        name   = "account01"
+        email  = "account01@example.org"
+        status = "ACTIVE"
+        state  = "ACTIVE"
+        tags   = {
+          type = "sandbox"
+        }
+        joined = null
+      },
+      {
+        id     = "234567890123"
+        arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/234567890123"
+        name   = "account02"
+        email  = "account02@example.org"
+        status = "ACTIVE"
+        state  = "ACTIVE"
+        tags   = {
+          type = "nonprod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
+        }
+      },
+    ]
+  }
+
+  command = plan
+
+  expect_failures = [
+    var.input,
+  ]
+}
+
+run "input_joined_method_-_throws_exception_for_null" {
+  variables {
+    input = [
+      {
+        id     = "123456789012"
+        arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/123456789012"
+        name   = "account01"
+        email  = "account01@example.org"
+        status = "ACTIVE"
+        state  = "ACTIVE"
+        tags   = {
+          type = "sandbox"
+        }
+        joined = {
+          method    = null
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
+        }
+      },
+      {
+        id     = "234567890123"
+        arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/234567890123"
+        name   = "account02"
+        email  = "account02@example.org"
+        status = "ACTIVE"
+        state  = "ACTIVE"
+        tags   = {
+          type = "nonprod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
+        }
+      },
+    ]
+  }
+
+  command = plan
+
+  expect_failures = [
+    var.input,
+  ]
+}
+
+run "input_joined_method_-_throws_exception_for_invalid_value" {
+  variables {
+    input = [
+      {
+        id     = "123456789012"
+        arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/123456789012"
+        name   = "account01"
+        email  = "account01@example.org"
+        status = "ACTIVE"
+        state  = "ACTIVE"
+        tags   = {
+          type = "sandbox"
+        }
+        joined = {
+          method    = "INVALID-VALUE"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
+        }
+      },
+      {
+        id     = "234567890123"
+        arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/234567890123"
+        name   = "account02"
+        email  = "account02@example.org"
+        status = "ACTIVE"
+        state  = "ACTIVE"
+        tags   = {
+          type = "nonprod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
+        }
+      },
+    ]
+  }
+
+  command = plan
+
+  expect_failures = [
+    var.input,
+  ]
+}
+
+run "input_joined_timestamp_-_throws_exception_for_null" {
+  variables {
+    input = [
+      {
+        id     = "123456789012"
+        arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/123456789012"
+        name   = "account01"
+        email  = "account01@example.org"
+        status = "ACTIVE"
+        state  = "ACTIVE"
+        tags   = {
+          type = "sandbox"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = null
+        }
+      },
+      {
+        id     = "234567890123"
+        arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/234567890123"
+        name   = "account02"
+        email  = "account02@example.org"
+        status = "ACTIVE"
+        state  = "ACTIVE"
+        tags   = {
+          type = "nonprod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
+        }
+      },
+    ]
+  }
+
+  command = plan
+
+  expect_failures = [
+    var.input,
+  ]
+}
+
+run "input_joined_timestamp_-_throws_exception_for_invalid_value" {
+  variables {
+    input = [
+      {
+        id     = "123456789012"
+        arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/123456789012"
+        name   = "account01"
+        email  = "account01@example.org"
+        status = "ACTIVE"
+        state  = "ACTIVE"
+        tags   = {
+          type = "sandbox"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "INVALID-VALUE"
+        }
+      },
+      {
+        id     = "234567890123"
+        arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/234567890123"
+        name   = "account02"
+        email  = "account02@example.org"
+        status = "ACTIVE"
+        state  = "ACTIVE"
+        tags   = {
+          type = "nonprod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
         }
       },
     ]

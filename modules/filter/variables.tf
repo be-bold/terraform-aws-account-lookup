@@ -7,6 +7,10 @@ variable "input" {
     status = string
     state = string
     tags = map(string)
+    joined = object({
+      method = string
+      timestamp = string
+    })
   }))
 
   description = "List of accounts on which the filter configuration is being applied. Use the lookup module as source: https://registry.terraform.io/modules/be-bold/account-lookup/aws/latest"
@@ -45,6 +49,21 @@ variable "input" {
   validation {
     condition = var.input != null && alltrue([ for entry in var.input != null ? var.input : [] : entry.tags != null ])
     error_message = "{input.tags} contains invalid value(s). See AWS documentation: https://docs.aws.amazon.com/organizations/latest/APIReference/API_Account.html"
+  }
+
+  validation {
+    condition = var.input != null && alltrue([ for entry in var.input != null ? var.input : [] : entry.joined != null ])
+    error_message = "{input.joined} must not be null"
+  }
+
+  validation {
+    condition = var.input != null && alltrue([ for entry in var.input != null ? var.input : [] : entry.joined != null && try(contains(["CREATED", "INVITED"], entry.joined.method), false) ])
+    error_message = "{input.joined.method} contains invalid value(s). See AWS documentation: https://docs.aws.amazon.com/organizations/latest/APIReference/API_Account.html"
+  }
+
+  validation {
+    condition = var.input != null && alltrue([ for entry in var.input != null ? var.input : [] : entry.joined != null && try(formatdate("YYYY", entry.joined.timestamp), null) != null ])
+    error_message = "{input.joined.timestamp} contains invalid value(s). See AWS documentation: https://docs.aws.amazon.com/organizations/latest/APIReference/API_Account.html"
   }
 }
 

@@ -12,6 +12,10 @@ run "group_by_tag_-_every_entry_provides_given_tag" {
           type = "sandbox"
           team = "team1"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "234567890123"
@@ -23,6 +27,10 @@ run "group_by_tag_-_every_entry_provides_given_tag" {
         tags   = {
           type = "nonprod"
           team = "team2"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
         }
       },
       {
@@ -36,6 +44,10 @@ run "group_by_tag_-_every_entry_provides_given_tag" {
           type = "prod"
           team = "team1"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-03T14:03:56.054000+01:00"
+        }
       },
     ]
 
@@ -45,33 +57,61 @@ run "group_by_tag_-_every_entry_provides_given_tag" {
   command = plan
 
   assert {
-    condition     = length(keys(local.result)) == 2
-    error_message = "Expected 2 entries in search result."
-  }
-
-  assert {
-    condition     = length(local.result["team1"]) == 2
-    error_message = "Expected entry not found or contains more entries than expected."
-  }
-
-  assert {
-    condition     = local.result["team1"][0]["id"] == "123456789012"
-    error_message = "Expected entry not found."
-  }
-
-  assert {
-    condition     = local.result["team1"][1]["id"] == "345678901234"
-    error_message = "Expected entry not found."
-  }
-
-  assert {
-    condition     = length(local.result["team2"]) == 1
-    error_message = "Expected entry not found or contains more entries than expected."
-  }
-
-  assert {
-    condition     = local.result["team2"][0]["id"] == "234567890123"
-    error_message = "Expected entry not found."
+    condition = jsonencode(output.result) == jsonencode({
+      team1 = [
+        {
+          id     = "123456789012"
+          arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/123456789012"
+          name   = "account01"
+          email  = "account01@example.org"
+          status = "ACTIVE"
+          state  = "ACTIVE"
+          tags   = {
+            type = "sandbox"
+            team = "team1"
+          }
+          joined = {
+            method    = "CREATED"
+            timestamp = "2025-01-01T14:03:56.054000+01:00"
+          }
+        },
+        {
+          id     = "345678901234"
+          arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/345678901234"
+          name   = "account03"
+          email  = "account03@example.org"
+          status = "ACTIVE"
+          state  = "ACTIVE"
+          tags   = {
+            type = "prod"
+            team = "team1"
+          }
+          joined = {
+            method    = "CREATED"
+            timestamp = "2025-01-03T14:03:56.054000+01:00"
+          }
+        },
+      ]
+      team2 = [
+        {
+          id     = "234567890123"
+          arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/234567890123"
+          name   = "account02"
+          email  = "account02@example.org"
+          status = "ACTIVE"
+          state  = "ACTIVE"
+          tags   = {
+            type = "nonprod"
+            team = "team2"
+          }
+          joined = {
+            method    = "CREATED"
+            timestamp = "2025-01-02T14:03:56.054000+01:00"
+          }
+        },
+      ]
+    })
+    error_message = "Account list doesn't contain the expected entries."
   }
 }
 
@@ -89,6 +129,10 @@ run "group_by_tag_-_entries_not_providing_tag_are_listed_with_a_special_index" {
           type = "sandbox"
           team = "team1"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "234567890123"
@@ -101,6 +145,10 @@ run "group_by_tag_-_entries_not_providing_tag_are_listed_with_a_special_index" {
           type = "nonprod"
           team = "team2"
           my_tag  = "this"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
         }
       },
       {
@@ -115,6 +163,10 @@ run "group_by_tag_-_entries_not_providing_tag_are_listed_with_a_special_index" {
           team = "team1"
           my_tag  = "other"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-03T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "456789012345"
@@ -126,6 +178,10 @@ run "group_by_tag_-_entries_not_providing_tag_are_listed_with_a_special_index" {
         tags   = {
           type = "prod"
           team = "team3"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-04T14:03:56.054000+01:00"
         }
       },
       {
@@ -140,6 +196,10 @@ run "group_by_tag_-_entries_not_providing_tag_are_listed_with_a_special_index" {
           team = "team3"
           my_tag  = "other"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-05T14:03:56.054000+01:00"
+        }
       },
     ]
 
@@ -149,47 +209,97 @@ run "group_by_tag_-_entries_not_providing_tag_are_listed_with_a_special_index" {
   command = plan
 
   assert {
-    condition     = length(keys(local.result)) == 3
-    error_message = "Expected 3 entries in search result."
-  }
-
-  assert {
-    condition     = length(local.result["this"]) == 1
-    error_message = "Expected entry not found or contains more entries than expected."
-  }
-
-  assert {
-    condition     = local.result["this"][0]["id"] == "234567890123"
-    error_message = "Expected entry not found."
-  }
-
-  assert {
-    condition     = length(local.result["other"]) == 2
-    error_message = "Expected entry not found or contains more entries than expected."
-  }
-
-  assert {
-    condition     = local.result["other"][0]["id"] == "345678901234"
-    error_message = "Expected entry not found."
-  }
-
-  assert {
-    condition     = local.result["other"][1]["id"] == "567890123456"
-    error_message = "Expected entry not found."
-  }
-
-  assert {
-    condition     = length(local.result["group_id_missing"]) == 2
-    error_message = "Expected entry not found or contains more entries than expected."
-  }
-
-  assert {
-    condition     = local.result["group_id_missing"][0]["id"] == "123456789012"
-    error_message = "Expected entry not found."
-  }
-
-  assert {
-    condition     = local.result["group_id_missing"][1]["id"] == "456789012345"
-    error_message = "Expected entry not found."
+    condition = jsonencode(output.result) == jsonencode({
+      this = [
+        {
+          id     = "234567890123"
+          arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/234567890123"
+          name   = "account02"
+          email  = "account02@example.org"
+          status = "ACTIVE"
+          state  = "ACTIVE"
+          tags   = {
+            type = "nonprod"
+            team = "team2"
+            my_tag  = "this"
+          }
+          joined = {
+            method    = "CREATED"
+            timestamp = "2025-01-02T14:03:56.054000+01:00"
+          }
+        },
+      ]
+      other = [
+        {
+          id     = "345678901234"
+          arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/345678901234"
+          name   = "account03"
+          email  = "account03@example.org"
+          status = "ACTIVE"
+          state  = "ACTIVE"
+          tags   = {
+            type = "prod"
+            team = "team1"
+            my_tag  = "other"
+          }
+          joined = {
+            method    = "CREATED"
+            timestamp = "2025-01-03T14:03:56.054000+01:00"
+          }
+        },
+        {
+          id     = "567890123456"
+          arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/567890123456"
+          name   = "account05"
+          email  = "account05@example.org"
+          status = "ACTIVE"
+          state  = "ACTIVE"
+          tags   = {
+            type = "nonprod"
+            team = "team3"
+            my_tag  = "other"
+          }
+          joined = {
+            method    = "CREATED"
+            timestamp = "2025-01-05T14:03:56.054000+01:00"
+          }
+        },
+      ]
+      group_id_missing = [
+        {
+          id     = "123456789012"
+          arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/123456789012"
+          name   = "account01"
+          email  = "account01@example.org"
+          status = "ACTIVE"
+          state  = "ACTIVE"
+          tags   = {
+            type = "sandbox"
+            team = "team1"
+          }
+          joined = {
+            method    = "CREATED"
+            timestamp = "2025-01-01T14:03:56.054000+01:00"
+          }
+        },
+        {
+          id     = "456789012345"
+          arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/456789012345"
+          name   = "account04"
+          email  = "account04@example.org"
+          status = "ACTIVE"
+          state  = "ACTIVE"
+          tags   = {
+            type = "prod"
+            team = "team3"
+          }
+          joined = {
+            method    = "CREATED"
+            timestamp = "2025-01-04T14:03:56.054000+01:00"
+          }
+        },
+      ]
+    })
+    error_message = "Account list doesn't contain the expected entries."
   }
 }

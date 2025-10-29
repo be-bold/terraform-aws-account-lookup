@@ -1,32 +1,25 @@
 module "lookup" {
   source  = "be-bold/account-lookup/aws"
   version = "#.#.#"
+
   providers = {
-    aws = aws.organization_read_role
+    aws = aws.OrganizationReadRole
   }
 }
 
-module "filter" {
+module "grouping" {
   source  = "be-bold/account-lookup/aws//modules/filter"
   version = "#.#.#"
+
   input = module.lookup.account_list
 
-  include = {
+  exclude = {
     tags = {
       type = [
-        "nonprod",
-        "prod",
+        "tooling",
       ]
     }
   }
 
-  exclude = {
-    name = {
-      matcher = "endswith"
-      values = [
-        "y",
-        "d",
-      ]
-    }
-  }
+  group_by_tag = "team"
 }

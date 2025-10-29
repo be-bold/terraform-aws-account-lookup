@@ -1,8 +1,10 @@
 module "lookup" {
   source  = "be-bold/account-lookup/aws"
   version = "#.#.#"
+
   providers = {
-    aws = aws.organization_read_role
+    aws = aws.OrganizationReadRole
   }
+
   include_management_account = false
 }

@@ -3,9 +3,84 @@
 This example will retrieve all possible outputs from the lookup module.
 The organizations management account will be removed from the outputs, because `include_management_account` has been set to `false`.
 
+## Setup
+
+**Providers:**
+
+```hcl
+terraform {
+  required_providers {
+    aws = {
+      source = "hashicorp/aws"
+      version = "#.#.#"
+    }
+  }
+}
+
+provider "aws" {
+  region = "####"
+  alias  = "OrganizationReadRole"
+
+  assume_role {
+    role_arn = "arn:aws:iam::############:role/OrganizationReadRole"
+  }
+}
+```
+
+**Calling the module:**
+
+```hcl
+module "lookup" {
+  source  = "be-bold/account-lookup/aws"
+  version = "#.#.#"
+
+  providers = {
+    aws = aws.OrganizationReadRole
+  }
+
+  include_management_account = false
+}
+```
+
+**Outputs:**
+
+```hcl
+output "organization_id" {
+  value = module.lookup.organization_id
+}
+
+output "management_account_id" {
+  value = module.lookup.management_account_id
+}
+
+output "management_account_name" {
+  value = module.lookup.management_account_name
+}
+
+output "mapping_id_to_name" {
+  value = module.lookup.mapping_id_to_name
+}
+
+output "mapping_name_to_id" {
+  value = module.lookup.mapping_name_to_id
+}
+
+output "mapping_id_to_tags" {
+  value = module.lookup.mapping_id_to_tags
+}
+
+output "mapping_name_to_tags" {
+  value = module.lookup.mapping_name_to_tags
+}
+
+output "account_list" {
+  value = module.lookup.account_list
+}
+```
+
 ## Outputs
 
-Here are examples of what the output will look like:
+Here are examples of what the output would look like:
 
 ### organization_id
 
@@ -45,7 +120,7 @@ Changes to Outputs:
 Changes to Outputs:
   + mapping_name_to_id = {
       + "security" = "123456789012"
-      + "sandbox" = "234567890123"
+      + "sandbox"  = "234567890123"
       + "workload" = "345678901234"
     }
 ```
@@ -94,7 +169,7 @@ Changes to Outputs:
 
 ```text
 Changes to Outputs:
-  + account_list            = {
+  + account_list = {
       + "123456789012" = [
           + {
               + arn    = "arn:aws:organizations::010101010101:account/o-0abcd123ef/123456789012"
@@ -106,6 +181,10 @@ Changes to Outputs:
               + tags   = {
                   + team = "team1"
                   + type = "prod"
+                }
+              + joined = {
+                  + method    = "CREATED"
+                  + timestamp = "2025-01-01T14:03:56.054000+01:00"
                 }
             },
         ]
@@ -121,6 +200,10 @@ Changes to Outputs:
                   + team = "team2"
                   + type = "sandbox"
                 }
+              + joined = {
+                  + method    = "CREATED"
+                  + timestamp = "2025-01-02T14:03:56.054000+01:00"
+                }
             },
         ]
       + "345678901234" = [
@@ -134,6 +217,10 @@ Changes to Outputs:
               + tags   = {
                   + team = "team2"
                   + type = "nonprod"
+                }
+              + joined = {
+                  + method    = "CREATED"
+                  + timestamp = "2025-01-03T14:03:56.054000+01:00"
                 }
             },
         ]

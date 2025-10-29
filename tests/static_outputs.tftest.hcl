@@ -3,66 +3,80 @@ mock_provider "aws" {
 
   mock_data "aws_organizations_organization" {
     defaults = {
-      id = "o-0abcd123ef"
+      id                = "o-0abcd123ef"
       master_account_id = "010101010101"
       non_master_accounts = [
         {
-          arn    = "arn:aws:organizations::010101010101:account/o-0abcd123ef/123456789012"
-          email  = "team1@example.org"
-          id     = "123456789012"
-          name   = "security"
-          status = "ACTIVE"
-          state  = "ACTIVE"
+          arn              = "arn:aws:organizations::010101010101:account/o-0abcd123ef/123456789012"
+          email            = "team1@example.org"
+          id               = "123456789012"
+          name             = "security"
+          status           = "ACTIVE"
+          state            = "ACTIVE"
+          joined_method    = "CREATED"
+          joined_timestamp = "2025-01-02T14:03:56.054000+01:00"
         },
         {
-          arn    = "arn:aws:organizations::010101010101:account/o-0abcd123ef/234567890123"
-          email  = "team2@example.org"
-          id     = "234567890123"
-          name   = "sandbox"
-          status = "ACTIVE"
-          state  = "ACTIVE"
+          arn              = "arn:aws:organizations::010101010101:account/o-0abcd123ef/234567890123"
+          email            = "team2@example.org"
+          id               = "234567890123"
+          name             = "sandbox"
+          status           = "ACTIVE"
+          state            = "ACTIVE"
+          joined_method    = "CREATED"
+          joined_timestamp = "2025-03-02T14:03:56.054000+01:00"
         },
         {
-          arn    = "arn:aws:organizations::010101010101:account/o-0abcd123ef/345678901234"
-          email  = "team2@example.org"
-          id     = "345678901234"
-          name   = "workload"
-          status = "ACTIVE"
-          state  = "ACTIVE"
+          arn              = "arn:aws:organizations::010101010101:account/o-0abcd123ef/345678901234"
+          email            = "team2@example.org"
+          id               = "345678901234"
+          name             = "workload"
+          status           = "ACTIVE"
+          state            = "ACTIVE"
+          joined_method    = "CREATED"
+          joined_timestamp = "2025-03-03T14:03:56.054000+01:00"
         },
       ]
       accounts = [
         {
-          arn    = "arn:aws:organizations::010101010101:account/o-0abcd123ef/010101010101"
-          email  = "management@example.org"
-          id     = "010101010101"
-          name   = "company-name-management-account"
-          status = "ACTIVE"
-          state  = "ACTIVE"
+          arn              = "arn:aws:organizations::010101010101:account/o-0abcd123ef/010101010101"
+          email            = "management@example.org"
+          id               = "010101010101"
+          name             = "company-name-management-account"
+          status           = "ACTIVE"
+          state            = "ACTIVE"
+          joined_method    = "CREATED"
+          joined_timestamp = "2025-01-01T14:03:56.054000+01:00"
         },
         {
-          arn    = "arn:aws:organizations::010101010101:account/o-0abcd123ef/123456789012"
-          email  = "team1@example.org"
-          id     = "123456789012"
-          name   = "security"
-          status = "ACTIVE"
-          state  = "ACTIVE"
+          arn              = "arn:aws:organizations::010101010101:account/o-0abcd123ef/123456789012"
+          email            = "team1@example.org"
+          id               = "123456789012"
+          name             = "security"
+          status           = "ACTIVE"
+          state            = "ACTIVE"
+          joined_method    = "CREATED"
+          joined_timestamp = "2025-01-02T14:03:56.054000+01:00"
         },
         {
-          arn    = "arn:aws:organizations::010101010101:account/o-0abcd123ef/234567890123"
-          email  = "team2@example.org"
-          id     = "234567890123"
-          name   = "sandbox"
-          status = "ACTIVE"
-          state  = "ACTIVE"
+          arn              = "arn:aws:organizations::010101010101:account/o-0abcd123ef/234567890123"
+          email            = "team2@example.org"
+          id               = "234567890123"
+          name             = "sandbox"
+          status           = "ACTIVE"
+          state            = "ACTIVE"
+          joined_method    = "CREATED"
+          joined_timestamp = "2025-03-02T14:03:56.054000+01:00"
         },
         {
-          arn    = "arn:aws:organizations::010101010101:account/o-0abcd123ef/345678901234"
-          email  = "team2@example.org"
-          id     = "345678901234"
-          name   = "workload"
-          status = "ACTIVE"
-          state  = "ACTIVE"
+          arn              = "arn:aws:organizations::010101010101:account/o-0abcd123ef/345678901234"
+          email            = "team2@example.org"
+          id               = "345678901234"
+          name             = "workload"
+          status           = "ACTIVE"
+          state            = "ACTIVE"
+          joined_method    = "CREATED"
+          joined_timestamp = "2025-03-03T14:03:56.054000+01:00"
         },
       ]
     }
@@ -76,7 +90,7 @@ mock_provider "aws" {
 
   override_data {
     override_during = plan
-    target = data.aws_organizations_resource_tags.this["010101010101"]
+    target          = data.aws_organizations_resource_tags.this["010101010101"]
     values = {
       tags = {
         team = "team1"
@@ -87,7 +101,7 @@ mock_provider "aws" {
 
   override_data {
     override_during = plan
-    target = data.aws_organizations_resource_tags.this["123456789012"]
+    target          = data.aws_organizations_resource_tags.this["123456789012"]
     values = {
       tags = {
         team = "team1"
@@ -98,7 +112,7 @@ mock_provider "aws" {
 
   override_data {
     override_during = plan
-    target = data.aws_organizations_resource_tags.this["234567890123"]
+    target          = data.aws_organizations_resource_tags.this["234567890123"]
     values = {
       tags = {
         team = "team2"
@@ -109,7 +123,7 @@ mock_provider "aws" {
 
   override_data {
     override_during = plan
-    target = data.aws_organizations_resource_tags.this["345678901234"]
+    target          = data.aws_organizations_resource_tags.this["345678901234"]
     values = {
       tags = {
         team = "team2"
@@ -150,11 +164,11 @@ run "correctly_returns__mapping_id_to_name__-_including_management_account" {
   command = plan
 
   assert {
-    condition     = output.mapping_id_to_name == {
+    condition = output.mapping_id_to_name == {
       "010101010101" = "company-name-management-account"
-      123456789012 = "security"
-      234567890123 = "sandbox"
-      345678901234 = "workload"
+      123456789012   = "security"
+      234567890123   = "sandbox"
+      345678901234   = "workload"
     }
     error_message = "Mapping id to name including management account isn't correct."
   }
@@ -168,7 +182,7 @@ run "correctly_returns__mapping_id_to_name__-_excluding_management_account" {
   command = plan
 
   assert {
-    condition     = output.mapping_id_to_name == {
+    condition = output.mapping_id_to_name == {
       123456789012 = "security"
       234567890123 = "sandbox"
       345678901234 = "workload"
@@ -181,11 +195,11 @@ run "correctly_returns__mapping_name_to_id__-_including_management_account" {
   command = plan
 
   assert {
-    condition     = output.mapping_name_to_id == {
+    condition = output.mapping_name_to_id == {
       company-name-management-account = "010101010101"
-      security = "123456789012"
-      sandbox = "234567890123"
-      workload = "345678901234"
+      security                        = "123456789012"
+      sandbox                         = "234567890123"
+      workload                        = "345678901234"
     }
     error_message = "Mapping name to id including management account isn't correct."
   }
@@ -199,9 +213,9 @@ run "correctly_returns__mapping_name_to_id__-_excluding_management_account" {
   command = plan
 
   assert {
-    condition     = output.mapping_name_to_id == {
+    condition = output.mapping_name_to_id == {
       security = "123456789012"
-      sandbox = "234567890123"
+      sandbox  = "234567890123"
       workload = "345678901234"
     }
     error_message = "Mapping name to id excluding management account isn't correct."
@@ -212,7 +226,7 @@ run "correctly_returns__mapping_id_to_tags__-_including_management_account" {
   command = plan
 
   assert {
-    condition     = jsonencode(output.mapping_id_to_tags) == jsonencode({
+    condition = jsonencode(output.mapping_id_to_tags) == jsonencode({
       "010101010101" = {
         team = "team1"
         type = "prod"
@@ -242,7 +256,7 @@ run "correctly_returns__mapping_id_to_tags__-_excluding_management_account" {
   command = plan
 
   assert {
-    condition     = jsonencode(output.mapping_id_to_tags) == jsonencode({
+    condition = jsonencode(output.mapping_id_to_tags) == jsonencode({
       123456789012 = {
         team = "team1"
         type = "prod"
@@ -264,7 +278,7 @@ run "correctly_returns__mapping_name_to_tags__-_including_management_account" {
   command = plan
 
   assert {
-    condition     = jsonencode(output.mapping_name_to_tags) == jsonencode({
+    condition = jsonencode(output.mapping_name_to_tags) == jsonencode({
       company-name-management-account = {
         team = "team1"
         type = "prod"
@@ -294,7 +308,7 @@ run "correctly_returns__mapping_name_to_tags__-_excluding_management_account" {
   command = plan
 
   assert {
-    condition     = jsonencode(output.mapping_name_to_tags) == jsonencode({
+    condition = jsonencode(output.mapping_name_to_tags) == jsonencode({
       security = {
         team = "team1"
         type = "prod"
@@ -316,12 +330,12 @@ run "correctly_returns__account_list__-_including_management_account" {
   command = plan
 
   assert {
-    condition = length(output.account_list) == 4
+    condition     = length(output.account_list) == 4
     error_message = "Unexpected number of entries."
   }
 
   assert {
-    condition  = jsonencode(output.account_list) == jsonencode([
+    condition = jsonencode(output.account_list) == jsonencode([
       {
         arn    = "arn:aws:organizations::010101010101:account/o-0abcd123ef/010101010101"
         email  = "management@example.org"
@@ -332,6 +346,10 @@ run "correctly_returns__account_list__-_including_management_account" {
         tags = {
           team = "team1"
           type = "prod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
         }
       },
       {
@@ -345,6 +363,10 @@ run "correctly_returns__account_list__-_including_management_account" {
           team = "team1"
           type = "prod"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
+        }
       },
       {
         arn    = "arn:aws:organizations::010101010101:account/o-0abcd123ef/234567890123"
@@ -357,6 +379,10 @@ run "correctly_returns__account_list__-_including_management_account" {
           team = "team2"
           type = "sandbox"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-03-02T14:03:56.054000+01:00"
+        }
       },
       {
         arn    = "arn:aws:organizations::010101010101:account/o-0abcd123ef/345678901234"
@@ -368,6 +394,10 @@ run "correctly_returns__account_list__-_including_management_account" {
         tags = {
           team = "team2"
           type = "nonprod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-03-03T14:03:56.054000+01:00"
         }
       },
     ])
@@ -383,12 +413,12 @@ run "correctly_returns__account_list__-_excluding_management_account" {
   command = plan
 
   assert {
-    condition = length(output.account_list) == 3
+    condition     = length(output.account_list) == 3
     error_message = "Unexpected number of entries."
   }
 
   assert {
-    condition  = jsonencode(output.account_list) == jsonencode([
+    condition = jsonencode(output.account_list) == jsonencode([
       {
         arn    = "arn:aws:organizations::010101010101:account/o-0abcd123ef/123456789012"
         email  = "team1@example.org"
@@ -399,6 +429,10 @@ run "correctly_returns__account_list__-_excluding_management_account" {
         tags = {
           team = "team1"
           type = "prod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
         }
       },
       {
@@ -412,6 +446,10 @@ run "correctly_returns__account_list__-_excluding_management_account" {
           team = "team2"
           type = "sandbox"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-03-02T14:03:56.054000+01:00"
+        }
       },
       {
         arn    = "arn:aws:organizations::010101010101:account/o-0abcd123ef/345678901234"
@@ -423,6 +461,10 @@ run "correctly_returns__account_list__-_excluding_management_account" {
         tags = {
           team = "team2"
           type = "nonprod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-03-03T14:03:56.054000+01:00"
         }
       },
     ])
