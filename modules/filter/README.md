@@ -1,7 +1,7 @@
 # terraform-aws-account-lookup-filter
 
 > [!TIP]
-> Use this module in combination with [be-bold/terraform-aws-account-lookup](https://github.com/be-bold/terraform-aws-account-lookup)  by passing its result as the input to this module.
+> Use this module in combination with [be-bold/terraform-aws-account-lookup](https://github.com/be-bold/terraform-aws-account-lookup)  by passing its `account_list` as the input to this module.
 
 ## What it does
 
