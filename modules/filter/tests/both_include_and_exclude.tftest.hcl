@@ -11,6 +11,10 @@ run "filter_using_both_include_and_exclude_-_first_input_is_run_through_include_
         tags   = {
           type = "sandbox"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "234567890123"
@@ -21,6 +25,10 @@ run "filter_using_both_include_and_exclude_-_first_input_is_run_through_include_
         state  = "ACTIVE"
         tags   = {
           type = "nonprod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
         }
       },
       {
@@ -33,6 +41,10 @@ run "filter_using_both_include_and_exclude_-_first_input_is_run_through_include_
         tags   = {
           type = "prod"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-03T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "456789012345"
@@ -44,6 +56,10 @@ run "filter_using_both_include_and_exclude_-_first_input_is_run_through_include_
         tags   = {
           type = "nonprod"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-04T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "567890123456"
@@ -54,6 +70,10 @@ run "filter_using_both_include_and_exclude_-_first_input_is_run_through_include_
         state  = "ACTIVE"
         tags   = {
           type = "prod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-05T14:03:56.054000+01:00"
         }
       },
     ]
@@ -81,17 +101,42 @@ run "filter_using_both_include_and_exclude_-_first_input_is_run_through_include_
   command = plan
 
   assert {
-    condition = length(keys(local.result)) == 2
-    error_message = "Expected 2 entries in search result."
-  }
-
-  assert {
-    condition = length(local.result["234567890123"]) == 1
-    error_message = "Expected entry not found or contains more entries than expected."
-  }
-
-  assert {
-    condition = length(local.result["456789012345"]) == 1
-    error_message = "Expected entry not found or contains more entries than expected."
+    condition = jsonencode(output.result) == jsonencode({
+      234567890123 = [
+        {
+          id     = "234567890123"
+          arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/234567890123"
+          name   = "account02"
+          email  = "account02@example.org"
+          status = "ACTIVE"
+          state  = "ACTIVE"
+          tags = {
+            type = "nonprod"
+          }
+          joined = {
+            method    = "CREATED"
+            timestamp = "2025-01-02T14:03:56.054000+01:00"
+          }
+        },
+      ]
+      456789012345 = [
+        {
+          id     = "456789012345"
+          arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/456789012345"
+          name   = "account04"
+          email  = "account04@example.org"
+          status = "ACTIVE"
+          state  = "ACTIVE"
+          tags = {
+            type = "nonprod"
+          }
+          joined = {
+            method    = "CREATED"
+            timestamp = "2025-01-04T14:03:56.054000+01:00"
+          }
+        },
+      ]
+    })
+    error_message = "Account list doesn't contain the expected entries."
   }
 }

@@ -11,6 +11,10 @@ run "filter_using__include_status__-_successfully_filter_for_single_entry_with_a
         tags   = {
           type = "sandbox"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "234567890123"
@@ -22,6 +26,10 @@ run "filter_using__include_status__-_successfully_filter_for_single_entry_with_a
         tags   = {
           type = "nonprod"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "345678901234"
@@ -32,6 +40,10 @@ run "filter_using__include_status__-_successfully_filter_for_single_entry_with_a
         state  = "PENDING_CLOSURE"
         tags   = {
           type = "prod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-03T14:03:56.054000+01:00"
         }
       },
     ]
@@ -46,53 +58,26 @@ run "filter_using__include_status__-_successfully_filter_for_single_entry_with_a
   command = plan
 
   assert {
-    condition = length(keys(local.result)) == 1
-    error_message = "Expected 1 entry in search result."
-  }
-
-  assert {
-    condition = length(local.result["234567890123"]) == 1
-    error_message = "Expected entry not found or contains more entries than expected."
-  }
-
-  assert {
-    condition = local.result["234567890123"][0]["id"] == "234567890123"
-    error_message = "Unexpected value."
-  }
-
-  assert {
-    condition = local.result["234567890123"][0]["arn"] == "arn:aws:organizations::000000000001:account/o-0abcd123ef/234567890123"
-    error_message = "Unexpected value."
-  }
-
-  assert {
-    condition = local.result["234567890123"][0]["name"] == "account02"
-    error_message = "Unexpected value."
-  }
-
-  assert {
-    condition = local.result["234567890123"][0]["email"] == "account02@example.org"
-    error_message = "Unexpected value."
-  }
-
-  assert {
-    condition = local.result["234567890123"][0]["status"] == "SUSPENDED"
-    error_message = "Unexpected value."
-  }
-
-  assert {
-    condition = local.result["234567890123"][0]["state"] == "SUSPENDED"
-    error_message = "Unexpected value."
-  }
-
-  assert {
-    condition = length(local.result["234567890123"][0]["tags"]) == 1
-    error_message = "Only one tag is expected."
-  }
-
-  assert {
-    condition = local.result["234567890123"][0]["tags"]["type"] == "nonprod"
-    error_message = "Unexpected value."
+    condition = jsonencode(output.result) == jsonencode({
+      234567890123 = [
+        {
+          id     = "234567890123"
+          arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/234567890123"
+          name   = "account02"
+          email  = "account02@example.org"
+          status = "SUSPENDED"
+          state  = "SUSPENDED"
+          tags   = {
+            type = "nonprod"
+          }
+          joined = {
+            method    = "CREATED"
+            timestamp = "2025-01-02T14:03:56.054000+01:00"
+          }
+        },
+      ]
+    })
+    error_message = "Account list doesn't contain the expected entries."
   }
 }
 
@@ -109,6 +94,10 @@ run "filter_using__include_status__-_successfully_filter_for_multiple_entries" {
         tags   = {
           type = "sandbox"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "234567890123"
@@ -120,6 +109,10 @@ run "filter_using__include_status__-_successfully_filter_for_multiple_entries" {
         tags   = {
           type = "nonprod"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "345678901234"
@@ -130,6 +123,10 @@ run "filter_using__include_status__-_successfully_filter_for_multiple_entries" {
         state  = "PENDING_CLOSURE"
         tags   = {
           type = "prod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-03T14:03:56.054000+01:00"
         }
       },
     ]
@@ -173,6 +170,10 @@ run "filter_using__include_status__-_only_return_known_entry_if_you_filter_for_k
         tags   = {
           type = "sandbox"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "234567890123"
@@ -184,6 +185,10 @@ run "filter_using__include_status__-_only_return_known_entry_if_you_filter_for_k
         tags   = {
           type = "nonprod"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "345678901234"
@@ -194,6 +199,10 @@ run "filter_using__include_status__-_only_return_known_entry_if_you_filter_for_k
         state  = "SUSPENDED"
         tags   = {
           type = "prod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-03T14:03:56.054000+01:00"
         }
       },
     ]
@@ -232,6 +241,10 @@ run "filter_using__include_status__-_unknown_entry_returns_empty_list" {
         tags   = {
           type = "sandbox"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "234567890123"
@@ -243,6 +256,10 @@ run "filter_using__include_status__-_unknown_entry_returns_empty_list" {
         tags   = {
           type = "nonprod"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "345678901234"
@@ -253,6 +270,10 @@ run "filter_using__include_status__-_unknown_entry_returns_empty_list" {
         state  = "SUSPENDED"
         tags   = {
           type = "prod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-03T14:03:56.054000+01:00"
         }
       },
     ]

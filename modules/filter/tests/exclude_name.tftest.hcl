@@ -11,6 +11,10 @@ run "filter_using__exclude_name_matcher__-_throws_exception_for_null" {
         tags   = {
           type = "sandbox"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "234567890123"
@@ -22,6 +26,10 @@ run "filter_using__exclude_name_matcher__-_throws_exception_for_null" {
         tags   = {
           type = "nonprod"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "345678901234"
@@ -32,6 +40,10 @@ run "filter_using__exclude_name_matcher__-_throws_exception_for_null" {
         state  = "ACTIVE"
         tags   = {
           type = "prod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-03T14:03:56.054000+01:00"
         }
       },
     ]
@@ -66,6 +78,10 @@ run "filter_using__exclude_name_matcher__-_throws_exception_for_invalid_value" {
         tags   = {
           type = "sandbox"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "234567890123"
@@ -77,6 +93,10 @@ run "filter_using__exclude_name_matcher__-_throws_exception_for_invalid_value" {
         tags   = {
           type = "nonprod"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "345678901234"
@@ -87,6 +107,10 @@ run "filter_using__exclude_name_matcher__-_throws_exception_for_invalid_value" {
         state  = "ACTIVE"
         tags   = {
           type = "prod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-03T14:03:56.054000+01:00"
         }
       },
     ]
@@ -121,6 +145,10 @@ run "filter_using__exclude_name_matcher__-_throws_exception_for_valid_value_but_
         tags   = {
           type = "sandbox"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "234567890123"
@@ -132,6 +160,10 @@ run "filter_using__exclude_name_matcher__-_throws_exception_for_valid_value_but_
         tags   = {
           type = "nonprod"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "345678901234"
@@ -142,6 +174,10 @@ run "filter_using__exclude_name_matcher__-_throws_exception_for_valid_value_but_
         state  = "ACTIVE"
         tags   = {
           type = "prod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-03T14:03:56.054000+01:00"
         }
       },
     ]
@@ -177,6 +213,10 @@ run "filter_using__exclude_name_values__-_throws_exception_for_null" {
         tags   = {
           type = "sandbox"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "234567890123"
@@ -188,6 +228,10 @@ run "filter_using__exclude_name_values__-_throws_exception_for_null" {
         tags   = {
           type = "nonprod"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "345678901234"
@@ -198,6 +242,10 @@ run "filter_using__exclude_name_values__-_throws_exception_for_null" {
         state  = "ACTIVE"
         tags   = {
           type = "prod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-03T14:03:56.054000+01:00"
         }
       },
     ]
@@ -231,6 +279,10 @@ run "filter_using__exclude_name__-_startswith_-_successfully_filter_for_single_e
         tags   = {
           type = "sandbox"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "234567890123"
@@ -242,6 +294,10 @@ run "filter_using__exclude_name__-_startswith_-_successfully_filter_for_single_e
         tags   = {
           type = "nonprod"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "345678901234"
@@ -252,6 +308,10 @@ run "filter_using__exclude_name__-_startswith_-_successfully_filter_for_single_e
         state  = "ACTIVE"
         tags   = {
           type = "prod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-03T14:03:56.054000+01:00"
         }
       },
     ]
@@ -270,53 +330,26 @@ run "filter_using__exclude_name__-_startswith_-_successfully_filter_for_single_e
   command = plan
 
   assert {
-    condition = length(keys(local.result)) == 1
-    error_message = "Expected 1 entry in search result."
-  }
-
-  assert {
-    condition = length(local.result["234567890123"]) == 1
-    error_message = "Expected entry not found or contains more entries than expected."
-  }
-
-  assert {
-    condition = local.result["234567890123"][0]["id"] == "234567890123"
-    error_message = "Unexpected value."
-  }
-
-  assert {
-    condition = local.result["234567890123"][0]["arn"] == "arn:aws:organizations::000000000001:account/o-0abcd123ef/234567890123"
-    error_message = "Unexpected value."
-  }
-
-  assert {
-    condition = local.result["234567890123"][0]["name"] == "prefix2-account02"
-    error_message = "Unexpected value."
-  }
-
-  assert {
-    condition = local.result["234567890123"][0]["email"] == "account02@example.org"
-    error_message = "Unexpected value."
-  }
-
-  assert {
-    condition = local.result["234567890123"][0]["status"] == "ACTIVE"
-    error_message = "Unexpected value."
-  }
-
-  assert {
-    condition = local.result["234567890123"][0]["state"] == "ACTIVE"
-    error_message = "Unexpected value."
-  }
-
-  assert {
-    condition = length(local.result["234567890123"][0]["tags"]) == 1
-    error_message = "Only one tag is expected."
-  }
-
-  assert {
-    condition = local.result["234567890123"][0]["tags"]["type"] == "nonprod"
-    error_message = "Unexpected value."
+    condition = jsonencode(output.result) == jsonencode({
+      234567890123 = [
+        {
+          id     = "234567890123"
+          arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/234567890123"
+          name   = "prefix2-account02"
+          email  = "account02@example.org"
+          status = "ACTIVE"
+          state  = "ACTIVE"
+          tags   = {
+            type = "nonprod"
+          }
+          joined = {
+            method    = "CREATED"
+            timestamp = "2025-01-02T14:03:56.054000+01:00"
+          }
+        },
+      ]
+    })
+    error_message = "Account list doesn't contain the expected entries."
   }
 }
 
@@ -333,6 +366,10 @@ run "filter_using__exclude_name__-_startswith_-_successfully_filter_for_multiple
         tags   = {
           type = "sandbox"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "234567890123"
@@ -344,6 +381,10 @@ run "filter_using__exclude_name__-_startswith_-_successfully_filter_for_multiple
         tags   = {
           type = "nonprod"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "345678901234"
@@ -354,6 +395,10 @@ run "filter_using__exclude_name__-_startswith_-_successfully_filter_for_multiple
         state  = "ACTIVE"
         tags   = {
           type = "prod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-03T14:03:56.054000+01:00"
         }
       },
     ]
@@ -399,6 +444,10 @@ run "filter_using__exclude_name__-_startswith_-_only_return_known_entry_if_you_f
         tags   = {
           type = "sandbox"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "234567890123"
@@ -410,6 +459,10 @@ run "filter_using__exclude_name__-_startswith_-_only_return_known_entry_if_you_f
         tags   = {
           type = "nonprod"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "345678901234"
@@ -420,6 +473,10 @@ run "filter_using__exclude_name__-_startswith_-_only_return_known_entry_if_you_f
         state  = "ACTIVE"
         tags   = {
           type = "prod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-03T14:03:56.054000+01:00"
         }
       },
     ]
@@ -462,6 +519,10 @@ run "filter_using__exclude_name__-_startswith_-_unknown_entry_doesnt_exclude_any
         tags   = {
           type = "sandbox"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "234567890123"
@@ -473,6 +534,10 @@ run "filter_using__exclude_name__-_startswith_-_unknown_entry_doesnt_exclude_any
         tags   = {
           type = "nonprod"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "345678901234"
@@ -483,6 +548,10 @@ run "filter_using__exclude_name__-_startswith_-_unknown_entry_doesnt_exclude_any
         state  = "ACTIVE"
         tags   = {
           type = "prod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-03T14:03:56.054000+01:00"
         }
       },
     ]
@@ -533,6 +602,10 @@ run "filter_using__exclude_name__-_startswith_-_empty_values_list_doesnt_exclude
         tags   = {
           type = "sandbox"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "234567890123"
@@ -544,6 +617,10 @@ run "filter_using__exclude_name__-_startswith_-_empty_values_list_doesnt_exclude
         tags   = {
           type = "nonprod"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "345678901234"
@@ -554,6 +631,10 @@ run "filter_using__exclude_name__-_startswith_-_empty_values_list_doesnt_exclude
         state  = "ACTIVE"
         tags   = {
           type = "prod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-03T14:03:56.054000+01:00"
         }
       },
     ]
@@ -603,6 +684,10 @@ run "filter_using__exclude_name__-_endswith_-_successfully_filter_for_single_ent
         tags   = {
           type = "sandbox"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "234567890123"
@@ -614,6 +699,10 @@ run "filter_using__exclude_name__-_endswith_-_successfully_filter_for_single_ent
         tags   = {
           type = "nonprod"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "345678901234"
@@ -624,6 +713,10 @@ run "filter_using__exclude_name__-_endswith_-_successfully_filter_for_single_ent
         state  = "ACTIVE"
         tags   = {
           type = "prod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-03T14:03:56.054000+01:00"
         }
       },
     ]
@@ -642,53 +735,26 @@ run "filter_using__exclude_name__-_endswith_-_successfully_filter_for_single_ent
   command = plan
 
   assert {
-    condition = length(keys(local.result)) == 1
-    error_message = "Expected 1 entry in search result."
-  }
-
-  assert {
-    condition = length(local.result["234567890123"]) == 1
-    error_message = "Expected entry not found or contains more entries than expected."
-  }
-
-  assert {
-    condition = local.result["234567890123"][0]["id"] == "234567890123"
-    error_message = "Unexpected value."
-  }
-
-  assert {
-    condition = local.result["234567890123"][0]["arn"] == "arn:aws:organizations::000000000001:account/o-0abcd123ef/234567890123"
-    error_message = "Unexpected value."
-  }
-
-  assert {
-    condition = local.result["234567890123"][0]["name"] == "account02-suffix2"
-    error_message = "Unexpected value."
-  }
-
-  assert {
-    condition = local.result["234567890123"][0]["email"] == "account02@example.org"
-    error_message = "Unexpected value."
-  }
-
-  assert {
-    condition = local.result["234567890123"][0]["status"] == "ACTIVE"
-    error_message = "Unexpected value."
-  }
-
-  assert {
-    condition = local.result["234567890123"][0]["state"] == "ACTIVE"
-    error_message = "Unexpected value."
-  }
-
-  assert {
-    condition = length(local.result["234567890123"][0]["tags"]) == 1
-    error_message = "Only one tag is expected."
-  }
-
-  assert {
-    condition = local.result["234567890123"][0]["tags"]["type"] == "nonprod"
-    error_message = "Unexpected value."
+    condition = jsonencode(output.result) == jsonencode({
+      234567890123 = [
+        {
+          id     = "234567890123"
+          arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/234567890123"
+          name   = "account02-suffix2"
+          email  = "account02@example.org"
+          status = "ACTIVE"
+          state  = "ACTIVE"
+          tags   = {
+            type = "nonprod"
+          }
+          joined = {
+            method    = "CREATED"
+            timestamp = "2025-01-02T14:03:56.054000+01:00"
+          }
+        },
+      ]
+    })
+    error_message = "Account list doesn't contain the expected entries."
   }
 }
 
@@ -705,6 +771,10 @@ run "filter_using__exclude_name__-_endswith_-_successfully_filter_for_multiple_e
         tags   = {
           type = "sandbox"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "234567890123"
@@ -716,6 +786,10 @@ run "filter_using__exclude_name__-_endswith_-_successfully_filter_for_multiple_e
         tags   = {
           type = "nonprod"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "345678901234"
@@ -726,6 +800,10 @@ run "filter_using__exclude_name__-_endswith_-_successfully_filter_for_multiple_e
         state  = "ACTIVE"
         tags   = {
           type = "prod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-03T14:03:56.054000+01:00"
         }
       },
     ]
@@ -771,6 +849,10 @@ run "filter_using__exclude_name__-_endswith_-_only_return_known_entry_if_you_fil
         tags   = {
           type = "sandbox"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "234567890123"
@@ -782,6 +864,10 @@ run "filter_using__exclude_name__-_endswith_-_only_return_known_entry_if_you_fil
         tags   = {
           type = "nonprod"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "345678901234"
@@ -792,6 +878,10 @@ run "filter_using__exclude_name__-_endswith_-_only_return_known_entry_if_you_fil
         state  = "ACTIVE"
         tags   = {
           type = "prod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-03T14:03:56.054000+01:00"
         }
       },
     ]
@@ -834,6 +924,10 @@ run "filter_using__exclude_name__-_endswith_-_unknown_entry_doesnt_exclude_anyth
         tags   = {
           type = "sandbox"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "234567890123"
@@ -845,6 +939,10 @@ run "filter_using__exclude_name__-_endswith_-_unknown_entry_doesnt_exclude_anyth
         tags   = {
           type = "nonprod"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "345678901234"
@@ -855,6 +953,10 @@ run "filter_using__exclude_name__-_endswith_-_unknown_entry_doesnt_exclude_anyth
         state  = "ACTIVE"
         tags   = {
           type = "prod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-03T14:03:56.054000+01:00"
         }
       },
     ]
@@ -905,6 +1007,10 @@ run "filter_using__exclude_name__-_endswith_-_empty_values_list_doesnt_exclude_a
         tags   = {
           type = "sandbox"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "234567890123"
@@ -916,6 +1022,10 @@ run "filter_using__exclude_name__-_endswith_-_empty_values_list_doesnt_exclude_a
         tags   = {
           type = "nonprod"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "345678901234"
@@ -926,6 +1036,10 @@ run "filter_using__exclude_name__-_endswith_-_empty_values_list_doesnt_exclude_a
         state  = "ACTIVE"
         tags   = {
           type = "prod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-03T14:03:56.054000+01:00"
         }
       },
     ]
@@ -975,6 +1089,10 @@ run "filter_using__exclude_name__-_equals_-_successfully_filter_for_single_entry
         tags   = {
           type = "sandbox"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "234567890123"
@@ -986,6 +1104,10 @@ run "filter_using__exclude_name__-_equals_-_successfully_filter_for_single_entry
         tags   = {
           type = "nonprod"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "345678901234"
@@ -996,6 +1118,10 @@ run "filter_using__exclude_name__-_equals_-_successfully_filter_for_single_entry
         state  = "ACTIVE"
         tags   = {
           type = "prod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-03T14:03:56.054000+01:00"
         }
       },
     ]
@@ -1014,53 +1140,26 @@ run "filter_using__exclude_name__-_equals_-_successfully_filter_for_single_entry
   command = plan
 
   assert {
-    condition = length(keys(local.result)) == 1
-    error_message = "Expected 1 entry in search result."
-  }
-
-  assert {
-    condition = length(local.result["234567890123"]) == 1
-    error_message = "Expected entry not found or contains more entries than expected."
-  }
-
-  assert {
-    condition = local.result["234567890123"][0]["id"] == "234567890123"
-    error_message = "Unexpected value."
-  }
-
-  assert {
-    condition = local.result["234567890123"][0]["arn"] == "arn:aws:organizations::000000000001:account/o-0abcd123ef/234567890123"
-    error_message = "Unexpected value."
-  }
-
-  assert {
-    condition = local.result["234567890123"][0]["name"] == "account02"
-    error_message = "Unexpected value."
-  }
-
-  assert {
-    condition = local.result["234567890123"][0]["email"] == "account02@example.org"
-    error_message = "Unexpected value."
-  }
-
-  assert {
-    condition = local.result["234567890123"][0]["status"] == "ACTIVE"
-    error_message = "Unexpected value."
-  }
-
-  assert {
-    condition = local.result["234567890123"][0]["state"] == "ACTIVE"
-    error_message = "Unexpected value."
-  }
-
-  assert {
-    condition = length(local.result["234567890123"][0]["tags"]) == 1
-    error_message = "Only one tag is expected."
-  }
-
-  assert {
-    condition = local.result["234567890123"][0]["tags"]["type"] == "nonprod"
-    error_message = "Unexpected value."
+    condition = jsonencode(output.result) == jsonencode({
+      234567890123 = [
+        {
+          id     = "234567890123"
+          arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/234567890123"
+          name   = "account02"
+          email  = "account02@example.org"
+          status = "ACTIVE"
+          state  = "ACTIVE"
+          tags   = {
+            type = "nonprod"
+          }
+          joined = {
+            method    = "CREATED"
+            timestamp = "2025-01-02T14:03:56.054000+01:00"
+          }
+        },
+      ]
+    })
+    error_message = "Account list doesn't contain the expected entries."
   }
 }
 
@@ -1077,6 +1176,10 @@ run "filter_using__exclude_name__-_equals_-_successfully_filter_for_multiple_ent
         tags   = {
           type = "sandbox"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "234567890123"
@@ -1088,6 +1191,10 @@ run "filter_using__exclude_name__-_equals_-_successfully_filter_for_multiple_ent
         tags   = {
           type = "nonprod"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "345678901234"
@@ -1098,6 +1205,10 @@ run "filter_using__exclude_name__-_equals_-_successfully_filter_for_multiple_ent
         state  = "ACTIVE"
         tags   = {
           type = "prod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-03T14:03:56.054000+01:00"
         }
       },
     ]
@@ -1143,6 +1254,10 @@ run "filter_using__exclude_name__-_equals_-_only_return_known_entry_if_you_filte
         tags   = {
           type = "sandbox"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "234567890123"
@@ -1154,6 +1269,10 @@ run "filter_using__exclude_name__-_equals_-_only_return_known_entry_if_you_filte
         tags   = {
           type = "nonprod"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "345678901234"
@@ -1164,6 +1283,10 @@ run "filter_using__exclude_name__-_equals_-_only_return_known_entry_if_you_filte
         state  = "ACTIVE"
         tags   = {
           type = "prod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-03T14:03:56.054000+01:00"
         }
       },
     ]
@@ -1206,6 +1329,10 @@ run "filter_using__exclude_name__-_equals_-_unknown_entry_doesnt_exclude_anythin
         tags   = {
           type = "sandbox"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "234567890123"
@@ -1217,6 +1344,10 @@ run "filter_using__exclude_name__-_equals_-_unknown_entry_doesnt_exclude_anythin
         tags   = {
           type = "nonprod"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "345678901234"
@@ -1227,6 +1358,10 @@ run "filter_using__exclude_name__-_equals_-_unknown_entry_doesnt_exclude_anythin
         state  = "ACTIVE"
         tags   = {
           type = "prod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-03T14:03:56.054000+01:00"
         }
       },
     ]
@@ -1277,6 +1412,10 @@ run "filter_using__exclude_name__-_equals_-_empty_values_list_doesnt_exclude_any
         tags   = {
           type = "sandbox"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "234567890123"
@@ -1288,6 +1427,10 @@ run "filter_using__exclude_name__-_equals_-_empty_values_list_doesnt_exclude_any
         tags   = {
           type = "nonprod"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "345678901234"
@@ -1298,6 +1441,10 @@ run "filter_using__exclude_name__-_equals_-_empty_values_list_doesnt_exclude_any
         state  = "ACTIVE"
         tags   = {
           type = "prod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-03T14:03:56.054000+01:00"
         }
       },
     ]
@@ -1347,6 +1494,10 @@ run "filter_using__exclude_name__-_contains_-_successfully_filter_for_single_ent
         tags   = {
           type = "sandbox"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "234567890123"
@@ -1358,6 +1509,10 @@ run "filter_using__exclude_name__-_contains_-_successfully_filter_for_single_ent
         tags   = {
           type = "nonprod"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "345678901234"
@@ -1368,6 +1523,10 @@ run "filter_using__exclude_name__-_contains_-_successfully_filter_for_single_ent
         state  = "ACTIVE"
         tags   = {
           type = "prod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-03T14:03:56.054000+01:00"
         }
       },
     ]
@@ -1386,53 +1545,26 @@ run "filter_using__exclude_name__-_contains_-_successfully_filter_for_single_ent
   command = plan
 
   assert {
-    condition = length(keys(local.result)) == 1
-    error_message = "Expected 1 entry in search result."
-  }
-
-  assert {
-    condition = length(local.result["234567890123"]) == 1
-    error_message = "Expected entry not found or contains more entries than expected."
-  }
-
-  assert {
-    condition = local.result["234567890123"][0]["id"] == "234567890123"
-    error_message = "Unexpected value."
-  }
-
-  assert {
-    condition = local.result["234567890123"][0]["arn"] == "arn:aws:organizations::000000000001:account/o-0abcd123ef/234567890123"
-    error_message = "Unexpected value."
-  }
-
-  assert {
-    condition = local.result["234567890123"][0]["name"] == "prefix2-account02"
-    error_message = "Unexpected value."
-  }
-
-  assert {
-    condition = local.result["234567890123"][0]["email"] == "account02@example.org"
-    error_message = "Unexpected value."
-  }
-
-  assert {
-    condition = local.result["234567890123"][0]["status"] == "ACTIVE"
-    error_message = "Unexpected value."
-  }
-
-  assert {
-    condition = local.result["234567890123"][0]["state"] == "ACTIVE"
-    error_message = "Unexpected value."
-  }
-
-  assert {
-    condition = length(local.result["234567890123"][0]["tags"]) == 1
-    error_message = "Only one tag is expected."
-  }
-
-  assert {
-    condition = local.result["234567890123"][0]["tags"]["type"] == "nonprod"
-    error_message = "Unexpected value."
+    condition = jsonencode(output.result) == jsonencode({
+      234567890123 = [
+        {
+          id     = "234567890123"
+          arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/234567890123"
+          name   = "prefix2-account02"
+          email  = "account02@example.org"
+          status = "ACTIVE"
+          state  = "ACTIVE"
+          tags   = {
+            type = "nonprod"
+          }
+          joined = {
+            method    = "CREATED"
+            timestamp = "2025-01-02T14:03:56.054000+01:00"
+          }
+        },
+      ]
+    })
+    error_message = "Account list doesn't contain the expected entries."
   }
 }
 
@@ -1449,6 +1581,10 @@ run "filter_using__exclude_name__-_contains_-_successfully_filter_for_multiple_e
         tags   = {
           type = "sandbox"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "234567890123"
@@ -1460,6 +1596,10 @@ run "filter_using__exclude_name__-_contains_-_successfully_filter_for_multiple_e
         tags   = {
           type = "nonprod"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "345678901234"
@@ -1470,6 +1610,10 @@ run "filter_using__exclude_name__-_contains_-_successfully_filter_for_multiple_e
         state  = "ACTIVE"
         tags   = {
           type = "prod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-03T14:03:56.054000+01:00"
         }
       },
     ]
@@ -1515,6 +1659,10 @@ run "filter_using__exclude_name__-_contains_-_only_return_known_entry_if_you_fil
         tags   = {
           type = "sandbox"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "234567890123"
@@ -1526,6 +1674,10 @@ run "filter_using__exclude_name__-_contains_-_only_return_known_entry_if_you_fil
         tags   = {
           type = "nonprod"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "345678901234"
@@ -1536,6 +1688,10 @@ run "filter_using__exclude_name__-_contains_-_only_return_known_entry_if_you_fil
         state  = "ACTIVE"
         tags   = {
           type = "prod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-03T14:03:56.054000+01:00"
         }
       },
     ]
@@ -1578,6 +1734,10 @@ run "filter_using__exclude_name__-_contains_-_unknown_entry_doesnt_exclude_anyth
         tags   = {
           type = "sandbox"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "234567890123"
@@ -1589,6 +1749,10 @@ run "filter_using__exclude_name__-_contains_-_unknown_entry_doesnt_exclude_anyth
         tags   = {
           type = "nonprod"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "345678901234"
@@ -1599,6 +1763,10 @@ run "filter_using__exclude_name__-_contains_-_unknown_entry_doesnt_exclude_anyth
         state  = "ACTIVE"
         tags   = {
           type = "prod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-03T14:03:56.054000+01:00"
         }
       },
     ]
@@ -1649,6 +1817,10 @@ run "filter_using__exclude_name__-_contains_-_empty_values_list_doesnt_exclude_a
         tags   = {
           type = "sandbox"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "234567890123"
@@ -1660,6 +1832,10 @@ run "filter_using__exclude_name__-_contains_-_empty_values_list_doesnt_exclude_a
         tags   = {
           type = "nonprod"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "345678901234"
@@ -1670,6 +1846,10 @@ run "filter_using__exclude_name__-_contains_-_empty_values_list_doesnt_exclude_a
         state  = "ACTIVE"
         tags   = {
           type = "prod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-03T14:03:56.054000+01:00"
         }
       },
     ]
@@ -1719,6 +1899,10 @@ run "filter_using__exclude_name__-_regex_-_successfully_filter_for_single_entry_
         tags   = {
           type = "sandbox"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "234567890123"
@@ -1730,6 +1914,10 @@ run "filter_using__exclude_name__-_regex_-_successfully_filter_for_single_entry_
         tags   = {
           type = "nonprod"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "345678901234"
@@ -1740,6 +1928,10 @@ run "filter_using__exclude_name__-_regex_-_successfully_filter_for_single_entry_
         state  = "ACTIVE"
         tags   = {
           type = "prod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-03T14:03:56.054000+01:00"
         }
       },
     ]
@@ -1758,53 +1950,26 @@ run "filter_using__exclude_name__-_regex_-_successfully_filter_for_single_entry_
   command = plan
 
   assert {
-    condition = length(keys(local.result)) == 1
-    error_message = "Expected 1 entry in search result."
-  }
-
-  assert {
-    condition = length(local.result["234567890123"]) == 1
-    error_message = "Expected entry not found or contains more entries than expected."
-  }
-
-  assert {
-    condition = local.result["234567890123"][0]["id"] == "234567890123"
-    error_message = "Unexpected value."
-  }
-
-  assert {
-    condition = local.result["234567890123"][0]["arn"] == "arn:aws:organizations::000000000001:account/o-0abcd123ef/234567890123"
-    error_message = "Unexpected value."
-  }
-
-  assert {
-    condition = local.result["234567890123"][0]["name"] == "prefix2-account02-foo-4567-bar-suffix"
-    error_message = "Unexpected value."
-  }
-
-  assert {
-    condition = local.result["234567890123"][0]["email"] == "account02@example.org"
-    error_message = "Unexpected value."
-  }
-
-  assert {
-    condition = local.result["234567890123"][0]["status"] == "ACTIVE"
-    error_message = "Unexpected value."
-  }
-
-  assert {
-    condition = local.result["234567890123"][0]["state"] == "ACTIVE"
-    error_message = "Unexpected value."
-  }
-
-  assert {
-    condition = length(local.result["234567890123"][0]["tags"]) == 1
-    error_message = "Only one tag is expected."
-  }
-
-  assert {
-    condition = local.result["234567890123"][0]["tags"]["type"] == "nonprod"
-    error_message = "Unexpected value."
+    condition = jsonencode(output.result) == jsonencode({
+      234567890123 = [
+        {
+          id     = "234567890123"
+          arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/234567890123"
+          name   = "prefix2-account02-foo-4567-bar-suffix"
+          email  = "account02@example.org"
+          status = "ACTIVE"
+          state  = "ACTIVE"
+          tags   = {
+            type = "nonprod"
+          }
+          joined = {
+            method    = "CREATED"
+            timestamp = "2025-01-02T14:03:56.054000+01:00"
+          }
+        },
+      ]
+    })
+    error_message = "Account list doesn't contain the expected entries."
   }
 }
 
@@ -1821,6 +1986,10 @@ run "filter_using__exclude_name__-_regex_-_successfully_filter_for_multiple_entr
         tags   = {
           type = "sandbox"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "234567890123"
@@ -1832,6 +2001,10 @@ run "filter_using__exclude_name__-_regex_-_successfully_filter_for_multiple_entr
         tags   = {
           type = "nonprod"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "345678901234"
@@ -1842,6 +2015,10 @@ run "filter_using__exclude_name__-_regex_-_successfully_filter_for_multiple_entr
         state  = "ACTIVE"
         tags   = {
           type = "prod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-03T14:03:56.054000+01:00"
         }
       },
     ]
@@ -1887,6 +2064,10 @@ run "filter_using__exclude_name__-_regex_-_only_return_known_entry_if_you_filter
         tags   = {
           type = "sandbox"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "234567890123"
@@ -1898,6 +2079,10 @@ run "filter_using__exclude_name__-_regex_-_only_return_known_entry_if_you_filter
         tags   = {
           type = "nonprod"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "345678901234"
@@ -1908,6 +2093,10 @@ run "filter_using__exclude_name__-_regex_-_only_return_known_entry_if_you_filter
         state  = "ACTIVE"
         tags   = {
           type = "prod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-03T14:03:56.054000+01:00"
         }
       },
     ]
@@ -1950,6 +2139,10 @@ run "filter_using__exclude_name__-_regex_-_unknown_entry_doesnt_exclude_anything
         tags   = {
           type = "sandbox"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "234567890123"
@@ -1961,6 +2154,10 @@ run "filter_using__exclude_name__-_regex_-_unknown_entry_doesnt_exclude_anything
         tags   = {
           type = "nonprod"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "345678901234"
@@ -1971,6 +2168,10 @@ run "filter_using__exclude_name__-_regex_-_unknown_entry_doesnt_exclude_anything
         state  = "ACTIVE"
         tags   = {
           type = "prod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-03T14:03:56.054000+01:00"
         }
       },
     ]
@@ -2021,6 +2222,10 @@ run "filter_using__exclude_name__-_regex_-_empty_values_list_doesnt_exclude_anyt
         tags   = {
           type = "sandbox"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-01T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "234567890123"
@@ -2032,6 +2237,10 @@ run "filter_using__exclude_name__-_regex_-_empty_values_list_doesnt_exclude_anyt
         tags   = {
           type = "nonprod"
         }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-02T14:03:56.054000+01:00"
+        }
       },
       {
         id     = "345678901234"
@@ -2042,6 +2251,10 @@ run "filter_using__exclude_name__-_regex_-_empty_values_list_doesnt_exclude_anyt
         state  = "ACTIVE"
         tags   = {
           type = "prod"
+        }
+        joined = {
+          method    = "CREATED"
+          timestamp = "2025-01-03T14:03:56.054000+01:00"
         }
       },
     ]

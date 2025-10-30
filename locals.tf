@@ -18,6 +18,10 @@ locals {
       email = account.email
       status = account.status # Deprecated. Will be removed by AWS on 2026-09-09
       state = account.state
+      joined = {
+        method = account.joined_method
+        timestamp = account.joined_timestamp
+      }
       tags = local.mapping_id_to_tags[account.id]
     }
   ]

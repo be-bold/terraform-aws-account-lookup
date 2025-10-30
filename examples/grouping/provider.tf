@@ -9,9 +9,9 @@ terraform {
 
 provider "aws" {
   region = "####"
-  alias  = "organization_read_role"
+  alias  = "OrganizationReadRole"
 
   assume_role {
-    role_arn = "arn:aws:iam::############:role/organization-read-role"
+    role_arn = "arn:aws:iam::############:role/OrganizationReadRole"
   }
 }

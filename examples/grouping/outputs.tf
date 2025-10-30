@@ -1,3 +1,3 @@
 output "result" {
-  value = module.filter.result
+  value = module.grouping.result
 }

@@ -20,6 +20,7 @@ module "lookup" {
 module "filter" {
   source  = "be-bold/account-lookup/aws//modules/filter"
   version = "#.#.#"
+
   input   = module.lookup.account_list
 }
 ```
@@ -52,6 +53,7 @@ Filter by one or many AWS account IDs. If you set multiple values then these wil
 module "filter" {
   source  = "be-bold/account-lookup/aws//modules/filter"
   version = "#.#.#"
+
   input   = module.lookup.account_list
 
   include = {
@@ -71,6 +73,7 @@ Filter by the AWS accounts ARN. If you set multiple values then these will be ch
 module "filter" {
   source  = "be-bold/account-lookup/aws//modules/filter"
   version = "#.#.#"
+
   input   = module.lookup.account_list
 
   include = {
@@ -93,6 +96,7 @@ matcher which applies to all values. If you set multiple values then these will 
 module "filter" {
   source  = "be-bold/account-lookup/aws//modules/filter"
   version = "#.#.#"
+
   input   = module.lookup.account_list
 
   include = {
@@ -115,6 +119,7 @@ Filter by the AWS accounts root email. If you set multiple values then these wil
 module "filter" {
   source  = "be-bold/account-lookup/aws//modules/filter"
   version = "#.#.#"
+
   input   = module.lookup.account_list
 
   include = {
@@ -149,6 +154,7 @@ just set `include` with `status`/`state` for all possible values. These are:
 module "filter" {
   source  = "be-bold/account-lookup/aws//modules/filter"
   version = "#.#.#"
+
   input   = module.lookup.account_list
 
   include = {
@@ -169,6 +175,7 @@ values for each tag then these will be chained together using **OR**.
 module "filter" {
   source  = "be-bold/account-lookup/aws//modules/filter"
   version = "#.#.#"
+
   input   = module.lookup.account_list
 
   include = {
@@ -187,12 +194,13 @@ module "filter" {
 
 ### Grouping
 
-You can group the result set by any given tag.
+You can group the result by any given tag.
 
 ```hcl
 module "filter" {
   source  = "be-bold/account-lookup/aws//modules/filter"
   version = "#.#.#"
+
   input = [
     {
       id     = "123456789012"
@@ -204,6 +212,10 @@ module "filter" {
       tags   = {
         type = "sandbox"
         team = "team1"
+      }
+      joined = {
+        method    = "CREATED"
+        timestamp = "2025-01-01T14:03:56.054000+01:00"
       }
     },
     {
@@ -217,6 +229,10 @@ module "filter" {
         type = "nonprod"
         team = "team1"
       }
+      joined = {
+        method    = "CREATED"
+        timestamp = "2025-01-02T14:03:56.054000+01:00"
+      }
     },
     {
       id     = "345678901234"
@@ -228,6 +244,10 @@ module "filter" {
       tags   = {
         type = "prod"
         team = "team2"
+      }
+      joined = {
+        method    = "CREATED"
+        timestamp = "2025-01-03T14:03:56.054000+01:00"
       }
     },
     {
@@ -241,8 +261,13 @@ module "filter" {
         type = "prod"
         team = "team3"
       }
+      joined = {
+        method    = "CREATED"
+        timestamp = "2025-01-04T14:03:56.054000+01:00"
+      }
     },
   ]
+
   group_by_tag = "type"
 }
 
@@ -268,6 +293,10 @@ Changes to Outputs:
                   + team = "team1"
                   + type = "nonprod"
                 }
+              + joined = {
+                + method    = "CREATED"
+                + timestamp = "2025-01-02T14:03:56.054000+01:00"
+              }
             },
         ]
       + prod    = [
@@ -282,6 +311,10 @@ Changes to Outputs:
                   + team = "team2"
                   + type = "prod"
                 }
+              + joined = {
+                + method    = "CREATED"
+                + timestamp = "2025-01-03T14:03:56.054000+01:00"
+              }
             },
           + {
               + arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/456789012345"
@@ -294,6 +327,10 @@ Changes to Outputs:
                   + team = "team3"
                   + type = "prod"
                 }
+              + joined = {
+                + method    = "CREATED"
+                + timestamp = "2025-01-04T14:03:56.054000+01:00"
+              }
             },
         ]
       + sandbox = [
@@ -308,6 +345,10 @@ Changes to Outputs:
                   + team = "team1"
                   + type = "sandbox"
                 }
+              + joined = {
+                + method    = "CREATED"
+                + timestamp = "2025-01-01T14:03:56.054000+01:00"
+              }
             },
         ]
     }
@@ -331,6 +372,10 @@ Changes to Outputs:
               + tags   = {
                   + type = "sandbox"
                 }
+              + joined = {
+                + method    = "CREATED"
+                + timestamp = "2025-01-01T14:03:56.054000+01:00"
+              }
             },
         ]
       + "234567890123" = [
@@ -344,6 +389,10 @@ Changes to Outputs:
               + tags   = {
                   + type = "nonprod"
                 }
+              + joined = {
+                + method    = "CREATED"
+                + timestamp = "2025-01-02T14:03:56.054000+01:00"
+              }
             },
         ]
       + "345678901234" = [
@@ -357,6 +406,10 @@ Changes to Outputs:
               + tags   = {
                   + type = "prod"
                 }
+              + joined = {
+                + method    = "CREATED"
+                + timestamp = "2025-01-03T14:03:56.054000+01:00"
+              }
             },
         ]
       + "456789012345" = [
@@ -370,6 +423,10 @@ Changes to Outputs:
               + tags   = {
                   + type = "prod"
                 }
+              + joined = {
+                + method    = "CREATED"
+                + timestamp = "2025-01-04T14:03:56.054000+01:00"
+              }
             },
         ]
     }
@@ -387,6 +444,7 @@ adjust your code. You can retrieve that name using `result_group_id_missing_key`
 module "filter" {
   source  = "be-bold/account-lookup/aws//modules/filter"
   version = "#.#.#"
+
   input = [
     {
       id     = "123456789012"
@@ -397,6 +455,10 @@ module "filter" {
       state  = "ACTIVE"
       tags   = {
         team = "team1"
+      }
+      joined = {
+        method    = "CREATED"
+        timestamp = "2025-01-01T14:03:56.054000+01:00"
       }
     },
     {
@@ -410,6 +472,10 @@ module "filter" {
         type = "nonprod"
         team = "team1"
       }
+      joined = {
+        method    = "CREATED"
+        timestamp = "2025-01-02T14:03:56.054000+01:00"
+      }
     },
     {
       id     = "345678901234"
@@ -422,6 +488,10 @@ module "filter" {
         type = "prod"
         team = "team2"
       }
+      joined = {
+        method    = "CREATED"
+        timestamp = "2025-01-03T14:03:56.054000+01:00"
+      }
     },
     {
       id     = "456789012345"
@@ -433,8 +503,13 @@ module "filter" {
       tags   = {
         team = "team3"
       }
+      joined = {
+        method    = "CREATED"
+        timestamp = "2025-01-04T14:03:56.054000+01:00"
+      }
     },
   ]
+
   group_by_tag = "type"
 }
 
@@ -459,6 +534,10 @@ Changes to Outputs:
               + tags   = {
                   + team = "team1"
                 }
+              + joined = {
+                + method    = "CREATED"
+                + timestamp = "2025-01-01T14:03:56.054000+01:00"
+              }
             },
           + {
               + arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/456789012345"
@@ -470,6 +549,10 @@ Changes to Outputs:
               + tags   = {
                   + team = "team3"
                 }
+              + joined = {
+                + method    = "CREATED"
+                + timestamp = "2025-01-04T14:03:56.054000+01:00"
+              }
             },
         ]
       + nonprod          = [
@@ -484,6 +567,10 @@ Changes to Outputs:
                   + team = "team1"
                   + type = "nonprod"
                 }
+              + joined = {
+                + method    = "CREATED"
+                + timestamp = "2025-01-02T14:03:56.054000+01:00"
+              }
             },
         ]
       + prod             = [
@@ -498,6 +585,10 @@ Changes to Outputs:
                   + team = "team2"
                   + type = "prod"
                 }
+              + joined = {
+                + method    = "CREATED"
+                + timestamp = "2025-01-03T14:03:56.054000+01:00"
+              }
             },
         ]
     }
