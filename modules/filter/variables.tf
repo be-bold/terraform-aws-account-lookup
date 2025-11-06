@@ -79,6 +79,9 @@ variable "include" {
     status = optional(set(string))
     state = optional(set(string))
     tags = optional(map(set(string)))
+    joined = optional(object({
+      method = optional(set(string))
+    }))
   })
 
   default = {
@@ -127,6 +130,11 @@ variable "include" {
     condition = var.include.tags == null || (var.include.tags != null && try(length(var.include.tags) > 0, false))
     error_message = "{include.tags} if tags are set then the map must not be empty."
   }
+
+  validation {
+    condition = var.include.joined == null || alltrue([ for entry in var.include.joined.method != null ? var.include.joined.method : [] : try(contains(["CREATED", "INVITED"], entry)) ])
+    error_message = "{include.joined.method} must be one of ['CREATED', 'INVITED'] or null."
+  }
 }
 
 variable "exclude" {
@@ -141,6 +149,9 @@ variable "exclude" {
     status = optional(set(string))
     state = optional(set(string))
     tags = optional(map(set(string)))
+    joined = optional(object({
+      method = optional(set(string))
+    }))
   })
 
   default = {}
@@ -185,6 +196,11 @@ variable "exclude" {
   validation {
     condition = var.exclude.tags == null || (var.exclude.tags != null && try(length(var.exclude.tags) > 0, false))
     error_message = "{exclude.tags} if tags are set then the map must not be empty."
+  }
+
+  validation {
+    condition = var.exclude.joined == null || alltrue([ for entry in var.exclude.joined.method != null ? var.exclude.joined.method : [] : try(contains(["CREATED", "INVITED"], entry)) ])
+    error_message = "{exclude.joined.method} must be one of ['CREATED', 'INVITED'] or null."
   }
 }
 

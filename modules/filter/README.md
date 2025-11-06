@@ -85,32 +85,6 @@ module "filter" {
 }
 ```
 
-#### Name
-
-Filter by the accounts name. This is not the alias that you set up in IAM, but the actual account name that you can also
-see in the AWS SSO Login screen.
-For `name` you have to pick one of the following matchers `startswith`, `endswith`, `equals`, `contains` or `regex`. You can choose only one
-matcher which applies to all values. If you set multiple values then these will be chained together using **OR**.
-
-```hcl
-module "filter" {
-  source  = "be-bold/account-lookup/aws//modules/filter"
-  version = "#.#.#"
-
-  input   = module.lookup.account_list
-
-  include = {
-    name = {
-        matcher = "equals"
-        values = [
-          "account01",
-          "account02",
-        ]
-    }
-  }
-}
-```
-
 #### Email
 
 Filter by the AWS accounts root email. If you set multiple values then these will be chained together using **OR**.
@@ -143,7 +117,7 @@ module "filter" {
 
 Filter by the AWS accounts status/state. If you set multiple values then these will be chained together using **OR**.
 
-ℹ️ Here is a difference between `include` and `exclude`. While `exclude` doesn't provide a default value, the default 
+ℹ️ Here is a difference between `include` and `exclude`. While `exclude` doesn't provide a default value, the default
 value for `include` contains a set containing `ACTIVE` as value. That means that even if the `include` filter hasn't been
 set, only accounts in status/state `ACTIVE` will be part of the resulting subset. If you need accounts of any status/state then
 just set `include` with `status`/`state` for all possible values. These are:
@@ -165,6 +139,56 @@ module "filter" {
   }
 }
 ```
+
+#### Name
+
+Filter by the accounts name. This is not the alias that you set up in IAM, but the actual account name that you can also
+see in the AWS SSO Login screen.
+For `name` you have to pick one of the following matchers `startswith`, `endswith`, `equals`, `contains` or `regex`. You can choose only one
+matcher which applies to all values. If you set multiple values then these will be chained together using **OR**.
+
+```hcl
+module "filter" {
+  source  = "be-bold/account-lookup/aws//modules/filter"
+  version = "#.#.#"
+
+  input   = module.lookup.account_list
+
+  include = {
+    name = {
+        matcher = "equals"
+        values = [
+          "account01",
+          "account02",
+        ]
+    }
+  }
+}
+```
+
+#### Joined Method
+
+Filter by the method with which the AWS accounts joined the organization. Valid values are either `CREATED` or `INVITED`.
+If you set multiple values then these will be chained together using **OR**.
+
+```hcl
+module "filter" {
+  source  = "be-bold/account-lookup/aws//modules/filter"
+  version = "#.#.#"
+
+  input   = module.lookup.account_list
+
+  include = {
+    joined = {
+      method = [
+        "INVITED",
+      ]
+    }
+  }
+}
+```
+
+
 
 #### Tags
 
