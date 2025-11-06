@@ -93,15 +93,15 @@ locals {
 
   # STEP 14 - exclude joined method
   is_exclude_joined_method_set = var.exclude != null && var.exclude.joined != null && var.exclude.joined.method != null && try(length(var.exclude.joined.method) > 0, false)
-  search_step14_exclude_email = !local.is_exclude_joined_method_set ? local.search_step13_exclude_name : [ for account in local.search_step13_exclude_name : account if alltrue([ for value in var.exclude.joined.method : account.joined.method != value])  ]
+  search_step14_exclude_joined_method = !local.is_exclude_joined_method_set ? local.search_step13_exclude_name : [ for account in local.search_step13_exclude_name : account if alltrue([ for value in var.exclude.joined.method : account.joined.method != value])  ]
 
 
   ## STEP 15 - exclude tags
   is_exclude_tags_set = var.exclude != null && var.exclude.tags != null && try(length(var.exclude.tags) > 0, false)
-  search_step15_exclude_tags = !local.is_exclude_tags_set ? local.search_step14_exclude_email : local.exclude_tags_result
+  search_step15_exclude_tags = !local.is_exclude_tags_set ? local.search_step14_exclude_joined_method : local.exclude_tags_result
 
-  exclude_tags_accounts_matching_criteria_for_exclusion = !local.is_exclude_tags_set ? [] : [ for account in local.search_step14_exclude_email : account.id if alltrue([ for tag_name, search_strings in var.exclude.tags : lookup(account.tags, tag_name, null) != null ]) && alltrue([ for tag_name, search_strings in var.exclude.tags : anytrue([ for search_string in search_strings : lookup(account.tags, tag_name, null) == search_string ]) ]) ]
-  exclude_tags_result = !local.is_exclude_tags_set ? [] : [ for account in local.search_step14_exclude_email : account if !contains(local.exclude_tags_accounts_matching_criteria_for_exclusion, account.id) ]
+  exclude_tags_accounts_matching_criteria_for_exclusion = !local.is_exclude_tags_set ? [] : [ for account in local.search_step14_exclude_joined_method : account.id if alltrue([ for tag_name, search_strings in var.exclude.tags : lookup(account.tags, tag_name, null) != null ]) && alltrue([ for tag_name, search_strings in var.exclude.tags : anytrue([ for search_string in search_strings : lookup(account.tags, tag_name, null) == search_string ]) ]) ]
+  exclude_tags_result = !local.is_exclude_tags_set ? [] : [ for account in local.search_step14_exclude_joined_method : account if !contains(local.exclude_tags_accounts_matching_criteria_for_exclusion, account.id) ]
 
 
 
