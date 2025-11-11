@@ -22,101 +22,111 @@ locals {
   search_step4_include_state = !local.is_include_state_set ? local.search_step3_include_email : [ for account in local.search_step3_include_email : account if anytrue([ for value in var.include.state : account.state == value])  ]
 
 
-  # DEPRECATED - include status (will be removed by AWS on 2025-09-09)
+  # Step 5 DEPRECATED - include status (will be removed by AWS on 2025-09-09)
   is_include_status_set = var.include != null && var.include.status != null && try(length(var.include.status) > 0, false)
-  search_step4_include_status = !local.is_include_status_set ? local.search_step4_include_state : [ for account in local.search_step4_include_state : account if anytrue([ for value in var.include.status : account.status == value])  ]
+  search_step5_include_status = !local.is_include_status_set ? local.search_step4_include_state : [ for account in local.search_step4_include_state : account if anytrue([ for value in var.include.status : account.status == value])  ]
 
 
-  ## STEP 5 - include name
+  ## STEP 6 - include name
   is_include_name_set = var.include != null && var.include.name != null
-  search_step5_include_name = !local.is_include_name_set ? local.search_step4_include_status : local.include_name_matcher
+  search_step6_include_name = !local.is_include_name_set ? local.search_step5_include_status : local.include_name_matcher
 
   include_name_matcher = !local.is_include_name_set ? [] : var.include.name.matcher == "startswith" ? local.include_name_startswith : var.include.name.matcher == "endswith" ? local.include_name_endswith : var.include.name.matcher == "equals" ? local.include_name_equals : var.include.name.matcher == "contains" ? local.include_name_contains : var.include.name.matcher == "regex" ? local.include_name_regex : []
-  include_name_startswith = !local.is_include_name_set ? [] : [ for account in local.search_step4_include_status : account if anytrue([ for prefix in var.include.name.values : startswith(account.name, prefix) ]) ]
-  include_name_endswith = !local.is_include_name_set ? [] : [ for account in local.search_step4_include_status : account if anytrue([ for suffix in var.include.name.values : endswith(account.name, suffix) ]) ]
-  include_name_equals = !local.is_include_name_set ? [] : [ for account in local.search_step4_include_status : account if anytrue([ for value in var.include.name.values : account.name == value ]) ]
-  include_name_contains = !local.is_include_name_set ? [] : [ for account in local.search_step4_include_status : account if anytrue([ for value in var.include.name.values : strcontains(account.name, value)]) ]
-  include_name_regex = !local.is_include_name_set ? [] : [ for account in local.search_step4_include_status : account if anytrue([ for value in var.include.name.values : length(regexall(value, account.name)) > 0 ]) ]
+  include_name_startswith = !local.is_include_name_set ? [] : [ for account in local.search_step5_include_status : account if anytrue([ for prefix in var.include.name.values : startswith(account.name, prefix) ]) ]
+  include_name_endswith = !local.is_include_name_set ? [] : [ for account in local.search_step5_include_status : account if anytrue([ for suffix in var.include.name.values : endswith(account.name, suffix) ]) ]
+  include_name_equals = !local.is_include_name_set ? [] : [ for account in local.search_step5_include_status : account if anytrue([ for value in var.include.name.values : account.name == value ]) ]
+  include_name_contains = !local.is_include_name_set ? [] : [ for account in local.search_step5_include_status : account if anytrue([ for value in var.include.name.values : strcontains(account.name, value)]) ]
+  include_name_regex = !local.is_include_name_set ? [] : [ for account in local.search_step5_include_status : account if anytrue([ for value in var.include.name.values : length(regexall(value, account.name)) > 0 ]) ]
 
 
-  # STEP 6 - include joined method
+  # STEP 7 - include joined method
   is_include_joined_method_set = var.include != null && var.include.joined != null && var.include.joined.method != null && try(length(var.include.joined.method) > 0, false)
-  search_step6_include_joined_method = !local.is_include_joined_method_set ? local.search_step5_include_name : [ for account in local.search_step5_include_name : account if anytrue([ for value in var.include.joined.method : account.joined.method == value])  ]
+  search_step7_include_joined_method = !local.is_include_joined_method_set ? local.search_step6_include_name : [ for account in local.search_step6_include_name : account if anytrue([ for value in var.include.joined.method : account.joined.method == value])  ]
 
 
-  ## STEP 7 - include tags
+  ## STEP 8 - include tags
   is_include_tags_set = var.include != null && var.include.tags != null && try(length(var.include.tags) > 0, false)
-  search_step7_include_tags = !local.is_include_tags_set ? local.search_step6_include_joined_method : local.include_tags_result
+  search_step8_include_tags = !local.is_include_tags_set ? local.search_step7_include_joined_method : local.include_tags_result
 
-  include_tags_accounts_containing_all_tags_from_filter_option = !local.is_include_tags_set ? [] : [ for account in local.search_step6_include_joined_method : account if alltrue([ for tag_name, search_strings in var.include.tags : lookup(account.tags, tag_name, null) != null ]) ]
+  include_tags_accounts_containing_all_tags_from_filter_option = !local.is_include_tags_set ? [] : [ for account in local.search_step7_include_joined_method : account if alltrue([ for tag_name, search_strings in var.include.tags : lookup(account.tags, tag_name, null) != null ]) ]
   include_tags_result = !local.is_include_tags_set ? [] : [ for account in local.include_tags_accounts_containing_all_tags_from_filter_option : account if alltrue([ for tag_name, search_strings in var.include.tags : anytrue([ for search_string in search_strings : account.tags[tag_name] == search_string ]) ]) ]
 
 
 
 
-  # STEP 8 - exclude id
+  # STEP 9 - exclude id
   is_exclude_id_set = var.exclude != null && var.exclude.id != null && try(length(var.exclude.id) > 0, false)
-  search_step8_exclude_id = !local.is_exclude_id_set ? local.search_step7_include_tags : [ for account in local.search_step7_include_tags : account if alltrue([ for value in var.exclude.id : account.id != value])  ]
+  search_step9_exclude_id = !local.is_exclude_id_set ? local.search_step8_include_tags : [ for account in local.search_step8_include_tags : account if alltrue([ for value in var.exclude.id : account.id != value])  ]
 
 
-  # STEP 9 - exclude arn
+  # STEP 10 - exclude arn
   is_exclude_arn_set = var.exclude != null && var.exclude.arn != null && try(length(var.exclude.arn) > 0, false)
-  search_step9_exclude_arn = !local.is_exclude_arn_set ? local.search_step8_exclude_id : [ for account in local.search_step8_exclude_id : account if alltrue([ for value in var.exclude.arn : account.arn != value])  ]
+  search_step10_exclude_arn = !local.is_exclude_arn_set ? local.search_step9_exclude_id : [ for account in local.search_step9_exclude_id : account if alltrue([ for value in var.exclude.arn : account.arn != value])  ]
 
 
-  # STEP 10 - exclude email
+  # STEP 11 - exclude email
   is_exclude_email_set = var.exclude != null && var.exclude.email != null && try(length(var.exclude.email) > 0, false)
-  search_step10_exclude_email = !local.is_exclude_email_set ? local.search_step9_exclude_arn : [ for account in local.search_step9_exclude_arn : account if alltrue([ for value in var.exclude.email : account.email != value])  ]
+  search_step11_exclude_email = !local.is_exclude_email_set ? local.search_step10_exclude_arn : [ for account in local.search_step10_exclude_arn : account if alltrue([ for value in var.exclude.email : account.email != value])  ]
 
 
-  # STEP 11 - exclude state
+  # STEP 12 - exclude state
   is_exclude_state_set = var.exclude != null && var.exclude.state != null && try(length(var.exclude.state) > 0, false)
-  search_step11_exclude_state = !local.is_exclude_state_set ? local.search_step10_exclude_email : [ for account in local.search_step10_exclude_email : account if alltrue([ for value in var.exclude.state : account.state != value])  ]
+  search_step12_exclude_state = !local.is_exclude_state_set ? local.search_step11_exclude_email : [ for account in local.search_step11_exclude_email : account if alltrue([ for value in var.exclude.state : account.state != value])  ]
 
 
-  # STEP 12 - ⚠️DEPRECATED - exclude status (will be removed by AWS on 2025-09-09)
+  # STEP 13 - ⚠️DEPRECATED - exclude status (will be removed by AWS on 2025-09-09)
   is_exclude_status_set = var.exclude != null && var.exclude.status != null && try(length(var.exclude.status) > 0, false)
-  search_step12_exclude_status = !local.is_exclude_status_set ? local.search_step11_exclude_state : [ for account in local.search_step11_exclude_state : account if alltrue([ for value in var.exclude.status : account.status != value])  ]
+  search_step13_exclude_status = !local.is_exclude_status_set ? local.search_step12_exclude_state : [ for account in local.search_step12_exclude_state : account if alltrue([ for value in var.exclude.status : account.status != value])  ]
 
 
-  ## STEP 13 - exclude name
+  ## STEP 14 - exclude name
   is_exclude_name_set = var.exclude != null && var.exclude.name != null
-  search_step13_exclude_name = !local.is_exclude_name_set ? local.search_step12_exclude_status : local.exclude_name_matcher
+  search_step14_exclude_name = !local.is_exclude_name_set ? local.search_step13_exclude_status : local.exclude_name_matcher
 
   exclude_name_matcher = !local.is_exclude_name_set ? [] : var.exclude.name.matcher == "startswith" ? local.exclude_name_startswith : var.exclude.name.matcher == "endswith" ? local.exclude_name_endswith : var.exclude.name.matcher == "equals" ? local.exclude_name_equals : var.exclude.name.matcher == "contains" ? local.exclude_name_contains : var.exclude.name.matcher == "regex" ? local.exclude_name_regex : []
-  exclude_name_startswith = !local.is_exclude_name_set ? [] : [ for account in local.search_step12_exclude_status : account if alltrue([ for prefix in var.exclude.name.values : !startswith(account.name, prefix) ]) ]
-  exclude_name_endswith = !local.is_exclude_name_set ? [] : [ for account in local.search_step12_exclude_status : account if alltrue([ for suffix in var.exclude.name.values : !endswith(account.name, suffix) ]) ]
-  exclude_name_equals = !local.is_exclude_name_set ? [] : [ for account in local.search_step12_exclude_status : account if alltrue([ for value in var.exclude.name.values : account.name != value ]) ]
-  exclude_name_contains = !local.is_exclude_name_set ? [] : [ for account in local.search_step12_exclude_status : account if alltrue([ for value in var.exclude.name.values : !strcontains(account.name, value) ]) ]
-  exclude_name_regex = !local.is_exclude_name_set ? [] : [ for account in local.search_step12_exclude_status : account if alltrue([ for value in var.exclude.name.values : length(regexall(value, account.name)) == 0 ]) ]
+  exclude_name_startswith = !local.is_exclude_name_set ? [] : [ for account in local.search_step13_exclude_status : account if alltrue([ for prefix in var.exclude.name.values : !startswith(account.name, prefix) ]) ]
+  exclude_name_endswith = !local.is_exclude_name_set ? [] : [ for account in local.search_step13_exclude_status : account if alltrue([ for suffix in var.exclude.name.values : !endswith(account.name, suffix) ]) ]
+  exclude_name_equals = !local.is_exclude_name_set ? [] : [ for account in local.search_step13_exclude_status : account if alltrue([ for value in var.exclude.name.values : account.name != value ]) ]
+  exclude_name_contains = !local.is_exclude_name_set ? [] : [ for account in local.search_step13_exclude_status : account if alltrue([ for value in var.exclude.name.values : !strcontains(account.name, value) ]) ]
+  exclude_name_regex = !local.is_exclude_name_set ? [] : [ for account in local.search_step13_exclude_status : account if alltrue([ for value in var.exclude.name.values : length(regexall(value, account.name)) == 0 ]) ]
 
 
-  # STEP 14 - exclude joined method
+  # STEP 15 - exclude joined method
   is_exclude_joined_method_set = var.exclude != null && var.exclude.joined != null && var.exclude.joined.method != null && try(length(var.exclude.joined.method) > 0, false)
-  search_step14_exclude_joined_method = !local.is_exclude_joined_method_set ? local.search_step13_exclude_name : [ for account in local.search_step13_exclude_name : account if alltrue([ for value in var.exclude.joined.method : account.joined.method != value])  ]
+  search_step15_exclude_joined_method = !local.is_exclude_joined_method_set ? local.search_step14_exclude_name : [ for account in local.search_step14_exclude_name : account if alltrue([ for value in var.exclude.joined.method : account.joined.method != value])  ]
 
 
-  ## STEP 15 - exclude tags
+  ## STEP 16 - exclude joined timestamp
+  is_exclude_joined_timestamp_set = var.exclude != null && var.exclude.joined != null && var.exclude.joined.timestamp != null
+  search_step16_exclude_joined_timestamp = !local.is_exclude_joined_timestamp_set ? local.search_step15_exclude_joined_method : local.exclude_joined_timestamp_is
+
+  exclude_joined_timestamp_is = !local.is_exclude_joined_timestamp_set ? [] : var.exclude.joined.timestamp.is == "before" ? local.exclude_joined_timestamp_before : var.exclude.joined.timestamp.is == "equals" ? local.exclude_joined_timestamp_equals : var.exclude.joined.timestamp.is == "after" ? local.exclude_joined_timestamp_after : []
+  exclude_joined_timestamp_before = !local.is_exclude_joined_timestamp_set ? [] : [ for account in local.search_step15_exclude_joined_method : account if timecmp(account.joined.timestamp, var.exclude.joined.timestamp.other_timestamp) >= 0 ]
+  exclude_joined_timestamp_equals = !local.is_exclude_joined_timestamp_set ? [] : [ for account in local.search_step15_exclude_joined_method : account if timecmp(account.joined.timestamp, var.exclude.joined.timestamp.other_timestamp) != 0 ]
+  exclude_joined_timestamp_after = !local.is_exclude_joined_timestamp_set ? [] : [ for account in local.search_step15_exclude_joined_method : account if timecmp(account.joined.timestamp, var.exclude.joined.timestamp.other_timestamp) < 1 ]
+
+
+  ## STEP 17 - exclude tags
   is_exclude_tags_set = var.exclude != null && var.exclude.tags != null && try(length(var.exclude.tags) > 0, false)
-  search_step15_exclude_tags = !local.is_exclude_tags_set ? local.search_step14_exclude_joined_method : local.exclude_tags_result
+  search_step17_exclude_tags = !local.is_exclude_tags_set ? local.search_step16_exclude_joined_timestamp : local.exclude_tags_result
 
-  exclude_tags_accounts_matching_criteria_for_exclusion = !local.is_exclude_tags_set ? [] : [ for account in local.search_step14_exclude_joined_method : account.id if alltrue([ for tag_name, search_strings in var.exclude.tags : lookup(account.tags, tag_name, null) != null ]) && alltrue([ for tag_name, search_strings in var.exclude.tags : anytrue([ for search_string in search_strings : lookup(account.tags, tag_name, null) == search_string ]) ]) ]
-  exclude_tags_result = !local.is_exclude_tags_set ? [] : [ for account in local.search_step14_exclude_joined_method : account if !contains(local.exclude_tags_accounts_matching_criteria_for_exclusion, account.id) ]
-
-
+  exclude_tags_accounts_matching_criteria_for_exclusion = !local.is_exclude_tags_set ? [] : [ for account in local.search_step16_exclude_joined_timestamp : account.id if alltrue([ for tag_name, search_strings in var.exclude.tags : lookup(account.tags, tag_name, null) != null ]) && alltrue([ for tag_name, search_strings in var.exclude.tags : anytrue([ for search_string in search_strings : lookup(account.tags, tag_name, null) == search_string ]) ]) ]
+  exclude_tags_result = !local.is_exclude_tags_set ? [] : [ for account in local.search_step16_exclude_joined_timestamp : account if !contains(local.exclude_tags_accounts_matching_criteria_for_exclusion, account.id) ]
 
 
-  ## STEP 16 - grouping
+
+
+  ## STEP 18 - grouping
   is_group_by_tag_set = var.group_by_tag != null && try(length(var.group_by_tag) > 0, false)
-  search_step16_grouping = local.is_group_by_tag_set ? {
-    for account in local.search_step15_exclude_tags :
+  search_step18_grouping = local.is_group_by_tag_set ? {
+    for account in local.search_step17_exclude_tags :
       lookup(account.tags, var.group_by_tag, local.result_group_id_missing_key) => account...
   } : {
-    for account in local.search_step15_exclude_tags :
+    for account in local.search_step17_exclude_tags :
       account.id => account...
   }
 
 
   # Result
-  result = local.search_step16_grouping
+  result = local.search_step18_grouping
 }

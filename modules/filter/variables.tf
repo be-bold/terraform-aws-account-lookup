@@ -81,6 +81,10 @@ variable "include" {
     tags = optional(map(set(string)))
     joined = optional(object({
       method = optional(set(string))
+      timestamp = optional(object({
+        is = string
+        other_timestamp = string
+      }))
     }))
   })
 
@@ -103,7 +107,7 @@ variable "include" {
 
   validation {
     condition = var.include.name == null || (var.include.name != null && try(contains(["startswith", "endswith", "equals", "contains", "regex"], var.include.name.matcher), false))
-    error_message = "{include.name.matcher} must be one of [startswith, endswith, equals, contains, regex]"
+    error_message = "{include.name.matcher} must be one of ['startswith', 'endswith', 'equals', 'contains', 'regex']"
   }
 
   validation {
@@ -135,6 +139,16 @@ variable "include" {
     condition = var.include.joined == null || alltrue([ for entry in var.include.joined.method != null ? var.include.joined.method : [] : try(contains(["CREATED", "INVITED"], entry)) ])
     error_message = "{include.joined.method} must be one of ['CREATED', 'INVITED'] or null."
   }
+
+  validation {
+    condition = var.include.joined == null || var.include.joined.timestamp == null || (var.include.joined.timestamp != null && try(contains(["before", "equals", "after"], var.include.joined.timestamp.is), false))
+    error_message = "{include.joined.timestamp.is} must be one of ['before', 'equals', 'after]."
+  }
+
+  validation {
+    condition = var.include.joined == null || var.include.joined.timestamp == null || (var.include.joined.timestamp != null && try(formatdate("YYYY", var.include.joined.timestamp.other_timestamp), null) != null)
+    error_message = "{include.joined.timestamp.other_timestamp} must be a valid RFC 3339 timestamp."
+  }
 }
 
 variable "exclude" {
@@ -151,6 +165,10 @@ variable "exclude" {
     tags = optional(map(set(string)))
     joined = optional(object({
       method = optional(set(string))
+      timestamp = optional(object({
+        is = string
+        other_timestamp = string
+      }))
     }))
   })
 
@@ -170,7 +188,7 @@ variable "exclude" {
 
   validation {
     condition = var.exclude.name == null || (var.exclude.name != null && try(contains(["startswith", "endswith", "equals", "contains", "regex"], var.exclude.name.matcher), false))
-    error_message = "{exclude.name.matcher} must be one of [startswith, endswith, equals, contains, regex]"
+    error_message = "{exclude.name.matcher} must be one of ['startswith', 'endswith', 'equals', 'contains', 'regex']"
   }
 
   validation {
@@ -201,6 +219,16 @@ variable "exclude" {
   validation {
     condition = var.exclude.joined == null || alltrue([ for entry in var.exclude.joined.method != null ? var.exclude.joined.method : [] : try(contains(["CREATED", "INVITED"], entry)) ])
     error_message = "{exclude.joined.method} must be one of ['CREATED', 'INVITED'] or null."
+  }
+
+  validation {
+    condition = var.exclude.joined == null || var.exclude.joined.timestamp == null || (var.exclude.joined.timestamp != null && try(contains(["before", "equals", "after"], var.exclude.joined.timestamp.is), false))
+    error_message = "{exclude.joined.timestamp.is} must be one of ['before', 'equals', 'after]."
+  }
+
+  validation {
+    condition = var.exclude.joined == null || var.exclude.joined.timestamp == null || (var.exclude.joined.timestamp != null && try(formatdate("YYYY", var.exclude.joined.timestamp.other_timestamp), null) != null)
+    error_message = "{include.joined.timestamp.other_timestamp} must be a valid RFC 3339 timestamp."
   }
 }
 
