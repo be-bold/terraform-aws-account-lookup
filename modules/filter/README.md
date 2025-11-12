@@ -188,7 +188,28 @@ module "filter" {
 }
 ```
 
+#### Joined Timestamp
 
+Filter by the timestamp at which the AWS accounts joined the organization. For `is` you have to pick one of the following matchers:
+`before`, `equals`, `after`. You cannot set multiple values for `other_timestamp`.
+
+```hcl
+module "filter" {
+  source  = "be-bold/account-lookup/aws//modules/filter"
+  version = "#.#.#"
+
+  input   = module.lookup.account_list
+
+  include = {
+    joined = {
+      timestamp = {
+        is = "before"
+        other_timestamp = "2025-01-01T00:00:00.000000+01:00"
+      }
+    }
+  }
+}
+```
 
 #### Tags
 
