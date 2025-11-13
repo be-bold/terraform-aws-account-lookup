@@ -6,7 +6,6 @@ run "filter_using__exclude_joined_method__-_successfully_filter_for_single_entry
         arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/123456789012"
         name   = "account01"
         email  = "account01@example.org"
-        status = "ACTIVE"
         state  = "ACTIVE"
         tags   = {
           type = "sandbox"
@@ -21,7 +20,6 @@ run "filter_using__exclude_joined_method__-_successfully_filter_for_single_entry
         arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/234567890123"
         name   = "account02"
         email  = "account02@example.org"
-        status = "ACTIVE"
         state  = "ACTIVE"
         tags   = {
           type = "nonprod"
@@ -36,7 +34,6 @@ run "filter_using__exclude_joined_method__-_successfully_filter_for_single_entry
         arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/345678901234"
         name   = "account03"
         email  = "account03@example.org"
-        status = "ACTIVE"
         state  = "ACTIVE"
         tags   = {
           type = "prod"
@@ -67,8 +64,7 @@ run "filter_using__exclude_joined_method__-_successfully_filter_for_single_entry
           arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/234567890123"
           name   = "account02"
           email  = "account02@example.org"
-          status = "ACTIVE"
-          state  = "ACTIVE"
+            state  = "ACTIVE"
           tags = {
             type = "nonprod"
           }
@@ -91,7 +87,6 @@ run "filter_using__exclude_joined_method__-_successfully_filter_for_multiple_ent
         arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/123456789012"
         name   = "account01"
         email  = "account01@example.org"
-        status = "ACTIVE"
         state  = "ACTIVE"
         tags   = {
           type = "sandbox"
@@ -106,7 +101,6 @@ run "filter_using__exclude_joined_method__-_successfully_filter_for_multiple_ent
         arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/234567890123"
         name   = "account02"
         email  = "account02@example.org"
-        status = "ACTIVE"
         state  = "ACTIVE"
         tags   = {
           type = "nonprod"
@@ -121,7 +115,6 @@ run "filter_using__exclude_joined_method__-_successfully_filter_for_multiple_ent
         arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/345678901234"
         name   = "account03"
         email  = "account03@example.org"
-        status = "ACTIVE"
         state  = "ACTIVE"
         tags   = {
           type = "prod"
@@ -168,7 +161,6 @@ run "filter_using__exclude_joined_method__-_throws_exception_on_invalid_value" {
         arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/123456789012"
         name   = "account01"
         email  = "account01@example.org"
-        status = "ACTIVE"
         state  = "ACTIVE"
         tags   = {
           type = "sandbox"
@@ -183,7 +175,6 @@ run "filter_using__exclude_joined_method__-_throws_exception_on_invalid_value" {
         arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/234567890123"
         name   = "account02"
         email  = "account02@example.org"
-        status = "ACTIVE"
         state  = "ACTIVE"
         tags   = {
           type = "nonprod"
@@ -198,7 +189,6 @@ run "filter_using__exclude_joined_method__-_throws_exception_on_invalid_value" {
         arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/345678901234"
         name   = "account03"
         email  = "account03@example.org"
-        status = "ACTIVE"
         state  = "ACTIVE"
         tags   = {
           type = "prod"
