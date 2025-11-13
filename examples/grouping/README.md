@@ -56,7 +56,9 @@ module "grouping" {
     }
   }
 
-  group_by_tag = "team"
+  group_by_tag = {
+    tag = "team"
+  }
 }
 ```
 
@@ -133,7 +135,9 @@ Changes to Outputs:
 
 ### Untagged accounts
 
-Any account that doesn't have a tag named `team` set, will be listed under the key `group_id_missing`. 
+Any account that doesn't have a tag named `team` set, will be listed under the key `tag_missing`.
+You can change this key name by setting `ungrouped_key` in the `group_by_tag` object to your preferred name.
+Or you can exclude those accounts from the result set by setting `include_ungrouped_accounts` in the `group_by_tag` object to `false`.
 
 That could look like this:
 
@@ -174,7 +178,7 @@ Changes to Outputs:
                 }
             },
         ]
-      + "group_id_missing" = [
+      + "tag_missing" = [
           + {
               + arn    = "arn:aws:organizations::010101010101:account/o-0abcd123ef/234567890123"
               + email  = "team2@example.org"

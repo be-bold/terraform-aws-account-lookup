@@ -21,5 +21,7 @@ module "grouping" {
     }
   }
 
-  group_by_tag = "team"
+  group_by_tag = {
+    tag = "team"
+  }
 }
