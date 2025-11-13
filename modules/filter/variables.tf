@@ -213,7 +213,28 @@ variable "exclude" {
 }
 
 variable "group_by_tag" {
-  type = string
-  default = ""
-  description = "Group by one of the accounts tags. If you choose a tag which is not provided by all accounts, then those accounts which don't provide the tag will be listed in a separate group. The name of this group can be accessed by using 'output.search_result_group_id_missing_key'"
+  type = object({
+    tag = string
+    include_ungrouped_accounts = optional(bool)
+    ungrouped_key = optional(string)
+  })
+
+  default = null
+
+  description = <<EOF
+    Groups accounts by a specific tag.
+    Specify the tag name in `tag`.
+
+    Not all accounts may provide this tag.
+    With `include_ungrouped_accounts`, you can decide whether accounts without this tag
+    should be included in the results.
+
+    If set to `true`, all accounts missing the tag are grouped under a special key,
+    defined by `ungrouped_key`.
+EOF
+
+  validation {
+    condition = var.group_by_tag == null || (var.group_by_tag != null && var.group_by_tag.tag != null && try(length(var.group_by_tag.tag) > 0, false))
+    error_message = "If you set group_by_tag then tag must not be null or empty."
+  }
 }

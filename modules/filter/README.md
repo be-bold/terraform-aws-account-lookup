@@ -233,6 +233,9 @@ module "filter" {
 
 You can group the result by any given tag.
 
+<details>
+<summary>Example for grouping accounts by the tag 'team'</summary>
+
 ```hcl
 module "filter" {
   source  = "be-bold/account-lookup/aws//modules/filter"
@@ -301,15 +304,22 @@ module "filter" {
     },
   ]
 
-  group_by_tag = "type"
+  group_by_tag = {
+    tag = "type"
+  }
 }
 
 output "result" {
   value = module.filter.result
 }
 ```
+</details>
+
 
 Here is what the output would look like:
+
+<details>
+<summary>Output</summary>
 
 ```text
 Changes to Outputs:
@@ -382,10 +392,14 @@ Changes to Outputs:
         ]
     }
 ```
+</details>
 
 #### Not setting group_by_tag
 
 If you don't set `group_by_tag` then there will be an entry for each account with the account ID as key:
+
+<details>
+<summary>Example output without group_by_tag set</summary>
 
 ```text
 Changes to Outputs:
@@ -457,13 +471,19 @@ Changes to Outputs:
     }
 ```
 
+</details>
+
+
 #### Tags not provided by every account
 
 If you want to group by a tag that is not provided by every account, then the result set will contain an additional
-entry. The key is `group_id_missing`. This entry contains all accounts which didn't provide the tag.
+entry. The key is `tag_missing`. This entry contains all accounts which didn't provide the tag.
 
 The module provides an output for retrieving the name of that entry dynamically. So in case it changes you don't have to
 adjust your code. You can retrieve that name using `result_group_id_missing_key`.
+
+<details>
+<summary>Example of ungrouped accounts with default key in result set</summary>
 
 ```hcl
 module "filter" {
@@ -531,20 +551,26 @@ module "filter" {
     },
   ]
 
-  group_by_tag = "type"
+  group_by_tag = {
+    tag = "type"
+  }
 }
 
 output "result" {
   value = module.filter.result
 }
 ```
+</details>
 
 And this is what the output looks like:
+
+<details>
+<summary>Output</summary>
 
 ```text
 Changes to Outputs:
   + result = {
-      + group_id_missing = [
+      + tag_missing = [
           + {
               + arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/123456789012"
               + email  = "account01@example.org"
@@ -610,6 +636,303 @@ Changes to Outputs:
         ]
     }
 ```
+
+</details>
+
+#### Changing the key for ungrouped accounts
+
+If you to list ungrouped accounts under a key other than `tag_missing`, you can change the key name by setting `ungrouped_key`.
+
+<details>
+<summary>Example of ungrouped accounts with a custom key in result set</summary>
+
+```hcl
+module "filter" {
+  source  = "be-bold/account-lookup/aws//modules/filter"
+  version = "#.#.#"
+
+  input = [
+    {
+      id     = "123456789012"
+      arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/123456789012"
+      name   = "account01"
+      email  = "account01@example.org"
+      state  = "ACTIVE"
+      tags   = {
+        team = "team1"
+      }
+      joined = {
+        method    = "CREATED"
+        timestamp = "2025-01-01T14:03:56.054000+01:00"
+      }
+    },
+    {
+      id     = "234567890123"
+      arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/234567890123"
+      name   = "account02"
+      email  = "account02@example.org"
+      state  = "ACTIVE"
+      tags   = {
+        type = "nonprod"
+        team = "team1"
+      }
+      joined = {
+        method    = "CREATED"
+        timestamp = "2025-01-02T14:03:56.054000+01:00"
+      }
+    },
+    {
+      id     = "345678901234"
+      arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/345678901234"
+      name   = "account03"
+      email  = "account03@example.org"
+      state  = "ACTIVE"
+      tags   = {
+        type = "prod"
+        team = "team2"
+      }
+      joined = {
+        method    = "CREATED"
+        timestamp = "2025-01-03T14:03:56.054000+01:00"
+      }
+    },
+    {
+      id     = "456789012345"
+      arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/456789012345"
+      name   = "account04"
+      email  = "account04@example.org"
+      state  = "ACTIVE"
+      tags   = {
+        team = "team3"
+      }
+      joined = {
+        method    = "CREATED"
+        timestamp = "2025-01-04T14:03:56.054000+01:00"
+      }
+    },
+  ]
+
+  group_by_tag = {
+    tag           = "type"
+    ungrouped_key = "my_custom_key"
+  }
+}
+
+output "result" {
+  value = module.filter.result
+}
+```
+</details>
+
+And this is what the output looks like:
+
+<details>
+<summary>Output</summary>
+
+```text
+Changes to Outputs:
+  + result = {
+      + my_custom_key = [
+          + {
+              + arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/123456789012"
+              + email  = "account01@example.org"
+              + id     = "123456789012"
+              + name   = "account01"
+              + state  = "ACTIVE"
+              + tags   = {
+                  + team = "team1"
+                }
+              + joined = {
+                + method    = "CREATED"
+                + timestamp = "2025-01-01T14:03:56.054000+01:00"
+              }
+            },
+          + {
+              + arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/456789012345"
+              + email  = "account04@example.org"
+              + id     = "456789012345"
+              + name   = "account04"
+              + state  = "ACTIVE"
+              + tags   = {
+                  + team = "team3"
+                }
+              + joined = {
+                + method    = "CREATED"
+                + timestamp = "2025-01-04T14:03:56.054000+01:00"
+              }
+            },
+        ]
+      + nonprod          = [
+          + {
+              + arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/234567890123"
+              + email  = "account02@example.org"
+              + id     = "234567890123"
+              + name   = "account02"
+              + state = "ACTIVE"
+              + tags   = {
+                  + team = "team1"
+                  + type = "nonprod"
+                }
+              + joined = {
+                + method    = "CREATED"
+                + timestamp = "2025-01-02T14:03:56.054000+01:00"
+              }
+            },
+        ]
+      + prod             = [
+          + {
+              + arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/345678901234"
+              + email  = "account03@example.org"
+              + id     = "345678901234"
+              + name   = "account03"
+              + state  = "ACTIVE"
+              + tags   = {
+                  + team = "team2"
+                  + type = "prod"
+                }
+              + joined = {
+                + method    = "CREATED"
+                + timestamp = "2025-01-03T14:03:56.054000+01:00"
+              }
+            },
+        ]
+    }
+```
+
+</details>
+
+#### Excluding ungrouped accounts from result set
+
+If you would rather exclude any accounts that don't provide the tag by which you wan to group the results then you can
+set `include_ungrouped_accounts` to `false`.
+
+<details>
+<summary>Excluding ungrouped accounts</summary>
+
+```hcl
+module "filter" {
+  source  = "be-bold/account-lookup/aws//modules/filter"
+  version = "#.#.#"
+
+  input = [
+    {
+      id     = "123456789012"
+      arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/123456789012"
+      name   = "account01"
+      email  = "account01@example.org"
+      state  = "ACTIVE"
+      tags   = {
+        team = "team1"
+      }
+      joined = {
+        method    = "CREATED"
+        timestamp = "2025-01-01T14:03:56.054000+01:00"
+      }
+    },
+    {
+      id     = "234567890123"
+      arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/234567890123"
+      name   = "account02"
+      email  = "account02@example.org"
+      state  = "ACTIVE"
+      tags   = {
+        type = "nonprod"
+        team = "team1"
+      }
+      joined = {
+        method    = "CREATED"
+        timestamp = "2025-01-02T14:03:56.054000+01:00"
+      }
+    },
+    {
+      id     = "345678901234"
+      arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/345678901234"
+      name   = "account03"
+      email  = "account03@example.org"
+      state  = "ACTIVE"
+      tags   = {
+        type = "prod"
+        team = "team2"
+      }
+      joined = {
+        method    = "CREATED"
+        timestamp = "2025-01-03T14:03:56.054000+01:00"
+      }
+    },
+    {
+      id     = "456789012345"
+      arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/456789012345"
+      name   = "account04"
+      email  = "account04@example.org"
+      state  = "ACTIVE"
+      tags   = {
+        team = "team3"
+      }
+      joined = {
+        method    = "CREATED"
+        timestamp = "2025-01-04T14:03:56.054000+01:00"
+      }
+    },
+  ]
+
+  group_by_tag = {
+    tag                        = "type"
+    include_ungrouped_accounts = false
+  }
+}
+
+output "result" {
+  value = module.filter.result
+}
+```
+</details>
+
+And this is what the output looks like:
+
+<details>
+<summary>Output</summary>
+
+```text
+Changes to Outputs:
+  + result = {
+      + nonprod          = [
+          + {
+              + arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/234567890123"
+              + email  = "account02@example.org"
+              + id     = "234567890123"
+              + name   = "account02"
+              + state = "ACTIVE"
+              + tags   = {
+                  + team = "team1"
+                  + type = "nonprod"
+                }
+              + joined = {
+                + method    = "CREATED"
+                + timestamp = "2025-01-02T14:03:56.054000+01:00"
+              }
+            },
+        ]
+      + prod             = [
+          + {
+              + arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/345678901234"
+              + email  = "account03@example.org"
+              + id     = "345678901234"
+              + name   = "account03"
+              + state  = "ACTIVE"
+              + tags   = {
+                  + team = "team2"
+                  + type = "prod"
+                }
+              + joined = {
+                + method    = "CREATED"
+                + timestamp = "2025-01-03T14:03:56.054000+01:00"
+              }
+            },
+        ]
+    }
+```
+
+</details>
 
 Have a look at the **examples** as well.
 

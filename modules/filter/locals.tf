@@ -1,5 +1,7 @@
 locals {
-  result_group_id_missing_key = "group_id_missing"
+  # Group by config
+  is_include_ungrouped_accounts = var.group_by_tag != null && var.group_by_tag.include_ungrouped_accounts != null ? var.group_by_tag.include_ungrouped_accounts : true
+  ungrouped_key = var.group_by_tag != null && var.group_by_tag.ungrouped_key != null && try(length(var.group_by_tag.ungrouped_key) > 0, false) ? trimspace(var.group_by_tag.ungrouped_key) : "tag_missing"
 
 
   # STEP 1 - include id
@@ -117,16 +119,20 @@ locals {
 
 
   ## STEP 17 - grouping
-  is_group_by_tag_set = var.group_by_tag != null && try(length(var.group_by_tag) > 0, false)
-  search_step17_grouping = local.is_group_by_tag_set ? {
+  is_group_by_tag_set = var.group_by_tag != null && var.group_by_tag.tag != null && try(length(var.group_by_tag.tag) > 0, false)
+  search_step17_grouping = local.is_group_by_tag_set ? { # Perform group by tag
     for account in local.search_step16_exclude_tags :
-      lookup(account.tags, var.group_by_tag, local.result_group_id_missing_key) => account...
-  } : {
+      lookup(account.tags, var.group_by_tag.tag, local.ungrouped_key) => account...
+  } : { # Default: group by account id
     for account in local.search_step16_exclude_tags :
       account.id => account...
   }
+  search_step17_filtering = local.is_group_by_tag_set && !local.is_include_ungrouped_accounts ? {
+    for key, value in local.search_step17_grouping :
+    key => value if key != local.ungrouped_key # Exclude the entry with the ungrouped accounts
+  } : local.search_step17_grouping # Return the result including the ungrouped accounts
 
 
   # Result
-  result = local.search_step17_grouping
+  result = local.search_step17_filtering
 }
