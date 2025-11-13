@@ -29,7 +29,8 @@ module "filter" {
 
 There are two different filters that you can set: `include` and `exclude`.
 The `include` filter will pick entries from the `input` that match and passes this subset to the `exclude` filter.
-The `exclude` filter removes matching entries to further narrow down the result.
+The `exclude` filter removes matching entries to further narrow down the result. You can change the order by chaining
+module calls (see section **chaining module calls**).
 If you configured `group_by_tag` then these remaining entries will be grouped and finally be available on the `result`. 
 
 Both `include`and `exclude` filter as well as `group_by_tag` are **optional**. So you are free to use only one filter or
@@ -640,3 +641,13 @@ Changes to Outputs:
 ```
 
 Have a look at the **examples** as well.
+
+### Chaining module calls
+
+In the section **filtering** the order of execution is described. First `include` is applied on the list of accounts
+followed by `exclude`. This module allows you to chain multiple module calls together. This way you could reverse the
+execution order of `include` and `exclude` or apply multiple checks on `joined.timestamp` which only allows a single check.
+All you have to do is wrap the `result` of the first module in `flatten()` and `values` like this:
+`flatten(values(module.first_call.result))` and pass this as the input for the next module call.
+
+You can find a full examples [here](../../examples/chaining_module_calls/README.md)
