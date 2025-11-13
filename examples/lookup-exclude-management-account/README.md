@@ -176,7 +176,6 @@ Changes to Outputs:
               + email  = "team1@example.org"
               + id     = "123456789012"
               + name   = "security"
-              + status = "ACTIVE"
               + state  = "ACTIVE"
               + tags   = {
                   + team = "team1"
@@ -194,7 +193,6 @@ Changes to Outputs:
               + email  = "team2@example.org"
               + id     = "234567890123"
               + name   = "sandbox"
-              + status = "ACTIVE"
               + state  = "ACTIVE"
               + tags   = {
                   + team = "team2"
@@ -212,7 +210,6 @@ Changes to Outputs:
               + email  = "team2@example.org"
               + id     = "345678901234"
               + name   = "workload"
-              + status = "ACTIVE"
               + state  = "ACTIVE"
               + tags   = {
                   + team = "team2"

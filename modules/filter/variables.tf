@@ -4,7 +4,6 @@ variable "input" {
     arn = string
     name = string
     email = string
-    status = string
     state = string
     tags = map(string)
     joined = object({
@@ -33,12 +32,6 @@ variable "input" {
   validation {
     condition = var.input != null && alltrue([ for entry in var.input != null ? var.input : [] : can(regex("^[\\s\\S]+@[\\s\\S]+\\.[\\s\\S]+$", entry.email)) ])
     error_message = "{input.email} contains invalid value(s). See AWS documentation: https://docs.aws.amazon.com/organizations/latest/APIReference/API_Account.html"
-  }
-
-  # Deprecated. (will be removed by AWS on 2025-09-09)
-  validation {
-    condition = var.input != null && alltrue([ for entry in var.input != null ? var.input : [] : try(contains(["ACTIVE", "SUSPENDED", "PENDING_CLOSURE"], entry.status), false) ])
-    error_message = "{input.status} contains invalid value(s). See AWS documentation: https://docs.aws.amazon.com/organizations/latest/APIReference/API_Account.html"
   }
 
   validation {
@@ -76,7 +69,6 @@ variable "include" {
       values   = set(string)
     }))
     email = optional(set(string))
-    status = optional(set(string))
     state = optional(set(string))
     tags = optional(map(set(string)))
     joined = optional(object({
@@ -89,7 +81,6 @@ variable "include" {
   })
 
   default = {
-    status = ["ACTIVE"]
     state = ["ACTIVE"]
   }
 
@@ -118,11 +109,6 @@ variable "include" {
   validation {
     condition = alltrue([ for entry in var.include.email != null ? var.include.email : [] : can(regex("[^\\s@]+@[^\\s@]+\\.[^\\s@]+", entry)) ])
     error_message = "{include.email} contains invalid value(s). See AWS documentation: https://docs.aws.amazon.com/organizations/latest/APIReference/API_Account.html"
-  }
-
-  validation {
-    condition = alltrue([ for entry in var.include.status != null ? var.include.status : [] : contains(["ACTIVE", "SUSPENDED", "PENDING_CLOSURE"], entry) ])
-    error_message = "{include.status} contains invalid value(s). See AWS documentation: https://docs.aws.amazon.com/organizations/latest/APIReference/API_Account.html"
   }
 
   validation {
@@ -160,7 +146,6 @@ variable "exclude" {
       values   = set(string)
     }))
     email = optional(set(string))
-    status = optional(set(string))
     state = optional(set(string))
     tags = optional(map(set(string)))
     joined = optional(object({
@@ -199,11 +184,6 @@ variable "exclude" {
   validation {
     condition = alltrue([ for entry in var.exclude.email != null ? var.exclude.email : [] : can(regex("[^\\s@]+@[^\\s@]+\\.[^\\s@]+", entry)) ])
     error_message = "{exclude.email} contains invalid value(s). See AWS documentation: https://docs.aws.amazon.com/organizations/latest/APIReference/API_Account.html"
-  }
-
-  validation {
-    condition = alltrue([ for entry in var.exclude.status != null ? var.exclude.status : [] : contains(["ACTIVE", "SUSPENDED", "PENDING_CLOSURE"], entry) ])
-    error_message = "{exclude.status} contains invalid value(s). See AWS documentation: https://docs.aws.amazon.com/organizations/latest/APIReference/API_Account.html"
   }
 
   validation {

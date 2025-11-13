@@ -6,7 +6,6 @@ run "filter_using__exclude_state__-_successfully_filter_for_single_entry_with_as
         arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/123456789012"
         name   = "account01"
         email  = "account01@example.org"
-        status = "ACTIVE"
         state  = "ACTIVE"
         tags   = {
           type = "sandbox"
@@ -21,7 +20,6 @@ run "filter_using__exclude_state__-_successfully_filter_for_single_entry_with_as
         arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/234567890123"
         name   = "account02"
         email  = "account02@example.org"
-        status = "SUSPENDED"
         state  = "SUSPENDED"
         tags   = {
           type = "nonprod"
@@ -36,7 +34,6 @@ run "filter_using__exclude_state__-_successfully_filter_for_single_entry_with_as
         arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/345678901234"
         name   = "account03"
         email  = "account03@example.org"
-        status = "SUSPENDED"
         state  = "CLOSED"
         tags   = {
           type = "prod"
@@ -50,11 +47,6 @@ run "filter_using__exclude_state__-_successfully_filter_for_single_entry_with_as
 
     # override the default
     include = {
-      status = [
-        "ACTIVE",
-        "SUSPENDED",
-        "PENDING_CLOSURE",
-      ]
       state = [
         "PENDING_ACTIVATION",
         "ACTIVE",
@@ -82,7 +74,6 @@ run "filter_using__exclude_state__-_successfully_filter_for_single_entry_with_as
           arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/234567890123"
           name   = "account02"
           email  = "account02@example.org"
-          status = "SUSPENDED"
           state  = "SUSPENDED"
           tags   = {
             type = "nonprod"
@@ -106,7 +97,6 @@ run "filter_using__exclude_state__-_successfully_filter_for_multiple_entries" {
         arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/123456789012"
         name   = "account01"
         email  = "account01@example.org"
-        status = "ACTIVE"
         state  = "ACTIVE"
         tags   = {
           type = "sandbox"
@@ -121,7 +111,6 @@ run "filter_using__exclude_state__-_successfully_filter_for_multiple_entries" {
         arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/234567890123"
         name   = "account02"
         email  = "account02@example.org"
-        status = "SUSPENDED"
         state  = "SUSPENDED"
         tags   = {
           type = "nonprod"
@@ -136,7 +125,6 @@ run "filter_using__exclude_state__-_successfully_filter_for_multiple_entries" {
         arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/345678901234"
         name   = "account03"
         email  = "account03@example.org"
-        status = "PENDING_CLOSURE"
         state  = "PENDING_CLOSURE"
         tags   = {
           type = "prod"
@@ -150,11 +138,6 @@ run "filter_using__exclude_state__-_successfully_filter_for_multiple_entries" {
 
     # override the default
     include = {
-      status = [
-        "ACTIVE",
-        "SUSPENDED",
-        "PENDING_CLOSURE",
-      ]
       state = [
         "PENDING_ACTIVATION",
         "ACTIVE",
@@ -165,7 +148,7 @@ run "filter_using__exclude_state__-_successfully_filter_for_multiple_entries" {
     }
 
     exclude = {
-      status = [
+      state = [
         "SUSPENDED",
       ]
     }
@@ -197,7 +180,6 @@ run "filter_using__exclude_state__-_only_return_known_entry_if_you_filter_for_kn
         arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/123456789012"
         name   = "account01"
         email  = "account01@example.org"
-        status = "ACTIVE"
         state  = "ACTIVE"
         tags   = {
           type = "sandbox"
@@ -212,7 +194,6 @@ run "filter_using__exclude_state__-_only_return_known_entry_if_you_filter_for_kn
         arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/234567890123"
         name   = "account02"
         email  = "account02@example.org"
-        status = "SUSPENDED"
         state  = "SUSPENDED"
         tags   = {
           type = "nonprod"
@@ -227,7 +208,6 @@ run "filter_using__exclude_state__-_only_return_known_entry_if_you_filter_for_kn
         arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/345678901234"
         name   = "account03"
         email  = "account03@example.org"
-        status = "SUSPENDED"
         state  = "SUSPENDED"
         tags   = {
           type = "prod"
@@ -241,11 +221,6 @@ run "filter_using__exclude_state__-_only_return_known_entry_if_you_filter_for_kn
 
     # override the default
     include = {
-      status = [
-        "ACTIVE",
-        "SUSPENDED",
-        "PENDING_CLOSURE",
-      ]
       state = [
         "PENDING_ACTIVATION",
         "ACTIVE",
@@ -256,7 +231,7 @@ run "filter_using__exclude_state__-_only_return_known_entry_if_you_filter_for_kn
     }
 
     exclude = {
-      status = [
+      state = [
         "ACTIVE",
         "PENDING_CLOSURE",
       ]
@@ -289,7 +264,6 @@ run "filter_using__exclude_state__-_unknown_entry_doesnt_exclude_anything" {
         arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/123456789012"
         name   = "account01"
         email  = "account01@example.org"
-        status = "ACTIVE"
         state  = "ACTIVE"
         tags   = {
           type = "sandbox"
@@ -304,7 +278,6 @@ run "filter_using__exclude_state__-_unknown_entry_doesnt_exclude_anything" {
         arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/234567890123"
         name   = "account02"
         email  = "account02@example.org"
-        status = "SUSPENDED"
         state  = "SUSPENDED"
         tags   = {
           type = "nonprod"
@@ -319,7 +292,6 @@ run "filter_using__exclude_state__-_unknown_entry_doesnt_exclude_anything" {
         arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/345678901234"
         name   = "account03"
         email  = "account03@example.org"
-        status = "SUSPENDED"
         state  = "SUSPENDED"
         tags   = {
           type = "prod"
@@ -333,11 +305,6 @@ run "filter_using__exclude_state__-_unknown_entry_doesnt_exclude_anything" {
 
     # override the default
     include = {
-      status = [
-        "ACTIVE",
-        "SUSPENDED",
-        "PENDING_CLOSURE",
-      ]
       state = [
         "PENDING_ACTIVATION",
         "ACTIVE",
@@ -348,7 +315,7 @@ run "filter_using__exclude_state__-_unknown_entry_doesnt_exclude_anything" {
     }
 
     exclude = {
-      status = [
+      state = [
         "PENDING_CLOSURE",
       ]
     }

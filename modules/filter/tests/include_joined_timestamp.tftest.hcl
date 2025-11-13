@@ -6,7 +6,6 @@ run "filter_using__include_joined_timestamp_is__-_throws_exception_for_null" {
         arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/123456789012"
         name   = "account01"
         email  = "account01@example.org"
-        status = "ACTIVE"
         state  = "ACTIVE"
         tags   = {
           type = "sandbox"
@@ -21,7 +20,6 @@ run "filter_using__include_joined_timestamp_is__-_throws_exception_for_null" {
         arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/234567890123"
         name   = "account02"
         email  = "account02@example.org"
-        status = "ACTIVE"
         state  = "ACTIVE"
         tags   = {
           type = "nonprod"
@@ -36,7 +34,6 @@ run "filter_using__include_joined_timestamp_is__-_throws_exception_for_null" {
         arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/345678901234"
         name   = "account03"
         email  = "account03@example.org"
-        status = "ACTIVE"
         state  = "ACTIVE"
         tags   = {
           type = "prod"
@@ -73,7 +70,6 @@ run "filter_using__include_joined_timestamp_is__-_throws_exception_for_invalid_v
         arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/123456789012"
         name   = "account01"
         email  = "account01@example.org"
-        status = "ACTIVE"
         state  = "ACTIVE"
         tags   = {
           type = "sandbox"
@@ -88,7 +84,6 @@ run "filter_using__include_joined_timestamp_is__-_throws_exception_for_invalid_v
         arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/234567890123"
         name   = "account02"
         email  = "account02@example.org"
-        status = "ACTIVE"
         state  = "ACTIVE"
         tags   = {
           type = "nonprod"
@@ -103,7 +98,6 @@ run "filter_using__include_joined_timestamp_is__-_throws_exception_for_invalid_v
         arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/345678901234"
         name   = "account03"
         email  = "account03@example.org"
-        status = "ACTIVE"
         state  = "ACTIVE"
         tags   = {
           type = "prod"
@@ -140,7 +134,6 @@ run "filter_using__include_joined_timestamp_is__-_throws_exception_for_valid_val
         arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/123456789012"
         name   = "account01"
         email  = "account01@example.org"
-        status = "ACTIVE"
         state  = "ACTIVE"
         tags   = {
           type = "sandbox"
@@ -155,7 +148,6 @@ run "filter_using__include_joined_timestamp_is__-_throws_exception_for_valid_val
         arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/234567890123"
         name   = "account02"
         email  = "account02@example.org"
-        status = "ACTIVE"
         state  = "ACTIVE"
         tags   = {
           type = "nonprod"
@@ -170,7 +162,6 @@ run "filter_using__include_joined_timestamp_is__-_throws_exception_for_valid_val
         arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/345678901234"
         name   = "account03"
         email  = "account03@example.org"
-        status = "ACTIVE"
         state  = "ACTIVE"
         tags   = {
           type = "prod"
@@ -208,7 +199,6 @@ run "filter_using__include_joined_timestamp_other_timestamp__-_throws_exception_
         arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/123456789012"
         name   = "account01"
         email  = "account01@example.org"
-        status = "ACTIVE"
         state  = "ACTIVE"
         tags   = {
           type = "sandbox"
@@ -223,7 +213,6 @@ run "filter_using__include_joined_timestamp_other_timestamp__-_throws_exception_
         arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/234567890123"
         name   = "account02"
         email  = "account02@example.org"
-        status = "ACTIVE"
         state  = "ACTIVE"
         tags   = {
           type = "nonprod"
@@ -238,7 +227,6 @@ run "filter_using__include_joined_timestamp_other_timestamp__-_throws_exception_
         arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/345678901234"
         name   = "account03"
         email  = "account03@example.org"
-        status = "ACTIVE"
         state  = "ACTIVE"
         tags   = {
           type = "prod"
@@ -275,7 +263,6 @@ run "filter_using__include_joined_timestamp_other_timestamp__-_throws_exception_
         arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/123456789012"
         name   = "account01"
         email  = "account01@example.org"
-        status = "ACTIVE"
         state  = "ACTIVE"
         tags   = {
           type = "sandbox"
@@ -290,7 +277,6 @@ run "filter_using__include_joined_timestamp_other_timestamp__-_throws_exception_
         arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/234567890123"
         name   = "account02"
         email  = "account02@example.org"
-        status = "ACTIVE"
         state  = "ACTIVE"
         tags   = {
           type = "nonprod"
@@ -305,7 +291,6 @@ run "filter_using__include_joined_timestamp_other_timestamp__-_throws_exception_
         arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/345678901234"
         name   = "account03"
         email  = "account03@example.org"
-        status = "ACTIVE"
         state  = "ACTIVE"
         tags   = {
           type = "prod"
@@ -343,7 +328,6 @@ run "filter_using__include_joined_timestamp_is__-_before_-_successfully_filter_f
         arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/123456789012"
         name   = "prefix1-account01"
         email  = "account01@example.org"
-        status = "ACTIVE"
         state  = "ACTIVE"
         tags   = {
           type = "sandbox"
@@ -358,7 +342,6 @@ run "filter_using__include_joined_timestamp_is__-_before_-_successfully_filter_f
         arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/234567890123"
         name   = "prefix2-account02"
         email  = "account02@example.org"
-        status = "ACTIVE"
         state  = "ACTIVE"
         tags   = {
           type = "nonprod"
@@ -373,7 +356,6 @@ run "filter_using__include_joined_timestamp_is__-_before_-_successfully_filter_f
         arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/345678901234"
         name   = "prefix3-account03"
         email  = "account03@example.org"
-        status = "ACTIVE"
         state  = "ACTIVE"
         tags   = {
           type = "prod"
@@ -405,8 +387,7 @@ run "filter_using__include_joined_timestamp_is__-_before_-_successfully_filter_f
           arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/123456789012"
           name   = "prefix1-account01"
           email  = "account01@example.org"
-          status = "ACTIVE"
-          state  = "ACTIVE"
+            state  = "ACTIVE"
           tags   = {
             type = "sandbox"
           }
@@ -429,7 +410,6 @@ run "filter_using__include_joined_timestamp_is__-_before_-_successfully_filter_f
         arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/123456789012"
         name   = "prefix1-account01"
         email  = "account01@example.org"
-        status = "ACTIVE"
         state  = "ACTIVE"
         tags   = {
           type = "sandbox"
@@ -444,7 +424,6 @@ run "filter_using__include_joined_timestamp_is__-_before_-_successfully_filter_f
         arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/234567890123"
         name   = "prefix2-account02"
         email  = "account02@example.org"
-        status = "ACTIVE"
         state  = "ACTIVE"
         tags   = {
           type = "nonprod"
@@ -459,7 +438,6 @@ run "filter_using__include_joined_timestamp_is__-_before_-_successfully_filter_f
         arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/345678901234"
         name   = "prefix3-account03"
         email  = "account03@example.org"
-        status = "ACTIVE"
         state  = "ACTIVE"
         tags   = {
           type = "prod"
@@ -507,7 +485,6 @@ run "filter_using__include_joined_timestamp_is__-_before_-_include_only_matching
         arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/123456789012"
         name   = "prefix1-account01"
         email  = "account01@example.org"
-        status = "ACTIVE"
         state  = "ACTIVE"
         tags   = {
           type = "sandbox"
@@ -522,7 +499,6 @@ run "filter_using__include_joined_timestamp_is__-_before_-_include_only_matching
         arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/234567890123"
         name   = "prefix2-account02"
         email  = "account02@example.org"
-        status = "ACTIVE"
         state  = "ACTIVE"
         tags   = {
           type = "nonprod"
@@ -537,7 +513,6 @@ run "filter_using__include_joined_timestamp_is__-_before_-_include_only_matching
         arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/345678901234"
         name   = "prefix3-account03"
         email  = "account03@example.org"
-        status = "ACTIVE"
         state  = "ACTIVE"
         tags   = {
           type = "prod"
@@ -576,7 +551,6 @@ run "filter_using__include_joined_timestamp_is__-_equals_-_successfully_filter_f
         arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/123456789012"
         name   = "prefix1-account01"
         email  = "account01@example.org"
-        status = "ACTIVE"
         state  = "ACTIVE"
         tags   = {
           type = "sandbox"
@@ -591,7 +565,6 @@ run "filter_using__include_joined_timestamp_is__-_equals_-_successfully_filter_f
         arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/234567890123"
         name   = "prefix2-account02"
         email  = "account02@example.org"
-        status = "ACTIVE"
         state  = "ACTIVE"
         tags   = {
           type = "nonprod"
@@ -606,7 +579,6 @@ run "filter_using__include_joined_timestamp_is__-_equals_-_successfully_filter_f
         arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/345678901234"
         name   = "prefix3-account03"
         email  = "account03@example.org"
-        status = "ACTIVE"
         state  = "ACTIVE"
         tags   = {
           type = "prod"
@@ -638,8 +610,7 @@ run "filter_using__include_joined_timestamp_is__-_equals_-_successfully_filter_f
           arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/234567890123"
           name   = "prefix2-account02"
           email  = "account02@example.org"
-          status = "ACTIVE"
-          state  = "ACTIVE"
+            state  = "ACTIVE"
           tags   = {
             type = "nonprod"
           }
@@ -662,7 +633,6 @@ run "filter_using__include_joined_timestamp_is__-_equals_-_include_only_matching
         arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/123456789012"
         name   = "prefix1-account01"
         email  = "account01@example.org"
-        status = "ACTIVE"
         state  = "ACTIVE"
         tags   = {
           type = "sandbox"
@@ -677,7 +647,6 @@ run "filter_using__include_joined_timestamp_is__-_equals_-_include_only_matching
         arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/234567890123"
         name   = "prefix2-account02"
         email  = "account02@example.org"
-        status = "ACTIVE"
         state  = "ACTIVE"
         tags   = {
           type = "nonprod"
@@ -692,7 +661,6 @@ run "filter_using__include_joined_timestamp_is__-_equals_-_include_only_matching
         arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/345678901234"
         name   = "prefix3-account03"
         email  = "account03@example.org"
-        status = "ACTIVE"
         state  = "ACTIVE"
         tags   = {
           type = "prod"
@@ -731,7 +699,6 @@ run "filter_using__include_joined_timestamp_is__-_after_-_successfully_filter_fo
         arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/123456789012"
         name   = "prefix1-account01"
         email  = "account01@example.org"
-        status = "ACTIVE"
         state  = "ACTIVE"
         tags   = {
           type = "sandbox"
@@ -746,7 +713,6 @@ run "filter_using__include_joined_timestamp_is__-_after_-_successfully_filter_fo
         arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/234567890123"
         name   = "prefix2-account02"
         email  = "account02@example.org"
-        status = "ACTIVE"
         state  = "ACTIVE"
         tags   = {
           type = "nonprod"
@@ -761,7 +727,6 @@ run "filter_using__include_joined_timestamp_is__-_after_-_successfully_filter_fo
         arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/345678901234"
         name   = "prefix3-account03"
         email  = "account03@example.org"
-        status = "ACTIVE"
         state  = "ACTIVE"
         tags   = {
           type = "prod"
@@ -793,8 +758,7 @@ run "filter_using__include_joined_timestamp_is__-_after_-_successfully_filter_fo
           arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/345678901234"
           name   = "prefix3-account03"
           email  = "account03@example.org"
-          status = "ACTIVE"
-          state  = "ACTIVE"
+            state  = "ACTIVE"
           tags   = {
             type = "prod"
           }
@@ -817,7 +781,6 @@ run "filter_using__include_joined_timestamp_is__-_after_-_successfully_filter_fo
         arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/123456789012"
         name   = "prefix1-account01"
         email  = "account01@example.org"
-        status = "ACTIVE"
         state  = "ACTIVE"
         tags   = {
           type = "sandbox"
@@ -832,7 +795,6 @@ run "filter_using__include_joined_timestamp_is__-_after_-_successfully_filter_fo
         arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/234567890123"
         name   = "prefix2-account02"
         email  = "account02@example.org"
-        status = "ACTIVE"
         state  = "ACTIVE"
         tags   = {
           type = "nonprod"
@@ -847,7 +809,6 @@ run "filter_using__include_joined_timestamp_is__-_after_-_successfully_filter_fo
         arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/345678901234"
         name   = "prefix3-account03"
         email  = "account03@example.org"
-        status = "ACTIVE"
         state  = "ACTIVE"
         tags   = {
           type = "prod"
@@ -895,7 +856,6 @@ run "filter_using__include_joined_timestamp_is__-_after_-_include_only_matching_
         arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/123456789012"
         name   = "prefix1-account01"
         email  = "account01@example.org"
-        status = "ACTIVE"
         state  = "ACTIVE"
         tags   = {
           type = "sandbox"
@@ -910,7 +870,6 @@ run "filter_using__include_joined_timestamp_is__-_after_-_include_only_matching_
         arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/234567890123"
         name   = "prefix2-account02"
         email  = "account02@example.org"
-        status = "ACTIVE"
         state  = "ACTIVE"
         tags   = {
           type = "nonprod"
@@ -925,7 +884,6 @@ run "filter_using__include_joined_timestamp_is__-_after_-_include_only_matching_
         arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/345678901234"
         name   = "prefix3-account03"
         email  = "account03@example.org"
-        status = "ACTIVE"
         state  = "ACTIVE"
         tags   = {
           type = "prod"
