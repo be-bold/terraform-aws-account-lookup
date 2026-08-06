@@ -321,7 +321,7 @@ run "filter_using__include_name__-_startswith_-_successfully_filter_for_single_e
           arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/234567890123"
           name   = "prefix2-account02"
           email  = "account02@example.org"
-            state  = "ACTIVE"
+          state  = "ACTIVE"
           tags = {
             type = "nonprod"
           }
@@ -679,7 +679,7 @@ run "filter_using__include_name__-_endswith_-_successfully_filter_for_single_ent
           arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/234567890123"
           name   = "account02-suffix2"
           email  = "account02@example.org"
-            state  = "ACTIVE"
+          state  = "ACTIVE"
           tags = {
             type = "nonprod"
           }
@@ -1037,7 +1037,7 @@ run "filter_using__include_name__-_equals_-_successfully_filter_for_single_entry
           arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/234567890123"
           name   = "account02"
           email  = "account02@example.org"
-            state  = "ACTIVE"
+          state  = "ACTIVE"
           tags = {
             type = "nonprod"
           }
@@ -1395,7 +1395,7 @@ run "filter_using__include_name__-_contains_-_successfully_filter_for_single_ent
           arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/234567890123"
           name   = "prefix2-account02"
           email  = "account02@example.org"
-            state  = "ACTIVE"
+          state  = "ACTIVE"
           tags = {
             type = "nonprod"
           }
@@ -1753,7 +1753,7 @@ run "filter_using__include_name__-_regex_-_successfully_filter_for_single_entry_
           arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/234567890123"
           name   = "prefix2-account02-foo-4567-bar-suffix"
           email  = "account02@example.org"
-            state  = "ACTIVE"
+          state  = "ACTIVE"
           tags = {
             type = "nonprod"
           }

@@ -508,7 +508,7 @@ run "group_by_tag_-_every_entry_provides_given_tag" {
           arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/123456789012"
           name   = "account01"
           email  = "account01@example.org"
-            state  = "ACTIVE"
+          state  = "ACTIVE"
           tags   = {
             type = "sandbox"
             team = "team1"
@@ -523,7 +523,7 @@ run "group_by_tag_-_every_entry_provides_given_tag" {
           arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/345678901234"
           name   = "account03"
           email  = "account03@example.org"
-            state  = "ACTIVE"
+          state  = "ACTIVE"
           tags   = {
             type = "prod"
             team = "team1"
@@ -540,7 +540,7 @@ run "group_by_tag_-_every_entry_provides_given_tag" {
           arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/234567890123"
           name   = "account02"
           email  = "account02@example.org"
-            state  = "ACTIVE"
+          state  = "ACTIVE"
           tags   = {
             type = "nonprod"
             team = "team2"
@@ -654,7 +654,7 @@ run "group_by_tag_-_entries_not_providing_tag_are_listed_with_the_default_key_fo
           arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/234567890123"
           name   = "account02"
           email  = "account02@example.org"
-            state  = "ACTIVE"
+          state  = "ACTIVE"
           tags   = {
             type = "nonprod"
             team = "team2"
@@ -672,7 +672,7 @@ run "group_by_tag_-_entries_not_providing_tag_are_listed_with_the_default_key_fo
           arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/345678901234"
           name   = "account03"
           email  = "account03@example.org"
-            state  = "ACTIVE"
+          state  = "ACTIVE"
           tags   = {
             type = "prod"
             team = "team1"
@@ -688,7 +688,7 @@ run "group_by_tag_-_entries_not_providing_tag_are_listed_with_the_default_key_fo
           arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/567890123456"
           name   = "account05"
           email  = "account05@example.org"
-            state  = "ACTIVE"
+          state  = "ACTIVE"
           tags   = {
             type = "nonprod"
             team = "team3"
@@ -706,7 +706,7 @@ run "group_by_tag_-_entries_not_providing_tag_are_listed_with_the_default_key_fo
           arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/123456789012"
           name   = "account01"
           email  = "account01@example.org"
-            state  = "ACTIVE"
+          state  = "ACTIVE"
           tags   = {
             type = "sandbox"
             team = "team1"
@@ -721,7 +721,7 @@ run "group_by_tag_-_entries_not_providing_tag_are_listed_with_the_default_key_fo
           arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/456789012345"
           name   = "account04"
           email  = "account04@example.org"
-            state  = "ACTIVE"
+          state  = "ACTIVE"
           tags   = {
             type = "prod"
             team = "team3"

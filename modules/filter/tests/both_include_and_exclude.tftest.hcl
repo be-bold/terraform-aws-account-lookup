@@ -103,7 +103,7 @@ run "filter_using_both_include_and_exclude_-_first_input_is_run_through_include_
           arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/234567890123"
           name   = "account02"
           email  = "account02@example.org"
-            state  = "ACTIVE"
+          state  = "ACTIVE"
           tags = {
             type = "nonprod"
           }
@@ -119,7 +119,7 @@ run "filter_using_both_include_and_exclude_-_first_input_is_run_through_include_
           arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/456789012345"
           name   = "account04"
           email  = "account04@example.org"
-            state  = "ACTIVE"
+          state  = "ACTIVE"
           tags = {
             type = "nonprod"
           }

@@ -387,7 +387,7 @@ run "filter_using__include_joined_timestamp_is__-_before_-_successfully_filter_f
           arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/123456789012"
           name   = "prefix1-account01"
           email  = "account01@example.org"
-            state  = "ACTIVE"
+          state  = "ACTIVE"
           tags   = {
             type = "sandbox"
           }
@@ -610,7 +610,7 @@ run "filter_using__include_joined_timestamp_is__-_equals_-_successfully_filter_f
           arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/234567890123"
           name   = "prefix2-account02"
           email  = "account02@example.org"
-            state  = "ACTIVE"
+          state  = "ACTIVE"
           tags   = {
             type = "nonprod"
           }
@@ -758,7 +758,7 @@ run "filter_using__include_joined_timestamp_is__-_after_-_successfully_filter_fo
           arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/345678901234"
           name   = "prefix3-account03"
           email  = "account03@example.org"
-            state  = "ACTIVE"
+          state  = "ACTIVE"
           tags   = {
             type = "prod"
           }

@@ -64,7 +64,7 @@ run "filter_using__include_joined_method__-_successfully_filter_for_single_entry
           arn    = "arn:aws:organizations::000000000001:account/o-0abcd123ef/234567890123"
           name   = "account02"
           email  = "account02@example.org"
-            state  = "ACTIVE"
+          state  = "ACTIVE"
           tags = {
             type = "nonprod"
           }
