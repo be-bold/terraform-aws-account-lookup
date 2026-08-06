@@ -4,7 +4,6 @@ variable "input" {
     arn = string
     name = string
     email = string
-    status = string
     state = string
     tags = map(string)
     joined = object({
@@ -33,12 +32,6 @@ variable "input" {
   validation {
     condition = var.input != null && alltrue([ for entry in var.input != null ? var.input : [] : can(regex("^[\\s\\S]+@[\\s\\S]+\\.[\\s\\S]+$", entry.email)) ])
     error_message = "{input.email} contains invalid value(s). See AWS documentation: https://docs.aws.amazon.com/organizations/latest/APIReference/API_Account.html"
-  }
-
-  # Deprecated. (will be removed by AWS on 2025-09-09)
-  validation {
-    condition = var.input != null && alltrue([ for entry in var.input != null ? var.input : [] : try(contains(["ACTIVE", "SUSPENDED", "PENDING_CLOSURE"], entry.status), false) ])
-    error_message = "{input.status} contains invalid value(s). See AWS documentation: https://docs.aws.amazon.com/organizations/latest/APIReference/API_Account.html"
   }
 
   validation {
@@ -76,7 +69,6 @@ variable "include" {
       values   = set(string)
     }))
     email = optional(set(string))
-    status = optional(set(string))
     state = optional(set(string))
     tags = optional(map(set(string)))
     joined = optional(object({
@@ -89,7 +81,6 @@ variable "include" {
   })
 
   default = {
-    status = ["ACTIVE"]
     state = ["ACTIVE"]
   }
 
@@ -118,11 +109,6 @@ variable "include" {
   validation {
     condition = alltrue([ for entry in var.include.email != null ? var.include.email : [] : can(regex("[^\\s@]+@[^\\s@]+\\.[^\\s@]+", entry)) ])
     error_message = "{include.email} contains invalid value(s). See AWS documentation: https://docs.aws.amazon.com/organizations/latest/APIReference/API_Account.html"
-  }
-
-  validation {
-    condition = alltrue([ for entry in var.include.status != null ? var.include.status : [] : contains(["ACTIVE", "SUSPENDED", "PENDING_CLOSURE"], entry) ])
-    error_message = "{include.status} contains invalid value(s). See AWS documentation: https://docs.aws.amazon.com/organizations/latest/APIReference/API_Account.html"
   }
 
   validation {
@@ -160,7 +146,6 @@ variable "exclude" {
       values   = set(string)
     }))
     email = optional(set(string))
-    status = optional(set(string))
     state = optional(set(string))
     tags = optional(map(set(string)))
     joined = optional(object({
@@ -202,11 +187,6 @@ variable "exclude" {
   }
 
   validation {
-    condition = alltrue([ for entry in var.exclude.status != null ? var.exclude.status : [] : contains(["ACTIVE", "SUSPENDED", "PENDING_CLOSURE"], entry) ])
-    error_message = "{exclude.status} contains invalid value(s). See AWS documentation: https://docs.aws.amazon.com/organizations/latest/APIReference/API_Account.html"
-  }
-
-  validation {
     condition = alltrue([ for entry in var.exclude.state != null ? var.exclude.state : [] : contains(["PENDING_ACTIVATION", "ACTIVE", "SUSPENDED", "PENDING_CLOSURE", "CLOSED"], entry) ])
     error_message = "{exclude.state} contains invalid value(s). See AWS documentation: https://docs.aws.amazon.com/organizations/latest/APIReference/API_Account.html"
   }
@@ -233,7 +213,28 @@ variable "exclude" {
 }
 
 variable "group_by_tag" {
-  type = string
-  default = ""
-  description = "Group by one of the accounts tags. If you choose a tag which is not provided by all accounts, then those accounts which don't provide the tag will be listed in a separate group. The name of this group can be accessed by using 'output.search_result_group_id_missing_key'"
+  type = object({
+    tag = string
+    include_ungrouped_accounts = optional(bool)
+    ungrouped_key = optional(string)
+  })
+
+  default = null
+
+  description = <<EOF
+    Groups accounts by a specific tag.
+    Specify the tag name in `tag`.
+
+    Not all accounts may provide this tag.
+    With `include_ungrouped_accounts`, you can decide whether accounts without this tag
+    should be included in the results.
+
+    If set to `true`, all accounts missing the tag are grouped under a special key,
+    defined by `ungrouped_key`.
+EOF
+
+  validation {
+    condition = var.group_by_tag == null || (var.group_by_tag != null && var.group_by_tag.tag != null && try(length(var.group_by_tag.tag) > 0, false))
+    error_message = "If you set group_by_tag then tag must not be null or empty."
+  }
 }
